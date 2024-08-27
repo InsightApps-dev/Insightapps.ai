@@ -1,0 +1,316 @@
+
+<app-page-header title="Accordions" title1="UI Kit" activeitem="Accordions"></app-page-header>
+
+<!-- CONTAINER -->
+<div class="main-container container-fluid">
+
+  <!-- ROW-1 OPEN -->
+  <div class="row ">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Default Accordion</h3>
+        </div>
+        <div class="card-body">
+          <div
+            ngbAccordion
+            [closeOthers]="true"
+            class="accordion"
+            id="accordionExample"
+            >
+            @for (default of defaults; track default) {
+              <div
+                ngbAccordionItem
+                [collapsed]="default !== 'First'"
+                class="accordion-item"
+                >
+                <h2 ngbAccordionHeader class="accordion-header" id="headingOne">
+                  <button
+                    ngbAccordionButton
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                    >
+                    {{ default}}
+                  </button>
+                </h2>
+                <div
+                  ngbAccordionCollapse
+                  id="collapseOne"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                  >
+                  <div class="accordion-body" ngbAccordionBody>
+                    <ng-template>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- PANEL-GROUP -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ROW-1 CLOSED -->
+
+  <!-- ROW-2 OPEN -->
+  <div class="row">
+    <div class="col-sm-12 col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Always Open Accordion</h3>
+        </div>
+        <div class="card-body">
+          <div
+            ngbAccordion
+            [closeOthers]="true"
+            class="accordion"
+            id="accordionExample"
+            >
+            @for (panel of panels; track panel) {
+              <div
+                ngbAccordionItem
+                [collapsed]="panel !== 'Accordion Item #1'"
+                class="accordion-item"
+                >
+                <h2 ngbAccordionHeader class="accordion-header" id="headingOne">
+                  <button
+                    ngbAccordionButton
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                    >
+                    {{ panel }}
+                  </button>
+                </h2>
+                <div
+                  ngbAccordionCollapse
+                  id="collapseOne"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                  >
+                  <div class="accordion-body" ngbAccordionBody>
+                    <ng-template>
+                      <strong>This is the first item's accordion body.</strong> It is
+                      shown by default, until the collapse plugin adds the appropriate
+                      classes that we use to style each element. These classes control
+                      the overall appearance, as well as the showing and hiding via
+                      CSS transitions. You can modify any of this with custom CSS or
+                      overriding our default variables. It's also worth noting that
+                      just about any HTML can go within the
+                      <code>.accordion-body</code>, though the transition does limit
+                      overflow.
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- COL-END -->
+    <div class="col-sm-12 col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Closed Accordion</h3>
+        </div>
+        <div class="card-body">
+          <div
+            ngbAccordion
+            [closeOthers]="true"
+            class="accordion"
+            id="accordionExample"
+            >
+            @for (panel of panels; track panel) {
+              <div
+                ngbAccordionItem
+                [collapsed]="panel !== 'Accordion Item #1'"
+                class="accordion-item"
+                >
+                <h2 ngbAccordionHeader class="accordion-header" id="headingOne">
+                  <button
+                    ngbAccordionButton
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                    >
+                    {{ panel }}
+                  </button>
+                </h2>
+                <div
+                  ngbAccordionCollapse
+                  id="collapseOne"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                  >
+                  <div class="accordion-body" ngbAccordionBody>
+                    <ng-template>
+                      <strong>This is the first item's accordion body.</strong> It is
+                      shown by default, until the collapse plugin adds the appropriate
+                      classes that we use to style each element. These classes control
+                      the overall appearance, as well as the showing and hiding via
+                      CSS transitions. You can modify any of this with custom CSS or
+                      overriding our default variables. It's also worth noting that
+                      just about any HTML can go within the
+                      <code>.accordion-body</code>, though the transition does limit
+                      overflow.
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- COL-END -->
+  </div>
+  <!-- ROW-2 CLOSED OPEN -->
+
+  <!-- ROW-2 OPEN -->
+  <div class="row">
+    <div class="col-sm-12 col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Accordion with Checkbox</h3>
+        </div>
+        <div class="card-body">      <div
+          ngbAccordion
+          [closeOthers]="true"
+          class="accordion"
+          id="accordionExample"
+          >
+          @for (panel of panelscheckbox; track panel) {
+            <div
+              ngbAccordionItem
+              [collapsed]="panel !== 'Accordion Item #1'"
+              class="accordion-item"
+              >
+              <h2 ngbAccordionHeader class="accordion-header" id="headingOne">
+                <button
+                  ngbAccordionButton
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                  >
+                  <input class="form-check-input me-2 mt-0" name="checkbox1"
+                    type="checkbox" value="" id="checkbox1" >
+                  {{ panel }}
+                </button>
+              </h2>
+              <div
+                ngbAccordionCollapse
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample"
+                >
+                <div class="accordion-body" ngbAccordionBody>
+                  <ng-template>
+                    <strong>This is the first item's accordion body.</strong> It is
+                    shown by default, until the collapse plugin adds the appropriate
+                    classes that we use to style each element. These classes control
+                    the overall appearance, as well as the showing and hiding via
+                    CSS transitions. You can modify any of this with custom CSS or
+                    overriding our default variables. It's also worth noting that
+                    just about any HTML can go within the
+                    <code>.accordion-body</code>, though the transition does limit
+                    overflow.
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- COL-END -->
+  <div class="col-sm-12 col-xl-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Accordion with Icons</h3>
+      </div>
+      <div class="card-body">
+        <div
+          ngbAccordion
+          [closeOthers]="true"
+          class="accordion"
+          id="accordionExample"
+          >
+          @for (accordion of accordions; track accordion) {
+            <div
+              ngbAccordionItem
+              [collapsed]="accordion.name !== 'Accordion Item #1'"
+              class="accordion-item"
+              >
+              <h2 ngbAccordionHeader class="accordion-header" id="headingOne">
+                <button
+                  ngbAccordionButton
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                  >
+                  <i class={{accordion.icon}}></i>
+                  {{ accordion.name }}
+                </button>
+              </h2>
+              <div
+                ngbAccordionCollapse
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample"
+                >
+                <div class="accordion-body" ngbAccordionBody>
+                  <ng-template>
+                    <strong>
+                    This is the first item's accordion body.</strong> It is
+                    shown by default, until the collapse plugin adds the appropriate
+                    classes that we use to style each element. These classes control
+                    the overall appearance, as well as the showing and hiding via
+                    CSS transitions. You can modify any of this with custom CSS or
+                    overriding our default variables. It's also worth noting that
+                    just about any HTML can go within the
+                    <code>.accordion-body</code>, though the transition does limit
+                    overflow.                  </ng-template>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- COL-END -->
+</div>
+<!-- ROW-2 CLOSED OPEN -->
+</div>
+<!-- CONTAINER CLOSED -->

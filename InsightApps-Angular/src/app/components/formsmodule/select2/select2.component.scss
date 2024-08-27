@@ -1,0 +1,49 @@
+.drag-txt {
+    text-align: center;
+}
+
+button.BtnNewStyle {
+    margin-inline: 0px !important;
+    border-radius: 0px !important;
+    background-color: #ccedec45;
+    border: 1px solid #0000003b;
+}
+.nav-link.BtnNewStyle.active {
+    background: #ccedec !important;
+    color: #036e6c !important;
+    border-bottom: 2px solid #036e6c;
+    border-top: none;
+}
+button.BtnNewStyle.span-right {
+    border-right: 0px;
+    padding: 8px 6px 8px 15px;
+}
+button.BtnNewStyle.span-left {
+    border-left: 0px;
+    padding: 8px 15px 8px 6px;
+}
+.example-box {
+    padding: 20px 20px;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 14px;
+  }
+
+  .example-list {
+    width: 1000px;
+    max-width: 100%;
+    border: solid 1px #ccc;
+    min-height: 60px;
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+  }

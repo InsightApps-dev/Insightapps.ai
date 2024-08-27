@@ -1,0 +1,23 @@
+.table thead th{
+    color: #fff;
+}
+a {
+    cursor: pointer;
+}
+.dropdown-toggle::after{
+    display: none;
+}
+.card-box-shadow{
+    box-shadow: 5px 10px 10px 5px #0000001a;
+  }
+
+  .tiled-header-bg {
+    display: flex;
+    justify-content: space-between;
+    background: #00a5a2;
+    color: #fff;
+  }
+  .fe-more-vertical:before {
+    content: "\e99a";
+    color: #fff;
+  }

@@ -1,0 +1,661 @@
+<app-page-header title="SwiperJs" title1="Adminui" activeitem="SwiperJs" ></app-page-header>
+      <!-- CONTAINER -->
+      <div class="main-container container-fluid">
+
+       
+        <!-- Start::row-1 -->
+        <div class="row">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Basic Swiper
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper swiper-basic">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="./assets/images/media/files/01.jpg" alt=""></div>
+                                <div class="swiper-slide"><img src="./assets/images/media/files/02.jpg" alt=""></div>
+                                <div class="swiper-slide"><img src="./assets/images/media/files/03.jpg" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Swiper With Navigation
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper swiper-navigation">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [config]="swiperOptions"
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                autoplay-delay="2500"
+                                [navigation]="true"
+                                [watchSlidesProgress]="true"
+                              >
+                              @for(image of imageData1;track image.src){
+
+                                <ng-template
+                                swiperSlide
+                              
+                                >
+                                <div class="swiper-slide">
+                                  <img src="{{ image.src }}" alt="image" />
+                                </div>
+                              </ng-template>
+                              }
+                              </swiper>
+                              
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Swiper with Pagination
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper pagination">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [pagination]="true"
+                                [navigation]="false"
+                                [watchSlidesProgress]="true"
+                                [keyboard]="{ enabled: true }"
+                                [pagination]="{ clickable: true }"
+                                navigation
+                              >
+                              @for(image of imageData2;track image.src){
+
+                                <ng-template
+                                swiperSlide
+                                >
+                                <div class="swiper-slide">
+                                  <img src="{{ image.src }}" alt="image" />
+                                </div>
+                              </ng-template>
+                              }
+                              </swiper>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Dynamic Pagination
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper pagination-dynamic">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [pagination]="true"
+                                [navigation]="false"
+                                [watchSlidesProgress]="true"
+                                [keyboard]="{ enabled: true }"
+                                [pagination]="{ clickable: true }"
+                                navigation
+                              >
+                              @for(image of imageData3;track image.src){
+
+                                <ng-template
+                                swiperSlide
+                                >
+                                <div class="swiper-slide">
+                                  <img src="{{ image.src }}" alt="image" />
+                                </div>
+                              </ng-template>
+                              }
+                              </swiper>
+                          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Pagination With Progress
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper pagination-progress">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [navigation]="true"
+                                [watchSlidesProgress]="true"
+                                [pagination]="{ type: 'progressbar' }"
+                                navigation
+                              >
+                              @for(image of imageData4;track image.src){
+
+                                <ng-template
+                                swiperSlide
+                                >
+                                <div class="swiper-slide">
+                                  <img src="{{ image.src }}" alt="image" />
+                                </div>
+                              </ng-template>
+                              }
+                              </swiper>
+                               
+                            </div>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Pagination Fraction
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper pagination-fraction">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [navigation]="true"
+                                [watchSlidesProgress]="true"
+                                [pagination]="{ type: 'fraction' }"
+                                navigation
+                              >
+                              @for(image of imageData5;track image.src){
+
+                                <ng-template
+                                swiperSlide
+                                >
+                                <div class="swiper-slide">
+                                  <img src="{{ image.src }}" alt="image" />
+                                </div>
+                              </ng-template>
+                              }
+                              </swiper>
+                               
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Custom Paginatioin
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper custom-pagination">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [navigation]="true"
+                                [watchSlidesProgress]="true"
+                                [pagination]="{ type: 'custom' }"
+                                navigation
+                              >
+                              @for(image of imageData6;track image.src){
+
+                                <ng-template
+                                swiperSlide
+                                >
+                                <div class="swiper-slide">
+                                  <img src="{{ image.src }}" alt="image" />
+                                </div>
+                              </ng-template>
+                              }
+                              </swiper>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Scrollbar Swiper
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper scrollbar-swiper">
+                            <swiper
+                            [slidesPerView]="1"
+                            (swiper)="setThumbsSwiper($event)"
+                            [zoom]="true"
+                            [autoplay]="true"
+                            [pagination]="false"
+                            [navigation]="false"
+                            [watchSlidesProgress]="true"
+                            [scrollbar]="{
+                        hide: true,
+                      }"
+                          >
+                          @for(image of imageData7;track image.src){
+
+                            <ng-template
+                            swiperSlide
+                            >
+                            <div class="swiper-slide">
+                              <img src="{{ image.src }}" alt="image" />
+                            </div>
+                          </ng-template>
+                          }
+                          </swiper>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Vertical Swiper
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper vertical swiper-vertical">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [navigation]="false"
+                                [watchSlidesProgress]="true"
+                                direction="vertical"
+                                [pagination]="{ clickable: true }"
+                              >
+                              @for(image of imageData8;track image.src){
+
+                                <ng-template
+                                swiperSlide
+                                >
+                                <div class="swiper-slide">
+                                  <img src="{{ image.src }}" alt="image" />
+                                </div>
+                              </ng-template>
+                              }
+                              </swiper>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Mouse Wheel Control
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper vertical vertical-mouse-control">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [navigation]="false"
+                                [watchSlidesProgress]="true"
+                                [mousewheel]="true"
+                                direction="vertical"
+                                [pagination]="{ clickable: true }"
+                              >
+                              @for(image of imageData8;track image.src){
+
+                                <ng-template
+                                swiperSlide
+                                >
+                                <div class="swiper-slide">
+                                  <img src="{{ image.src }}" alt="image" />
+                                </div>
+                              </ng-template>
+                              }
+                              </swiper>
+                                
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Keyboard Control
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper keyboard-control">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [navigation]="false"
+                                [watchSlidesProgress]="true"
+                                [keyboard]="true"
+                                [pagination]="{ clickable: true }"
+                              >
+                              @for(image of imageData9;track image.src){
+
+                                <ng-template
+                                swiperSlide
+                                >
+                                <div class="swiper-slide">
+                                  <img src="{{ image.src }}" alt="image" />
+                                </div>
+                              </ng-template>
+                              }
+                              </swiper>
+                               
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Nested Swiper</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper swiper-horizontal1">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [navigation]="false"
+                                [watchSlidesProgress]="true"
+                                [pagination]="{ clickable: true }"
+                              >
+                              @for(image of imageData8;track image.src){
+
+                                <ng-template
+                                swiperSlide
+                                >
+                                <div class="swiper-slide">
+                                  <img src="{{ image.src }}" alt="image" />
+                                </div>
+                              </ng-template>
+                              }
+                  
+                                <div class="swiper-slide">
+                                  <div class="swiper vertical swiper-vertical1">
+                                    <div class="swiper-wrapper">
+                                      <swiper
+                                        [slidesPerView]="1"
+                                        (swiper)="setThumbsSwiper($event)"
+                                        [zoom]="true"
+                                        [autoplay]="true"
+                                        [navigation]="false"
+                                        [watchSlidesProgress]="true"
+                                        direction="vertical"
+                                        [pagination]="{ clickable: true }"
+                                      >
+                                      @for(image of imageData10;track image.src){
+
+                                        <ng-template
+                                        swiperSlide
+                                        >
+                                        <div class="swiper-slide">
+                                          <img src="{{ image.src }}" alt="image" />
+                                        </div>
+                                      </ng-template>
+                                      }
+                                      </swiper>
+                                    </div>
+                                  </div>
+                                </div>
+                              </swiper>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Effect Cube
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper swiper-effect-cube">
+                          
+                                <swiper
+                                class="swiper-wrapper"
+                                effect="cube"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [navigation]="true"
+                                [pagination]="false"
+                              >
+                                <ng-template class="swiper-slide" swiperSlide
+                                  ><img src="./assets/images/media/16.jpg" alt="img"
+                                /></ng-template>
+                                <ng-template class="swiper-slide" swiperSlide
+                                  ><img src="./assets/images/media/17.jpg" alt="img"
+                                /></ng-template>
+                                <ng-template class="swiper-slide" swiperSlide
+                                  ><img src="./assets/images/media/18.jpg" alt="img"
+                                /></ng-template>
+                              </swiper>
+                       
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Effect Fade
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper swiper-fade">
+                            
+                            <div class="swiper-wrapper">
+  
+                                <swiper
+                                effect="fade"
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [navigation]="true"
+                                [pagination]="true"
+                                [watchSlidesProgress]="true"
+                                navigation
+                              >
+                                <ng-template class="swiper-slide" swiperSlide
+                                  ><img src="./assets/images/media/19.jpg" alt="img"
+                                /></ng-template>
+                                <ng-template class="swiper-slide" swiperSlide
+                                  ><img src="./assets/images/media/11.jpg" alt="img"
+                                /></ng-template>
+                                <ng-template class="swiper-slide" swiperSlide
+                                  ><img src="./assets/images/media/12.jpg" alt="img"
+                                /></ng-template>
+                              </swiper>
+                            </div>
+                               
+                           
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Effect Flip
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper swiper-flip">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                effect="flip"
+                                [slidesPerView]="1"
+                                (swiper)="setThumbsSwiper($event)"
+                                [zoom]="true"
+                                [autoplay]="true"
+                                [navigation]="true"
+                                [pagination]="true"
+                                [watchSlidesProgress]="true"
+                                navigation
+                              >
+                                <ng-template class="swiper-slide" swiperSlide
+                                  ><img src="./assets/images/media/27.jpg" alt="img"
+                                /></ng-template>
+                                <ng-template class="swiper-slide" swiperSlide
+                                  ><img src="./assets/images/media/28.jpg" alt="img"
+                                /></ng-template>
+                                <ng-template class="swiper-slide" swiperSlide
+                                  ><img src="./assets/images/media/29.jpg" alt="img"
+                                /></ng-template>
+                              </swiper>
+                              
+                            </div>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End::row-1 -->
+  
+        <!-- Start:: row-2 -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Effect Coverflow
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper swiper-overflow">
+                            <div class="swiper-wrapper">
+                                <swiper
+                                [effect]="'coverflow'"
+                                [grabCursor]="true"
+                                [centeredSlides]="true"
+                                [slidesPerView]="5"
+                                [coverflowEffect]="{
+                                  rotate: 50,
+                                  stretch: 10,
+                                  depth: 20,
+                                  modifier: 4,
+                                  slideShadows: true
+                                }"
+                                [pagination]="true"
+                                class="mySwiper"
+                              >
+                                <ng-template class="swiper-slide" swiperSlide
+                                  ><img
+                                    class="img-fluid"
+                                    src="./assets/images/media/11.jpg" /></ng-template
+                                ><ng-template class="swiper-slide" swiperSlide
+                                  ><img
+                                    class="img-fluid"
+                                    src="./assets/images/media/12.jpg" /></ng-template
+                                ><ng-template class="swiper-slide" swiperSlide
+                                  ><img
+                                    class="img-fluid"
+                                    src="./assets/images/media/13.jpg" /></ng-template
+                                ><ng-template class="swiper-slide" swiperSlide
+                                  ><img
+                                    class="img-fluid"
+                                    src="./assets/images/media/14.jpg" /></ng-template
+                                ><ng-template class="swiper-slide" swiperSlide
+                                  ><img
+                                    class="img-fluid"
+                                    src="./assets/images/media/15.jpg" /></ng-template
+                                ><ng-template class="swiper-slide" swiperSlide
+                                  ><img
+                                    class="img-fluid"
+                                    src="./assets/images/media/16.jpg" /></ng-template
+                                ><ng-template class="swiper-slide" swiperSlide
+                                  ><img
+                                    class="img-fluid"
+                                    src="./assets/images/media/17.jpg" /></ng-template
+                                ><ng-template class="swiper-slide" swiperSlide
+                                  ><img
+                                    class="img-fluid"
+                                    src="./assets/images/media/18.jpg" /></ng-template
+                                ><ng-template class="swiper-slide" swiperSlide
+                                  ><img
+                                    class="img-fluid"
+                                    src="./assets/images/media/19.jpg"
+                                /></ng-template>
+                              </swiper>
+                              
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:: row-2 -->
+  
+      
+      </div>
+      <!-- CONTAINER CLOSED -->

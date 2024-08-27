@@ -1,0 +1,400 @@
+<app-page-header title="Advanced Forms" title1="Forms" activeitem="Advanced Forms"></app-page-header>
+
+    <!-- CONTAINER -->
+    <div class="main-container container-fluid">
+
+        <!-- Row -->
+        <div class="row">
+            <div class="col-xl-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Input File Upload</h3>
+                    </div>
+                    <div class=" card-body row">
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label class="form-label mt-0">Single File input Upload</label>
+                                <input class="form-control" type="file">
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label class="form-label">Multiple files input Upload</label>
+                                
+                                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-12">
+                            <form method="post" class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Single File Upload</h3>
+                                </div>
+                                <div class=" card-body">
+                                    <div class="form-group mb-0">
+                                        <file-pond #myPond [options]="singlepondOptions" class="single-fileupload" [files]="pondFiles"
+                                        (oninit)="pondHandleInit()" (onaddfile)="pondHandleAddFile($event)"
+                                        (onactivatefile)="pondHandleActivateFile($event)">
+                                    </file-pond>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xl-6 col-md-12">
+                            <form method="post" class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Multiple File Upload</h3>
+                                </div>
+                                <div class=" card-body">
+                                    <div class="form-group mb-0">
+                                        <file-pond #myPond [options]="pondOptions" class="multiple-filepond" [files]="pondFiles"
+                                        (oninit)="pondHandleInit()" (onaddfile)="pondHandleAddFile($event)"
+                                        (onactivatefile)="pondHandleActivateFile($event)">
+                                    </file-pond>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="card custom-card">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        Dropzone
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <file-pond #myPond [options]="pondOptions" class="multiple-filepond" [files]="pondFiles"
+                                    (oninit)="pondHandleInit()" (onaddfile)="pondHandleAddFile($event)"
+                                    (onactivatefile)="pondHandleActivateFile($event)"></file-pond>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Color Picker Style1</h3>
+                    </div>
+                    <div class="container">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <div class="theme-container"></div>
+                                    <div class="pickr-container">   <ngx-colors class="suffix" matSuffix ngx-colors-trigger
+                                        ></ngx-colors></div>
+                                </div>
+                                <div>
+                                    <div class="theme-container1"></div>
+                                    <div class="pickr-container1"> <input [(colorPicker)]="color"
+                                        [style.background]="color" class="mb-4"/></div>
+                                </div>
+                                <div>
+                                    <div class="theme-container2"></div>
+                                    <div class="pickr-container2">
+                                        <ngx-colors ngx-colors-trigger [(ngModel)]="color2" acceptLabel="Select" cancelLabel="Cancel">
+                                        </ngx-colors>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div class="col-xl-6 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Default Date picker</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="mg-b-20 mg-sm-b-40">The datepicker is tied to a standard form input field. Click on the input to open an interactive calendar in a small overlay. If a date is chosen, feedback is shown as the input's value.</p>
+                        <div class="wd-200 mg-b-30">
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
+                                </div><input type="text" class="form-control" id="date" placeholder="Choose date"mwlFlatpickr
+                                [altInput]="true"
+                                [convertModelValue]="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-xl-6 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Date Range Picker </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="mg-b-20 mg-sm-b-40">The datepicker is tied to a standard form input field. Click on the input to open an interactive calendar in a small overlay. If a date is chosen, feedback is shown as the input's value.</p>
+                        <div class="wd-200 mg-b-30">
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <span class="fa fa-calendar tx-16 lh-0 op-6"></span>
+                                </div><input type="text" class="form-control" id="daterange" placeholder="Date range picker" mwlFlatpickr
+                                [altInput]="true"
+                                [convertModelValue]="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+           <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Basic Time picker
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fa fa-clock-o tx-16 lh-0 op-6"></i>
+                                </div>
+                                <input type="text" class="form-control" id="timepikcr" placeholder="Choose time"  mwlFlatpickr
+                                [noCalendar]="true"
+                                [enableTime]="true"
+                                [dateFormat]="'h:i K'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Time Pickr with 24hr Format
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fa fa-clock-o tx-16 lh-0 op-6"></i>
+                                </div>
+                                <input type="text" class="form-control" id="timepickr1" placeholder="Choose time in 24hr format"   mwlFlatpickr
+                                [noCalendar]="true"
+                                [enableTime]="true"
+                                [dateFormat]="'H:i'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Time Picker with Limits
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fa fa-clock-o tx-16 lh-0 op-6"></i>
+                                </div>
+                                <input type="text" class="form-control" id="limittime" placeholder="choose time min 16:00 to max 22:30"    mwlFlatpickr
+                                [noCalendar]="true"
+                                [enableTime]="true"
+                                [dateFormat]="'H:i'"
+                                [minTime]="'16:00'"
+                                [maxTime]="'22:30'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+             <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            DateTimePicker with Limited Time Range
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <i class="fa fa-clock-o tx-16 lh-0 op-6"></i>
+                                </div>
+                                <input type="text" class="form-control" id="limitdatetime" placeholder="date with time limit from 16:00 to 22:00"    mwlFlatpickr
+                                [altInput]="true"
+                               [convertModelValue]="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Row-->
+
+        <!--Row-->
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <h6 class="card-title">Multiple Select</h6>
+                            </div>
+                            <div class="card-body">
+                                <p class="fw-semibold mb-2">Default</p>
+                                <ng-select class="form-control p-0" data-trigger name="choices-multiple-default" id="choices-multiple-default" [multiple]="true" placeholder="Choice 1">
+                                    <ng-option value="Choice 1" selected>Choice 1</ng-option>
+                                    <ng-option value="Choice 2">Choice 4</ng-option>
+                                    <ng-option value="Choice 3">Choice 5</ng-option>
+                                    <ng-option value="Choice 4" disabled>Choice 6</ng-option>
+                                </ng-select>
+                                <p class="fw-semibold mb-2 mt-3">With Remove Button</p>
+                                <ng-select class="form-control p-0" name="choices-multiple-remove-button" id="choices-multiple-remove-button" [multiple]="true" placeholder="Choice 1">
+                                    <ng-option value="Choice 1" selected>Choice 1</ng-option>
+                                    <ng-option value="Choice 2">Choice 2</ng-option>
+                                    <ng-option value="Choice 3">Choice 3</ng-option>
+                                    <ng-option value="Choice 4">Choice 4</ng-option>
+                                </ng-select>
+                                <p class="fw-semibold mb-2 mt-3">Option groups</p>
+                                <ng-select [items]="accounts"
+                                bindLabel="name"
+                                bindValue="name"
+                                placeholder="Select city"
+                                groupBy="country"
+                                [multiple]="true"
+                                [(ngModel)]="selectedAccount">
+                         <ng-template ng-optgroup-tmp let-item="item">
+                             {{item.country || 'Unnamed group'}}
+                         </ng-template>
+                      </ng-select>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Passing Through Options
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ng-select
+                                class=""
+                                placeholder="Type to Add"
+                                [items]="companies"
+                                [addTag]="addTagFn"
+                                [hideSelected]="true"
+                                [multiple]="true"
+                                bindLabel="name"
+                                [(ngModel)]="selectedCompanies"
+                              >
+                              </ng-select>                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Options added via config with no search
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ng-select class="form-control p-0" name="choices-single-no-search" id="choices-single-no-search" placeholder="Zero">
+                                <ng-option value="1">Label One</ng-option>
+                                <ng-option value="2">Label Two</ng-option>
+                                <ng-option value="3">Label Three</ng-option>
+                                <ng-option value="4">Label Four</ng-option>
+                                <ng-option value="5">Label Five</ng-option>
+                                <ng-option value="6">Label Six</ng-option>
+                                <ng-option value="0">Zero</ng-option>
+
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <h6 class="card-title">Single Select</h6>
+                            </div>
+                            <div class="card-body">
+                                <p class="fw-semibold mb-2">Default</p>
+                                <ng-select class="form-control p-0" data-trigger name="choices-single-default" id="choices-single-default" placeholder="This is a placeholder">
+                                    <ng-option value="Choice 1">Choice 1</ng-option>
+                                    <ng-option value="Choice 2">Choice 2</ng-option>
+                                    <ng-option value="Choice 3">Choice 3</ng-option>
+                                </ng-select>
+                                <p class="fw-semibold mb-2 mt-3">Option groups</p>
+                                <ng-select
+                                placeholder="Choose a city"
+                                [items]="multiSelect"
+                                bindLabel="name"
+                                bindValue="name"
+                                [groupBy]="groupByFn"
+                                [groupValue]="groupValueFn"
+                                [(ngModel)]="multiSelectSelected"
+                                name="multiSelectSelected"
+                              >
+                                <ng-template ng-optgroup-tmp let-item="item">
+                                  <span style="vertical-align: middle">{{ item.name }}</span>
+                                  <span class="ml-1 badge badge-secondary">{{ item.total }}</span>
+                                </ng-template>
+                              </ng-select>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Email Address Only
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <input class="form-control" id="choices-text-email-filter" type="text" placeholder="This is a placeholder"    [(ngModel)]="email"
+                                [formControl]="emailFormControl"
+                              />  
+                              @if(emailFormControl.hasError('email') && emailFormControl.touched){
+                                  <div
+                                    class="text-danger"
+                                  >
+                                    Only values matching specific conditions can be added
+                                  </div>
+                              }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Passing Unique Values
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ng-select
+                                [items]="[]"
+                                class="form-control p-0"
+                                [(ngModel)]="uniqueOptions"
+                                [addTag]="true"
+                                [multiple]="true"
+                                [selectOnTab]="true"
+                                [isOpen]="false"
+                              >
+                              </ng-select>                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Row-->
+
+
+    </div>
+    <!-- CONTAINER CLOSED -->

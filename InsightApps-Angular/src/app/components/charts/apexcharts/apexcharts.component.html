@@ -1,0 +1,270 @@
+   <!-- CONTAINER -->
+   <app-page-header title="Apex Charts" title1="Charts" activeitem="Apex Charts"></app-page-header>
+
+   <div class="main-container container-fluid">
+                    
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title"> Line Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="line-chart">
+                        <apx-chart [series]="chartOptions.series || []" [chart]="chartOptions.chart"
+                        [xaxis]="chartOptions.xaxis" [dataLabels]="chartOptions.dataLabels"
+                        [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
+                        [title]="chartOptions.title" [colors]="chartOptions.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title"> Area Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="area-chart">
+                        <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                        [xaxis]="chartOptions1.xaxis" [stroke]="chartOptions1.stroke"
+                        [dataLabels]="chartOptions1.dataLabels" [yaxis]="chartOptions1.yaxis"
+                        [labels]="chartOptions1.labels" [legend]="chartOptions1.legend"  [grid]="chartOptions1.grid"
+                        [title]="chartOptions1.title" [subtitle]="chartOptions1.subtitle"[colors]="chartOptions1.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title"> Column Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="column-chart">
+                        <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+                        [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
+                        [yaxis]="chartOptions2.yaxis" [legend]="chartOptions2.legend" [fill]="chartOptions2.fill"
+                        [stroke]="chartOptions2.stroke" [tooltip]="chartOptions2.tooltip" [colors]="chartOptions2.colors" [grid]="chartOptions2.grid"
+                        [xaxis]="chartOptions2.xaxis"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title"> Bar Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="bar-chart">
+                        <apx-chart
+                        [series]="chartOptions3.series"
+                        [chart]="chartOptions3.chart"
+                        [dataLabels]="chartOptions3.dataLabels"
+                        [plotOptions]="chartOptions3.plotOptions"
+                        [xaxis]="chartOptions3.xaxis"[colors]="chartOptions3.colors"  [grid]="chartOptions3.grid"
+                      ></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Line &amp; Column Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="mixed-linecolumn">
+                        <apx-chart [series]="chartOptions4.series" [chart]="chartOptions4.chart"
+                        [yaxis]="chartOptions4.yaxis" [xaxis]="chartOptions4.xaxis" [labels]="chartOptions4.labels"
+                        [stroke]="chartOptions4.stroke" [title]="chartOptions4.title"  [grid]="chartOptions4.grid"
+                        [dataLabels]="chartOptions4.dataLabels" [fill]="chartOptions4.fill"
+                        [tooltip]="chartOptions4.tooltip"[colors]="chartOptions4.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Timeline Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="timeline-basic">
+                        <apx-chart [series]="chartOptions5.series" [chart]="chartOptions5.chart" [grid]="chartOptions5.grid"
+                        [plotOptions]="chartOptions5.plotOptions" [xaxis]="chartOptions5.xaxis"[colors]="chartOptions5.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Candlestick Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="candlestick-basic">
+                        <apx-chart [series]="chartOptions6.series" [chart]="chartOptions6.chart"
+                        [xaxis]="chartOptions6.xaxis" [yaxis]="chartOptions6.yaxis" [grid]="chartOptions6.grid"
+                        [title]="chartOptions6.title"[colors]="chartOptions6.colors"[plotOptions]="chartOptions6.plotOptions"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Boxplot Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="boxplot-basic">
+                        <apx-chart [series]="chartOptions7.series" [chart]="chartOptions7.chart" [grid]="chartOptions7.grid"
+                        [plotOptions]="chartOptions7.plotOptions" [title]="chartOptions7.title"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title"> 3D Bubble Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="bubble-3d">
+                        <apx-chart [series]="chartOptions8.series" [chart]="chartOptions8.chart"
+                        [xaxis]="chartOptions8.xaxis" [fill]="chartOptions8.fill" [grid]="chartOptions8.grid"
+                        [dataLabels]="chartOptions8.dataLabels" [title]="chartOptions8.title"
+                        [yaxis]="chartOptions8.yaxis" [tooltip]="chartOptions8.tooltip"
+                        [theme]="chartOptions8.theme"[colors]="chartOptions8.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">  Datetime Scatter Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="scatter-datetime">
+                        <apx-chart [series]="chartOptions9.series" [chart]="chartOptions9.chart"
+                        [xaxis]="chartOptions9.xaxis" [yaxis]="chartOptions9.yaxis"[grid]="chartOptions9.grid"
+                        [dataLabels]="chartOptions9.dataLabels" [grid]="chartOptions9.grid"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">   Heatmap Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="heatmap-basic">
+                        <apx-chart [series]="chartOptions10.series" [chart]="chartOptions10.chart"
+                        [dataLabels]="chartOptions10.dataLabels" [title]="chartOptions10.title"
+                        [colors]="chartOptions10.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">  Treemap Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="treemap-basic">
+                        <apx-chart [series]="chartOptions11.series" [chart]="chartOptions11.chart"
+                        [dataLabels]="chartOptions11.dataLabels" [plotOptions]="chartOptions11.plotOptions"
+                        [title]="chartOptions11.title" [legend]="chartOptions11.legend" [colors]="chartOptions11.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title"> Pie Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="pie-basic">
+                        <apx-chart [series]="chartOptions12.series" [chart]="chartOptions12.chart" [legend]="chartOptions12.legend"
+                        [labels]="chartOptions12.labels" [responsive]="chartOptions12.responsive" [colors]="chartOptions12.colors" [dataLabels]="chartOptions12.dataLabels"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Donut Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="donut-simple">
+                        <apx-chart [series]="chartOptions13.series" [chart]="chartOptions13.chart" [legend]="chartOptions13.legend"
+                        [labels]="chartOptions13.labels" [responsive]="chartOptions13.responsive"[colors]="chartOptions13.colors" [dataLabels]="chartOptions13.dataLabels"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Radial Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="radialbar-basic">
+                        <apx-chart [series]="chartOptions14.series" [chart]="chartOptions14.chart"
+                        [plotOptions]="chartOptions14.plotOptions" [labels]="chartOptions14.labels" [colors]="chartOptions14.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Stroked Circular Gauge</div>
+                </div>
+                <div class="card-body">
+                    <div id="circular-stroked">
+                        <apx-chart [series]="chartOptions15.series" [chart]="chartOptions15.chart"
+                        [plotOptions]="chartOptions15.plotOptions" [labels]="chartOptions15.labels"
+                        [fill]="chartOptions15.fill" [stroke]="chartOptions15.stroke"[colors]="chartOptions15.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title"> Radar Chart-Multiple Series</div>
+                </div>
+                <div class="card-body">
+                    <div id="radar-multiple">
+                        <apx-chart [series]="chartOptions16.series" [chart]="chartOptions16.chart"
+                        [xaxis]="chartOptions16.xaxis" [stroke]="chartOptions16.stroke"
+                        [markers]="chartOptions16.markers" [fill]="chartOptions16.fill" [colors]="chartOptions16.colors"
+                        [title]="chartOptions16.title"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title"> Polar Chart</div>
+                </div>
+                <div class="card-body">
+                    <div id="polararea-basic">
+                        <apx-chart [series]="chartOptions17.series" [chart]="chartOptions17.chart" [legend]="chartOptions17.legend"
+                        [labels]="chartOptions17.labels" [fill]="chartOptions17.fill" [stroke]="chartOptions17.stroke"
+                        [responsive]="chartOptions17.responsive"[colors]="chartOptions17.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CONTAINER CLOSED -->

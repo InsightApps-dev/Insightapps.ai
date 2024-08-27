@@ -1,0 +1,1816 @@
+<app-page-header title="Tabs" title1="UI Kit" activeitem="Tabs"></app-page-header>
+
+     
+                <!-- CONTAINER -->
+                <div class="main-container container-fluid" id="discount" #discount>
+
+                    <!-- ROW-1 OPEN -->
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Tabs style</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="panel panel-primary">
+                                        <div class="tab-menu-heading">
+                                            <div class="tabs-menu">
+                                                <!-- Tabs -->
+                                                <ul ngbNav #nav="ngbNav" class="nav panel-tabs" role="tablist">
+                                                    <li [ngbNavItem]="1" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="nav-link "
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="true"
+                                                        >Tab 1</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p>page editors now use Lorem Ipsum as their default model text,
+                                                            and a search for 'lorem ipsum' will uncover many web sites
+                                                            still in their infancy. Various versions have evolved over
+                                                            the years, sometimes
+                                                            by accident, sometimes on purpose (injected humour and the
+                                                            like</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                      </ng-template>
+                                                    </li>
+                                                    <li [ngbNavItem]="2" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="nav-link"
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="false"
+                                                        >Tab 2</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p> default model text, and a search for 'lorem ipsum' will
+                                                            uncover many web sites still in their infancy. Various
+                                                            versions have evolved over the years, sometimes by accident,
+                                                            sometimes on purpose (injected
+                                                            humour and the like</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                      </ng-template>
+                                                    </li>
+                                                    <li [ngbNavItem]="3" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="nav-link"
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="false"
+                                                        >Tab 3</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p>over the years, sometimes by accident, sometimes on purpose
+                                                            (injected humour and the like</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                      </ng-template>
+                                                    </li>
+                                                    <li [ngbNavItem]="4" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="nav-link"
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="false"
+                                                        >Tab 4</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p>page editors now use Lorem Ipsum as their default model text,
+                                                            and a search for 'lorem ipsum' will uncover many web sites
+                                                            still in their infancy. Various versions have evolved over
+                                                            the years, sometimes
+                                                            by accident, sometimes on purpose (injected humour and the
+                                                            like</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                      </ng-template>
+                                                    </li>
+                                                  </ul>
+                                              
+                                            </div>
+                                        </div>
+                                        <div class="panel-body tabs-menu-body">
+                                            <div class="tab-content" [ngbNavOutlet]="nav"></div>
+
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Tabs with badges</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="panel panel-primary">
+                                        <div class="tab-menu-heading tab-menu-heading-boxed">
+                                            <div class="tabs-menu-boxed">
+                                                <!-- Tabs -->
+                                                <ul ngbNav #nav1="ngbNav" class="nav panel-tabs d-flex flex-wrap" role="tablist">
+                                                    <li [ngbNavItem]="1" class="nav-item">
+                                                      
+                                                      <a
+                                                        ngbNavLink
+                                                        class="d-flex align-items-center "
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="true"
+                                                        >  <span class="badge bg-primary-transparent rounded-circle fs-10 me-2">2</span>Tab 1</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p>page editors now use Lorem Ipsum as their default model text,
+                                                            and a search for 'lorem ipsum' will uncover many web sites
+                                                            still in their infancy. Various versions have evolved over
+                                                            the years, sometimes
+                                                            by accident, sometimes on purpose (injected humour and the
+                                                            like</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                      </ng-template>
+                                                    </li>
+                                                    <li [ngbNavItem]="2" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="d-flex align-items-center"
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="false"
+                                                        ><span class="badge bg-secondary-transparent rounded-circle fs-10 me-2">2</span> Tab 2</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p> default model text, and a search for 'lorem ipsum' will
+                                                            uncover many web sites still in their infancy. Various
+                                                            versions have evolved over the years, sometimes by accident,
+                                                            sometimes on purpose (injected
+                                                            humour and the like</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                      </ng-template>
+                                                    </li>
+                                                    <li [ngbNavItem]="3" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="d-flex align-items-center"
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="false"
+                                                        ><span class="badge bg-secondary-transparent rounded-circle fs-10 me-2">3</span> Tab 3</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p>over the years, sometimes by accident, sometimes on purpose
+                                                            (injected humour and the like</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                      </ng-template>
+                                                    </li>
+                                                    <li [ngbNavItem]="4" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="d-flex align-items-center"
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="false"
+                                                        ><span class="badge bg-success-transparent rounded-circle fs-10 me-2">2</span>Tab 4</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p>page editors now use Lorem Ipsum as their default model text,
+                                                            and a search for 'lorem ipsum' will uncover many web sites
+                                                            still in their infancy. Various versions have evolved over
+                                                            the years, sometimes
+                                                            by accident, sometimes on purpose (injected humour and the
+                                                            like</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                      </ng-template>
+                                                    </li>
+                                                  </ul>
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="panel-body tabs-menu-body">
+                                            <div class="tab-content" [ngbNavOutlet]="nav1"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                    </div>
+                    <!-- ROW-1 CLOSED -->
+
+                    <!-- ROW-2 OPEN -->
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Tabs Style</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="panel panel-primary">
+                                        <div class=" tab-menu-heading">
+                                            <div class="tabs-menu1">
+                                                <!-- Tabs -->
+                                                <ul ngbNav #nav2="ngbNav" class="nav panel-tabs" role="tablist">
+                                                    <li [ngbNavItem]="1" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="d-flex align-items-center"
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="true"
+                                                        ><img  class="avatar avatar-sm rounded-circle cover-image me-2"
+                                                        src="./assets/images/users/5.jpg">
+                                                        
+                                                        Tab 1</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p>page editors now use Lorem Ipsum as their default model text,
+                                                            and a search for 'lorem ipsum' will uncover many web sites
+                                                            still in their infancy. Various versions have evolved over
+                                                            the years, sometimes
+                                                            by accident, sometimes on purpose (injected humour and the
+                                                            like)</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                        <p>'lorem ipsum' will uncover many web sites still in their
+                                                            infancy. Various versions have evolved over the years,
+                                                            sometimes
+                                                            by accident, sometimes on purpose</p>
+                                                      </ng-template>
+                                                    </li>
+                                                    <li [ngbNavItem]="2" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="d-flex align-items-center"
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="false"
+                                                        ><img  class="avatar avatar-sm rounded-circle cover-image me-2"
+                                                        src="./assets/images/users/5.jpg">Tab 2</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p>page editors now use Lorem Ipsum as their default model text,
+                                                            and a search for 'lorem ipsum' will uncover many web sites
+                                                            still in their infancy. Various versions have evolved over
+                                                            the years, sometimes
+                                                            by accident, sometimes on purpose (injected humour and the
+                                                            like)</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                        <p>'lorem ipsum' will uncover many web sites still in their
+                                                            infancy. Various versions have evolved over the years,
+                                                            sometimes
+                                                            by accident, sometimes on purpose</p>
+                                                      </ng-template>
+                                                    </li>
+                                                    <li [ngbNavItem]="3" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="d-flex align-items-center"
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="false"
+                                                        ><img  class="avatar avatar-sm rounded-circle cover-image me-2"
+                                                        src="./assets/images/users/7.jpg">Tab 3</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p>page editors now use Lorem Ipsum as their default model text,
+                                                            and a search for 'lorem ipsum' will uncover many web sites
+                                                            still in their infancy. Various versions have evolved over
+                                                            the years, sometimes
+                                                            by accident, sometimes on purpose (injected humour and the
+                                                            like)</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                        <p>'lorem ipsum' will uncover many web sites still in their
+                                                            infancy. Various versions have evolved over the years,
+                                                            sometimes
+                                                            by accident, sometimes on purpose</p>
+                                                      </ng-template>
+                                                    </li>
+                                                    <li [ngbNavItem]="4" class="nav-item">
+                                                      <a
+                                                        ngbNavLink
+                                                        class="d-flex align-items-center"
+                                                        data-bs-toggle="tab"
+                                                        role="tab"
+                                                        aria-selected="false"
+                                                        ><img  class="avatar avatar-sm rounded-circle cover-image me-2"
+                                                        src="./assets/images/users/8.jpg">Tab 4</a
+                                                      >
+                                                      <ng-template ngbNavContent>
+                                                        <p>page editors now use Lorem Ipsum as their default model text,
+                                                            and a search for 'lorem ipsum' will uncover many web sites
+                                                            still in their infancy. Various versions have evolved over
+                                                            the years, sometimes
+                                                            by accident, sometimes on purpose (injected humour and the
+                                                            like)</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                        <p>'lorem ipsum' will uncover many web sites still in their
+                                                            infancy. Various versions have evolved over the years,
+                                                            sometimes
+                                                            by accident, sometimes on purpose</p>
+                                                      </ng-template>
+                                                    </li>
+                                                  </ul>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="panel-body tabs-menu-body">
+                                            <div class="tab-content" [ngbNavOutlet]="nav2"></div>
+
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Pill Tabs style</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul ngbNav #nav3="ngbNav" class="nav nav-pills mb-3" role="tablist">
+                                        <li [ngbNavItem]="1" class="nav-item">
+                                          <a
+                                            ngbNavLink
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="true"
+                                            >
+                                            
+                                           Home</a
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <ul class="list-group"> 
+                                                <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                    <div class="me-auto d-flex align-items-center"> <div>
+                                                         <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value="" checked=""> 
+                                                         <label class="form-check-label" for="checkbox1"></label> </div> <div> <div class="fw-bold">Heading</div>
+                                                          <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                                        </div> </div> <span class="badge bg-info rounded-pill">14</span> </li> 
+                                                        <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                            <div class="me-auto d-flex align-items-center"> <div> 
+                                                                <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value=""> <label class="form-check-label" for="checkbox1"></label> </div> <div> 
+                                                                    <div class="fw-bold">Heading</div> <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div> </div>
+                                                                     <span class="badge bg-danger rounded-pill">14</span> </li> <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                                        <div class="me-auto d-flex align-items-center"> <div> <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value="">
+                                                                             <label class="form-check-label" for="checkbox1"></label> </div> <div> <div class="fw-bold">Heading</div> <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div>
+                                                                     </div> <span class="badge bg-success rounded-pill">14</span> </li> </ul>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="2" class="nav-item">
+                                          <a
+                                            ngbNavLink
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="false"
+                                            >Profile</a
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <ul class="list-group"> 
+                                                <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                    <div class="me-auto d-flex align-items-center"> <div>
+                                                         <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value="" checked=""> 
+                                                         <label class="form-check-label" for="checkbox1"></label> </div> <div> <div class="fw-bold">Heading</div>
+                                                          <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                                        </div> </div> <span class="badge bg-info rounded-pill">14</span> </li> 
+                                                        <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                            <div class="me-auto d-flex align-items-center"> <div> 
+                                                                <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value=""> <label class="form-check-label" for="checkbox1"></label> </div> <div> 
+                                                                    <div class="fw-bold">Heading</div> <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div> </div>
+                                                                     <span class="badge bg-danger rounded-pill">14</span> </li> <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                                        <div class="me-auto d-flex align-items-center"> <div> <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value="">
+                                                                             <label class="form-check-label" for="checkbox1"></label> </div> <div> <div class="fw-bold">Heading</div> <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div>
+                                                                     </div> <span class="badge bg-success rounded-pill">14</span> </li> </ul>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="3" class="nav-item">
+                                          <a
+                                            ngbNavLink
+                                            class="d-flex align-items-center"
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="false"
+                                            >Contact</a
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <ul class="list-group"> 
+                                                <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                    <div class="me-auto d-flex align-items-center"> <div>
+                                                         <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value="" checked=""> 
+                                                         <label class="form-check-label" for="checkbox1"></label> </div> <div> <div class="fw-bold">Heading</div>
+                                                          <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                                        </div> </div> <span class="badge bg-info rounded-pill">14</span> </li> 
+                                                        <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                            <div class="me-auto d-flex align-items-center"> <div> 
+                                                                <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value=""> <label class="form-check-label" for="checkbox1"></label> </div> <div> 
+                                                                    <div class="fw-bold">Heading</div> <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div> </div>
+                                                                     <span class="badge bg-danger rounded-pill">14</span> </li> <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                                        <div class="me-auto d-flex align-items-center"> <div> <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value="">
+                                                                             <label class="form-check-label" for="checkbox1"></label> </div> <div> <div class="fw-bold">Heading</div> <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div>
+                                                                     </div> <span class="badge bg-success rounded-pill">14</span> </li> </ul>
+                                          </ng-template>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" disabled="" tabindex="-1">Disabled</button>
+                                          <ng-template ngbNavContent>
+                                            <ul class="list-group"> 
+                                                <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                    <div class="me-auto d-flex align-items-center"> <div>
+                                                         <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value="" checked=""> 
+                                                         <label class="form-check-label" for="checkbox1"></label> </div> <div> <div class="fw-bold">Heading</div>
+                                                          <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                                        </div> </div> <span class="badge bg-info rounded-pill">14</span> </li> 
+                                                        <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                            <div class="me-auto d-flex align-items-center"> <div> 
+                                                                <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value=""> <label class="form-check-label" for="checkbox1"></label> </div> <div> 
+                                                                    <div class="fw-bold">Heading</div> <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div> </div>
+                                                                     <span class="badge bg-danger rounded-pill">14</span> </li> <li class="list-group-item d-flex justify-content-between align-items-start"> 
+                                                                        <div class="me-auto d-flex align-items-center"> <div> <input class="form-check-input me-2 mt-0" name="checkbox1" type="checkbox" value="">
+                                                                             <label class="form-check-label" for="checkbox1"></label> </div> <div> <div class="fw-bold">Heading</div> <p class="mb-0 text-muted">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div>
+                                                                     </div> <span class="badge bg-success rounded-pill">14</span> </li> </ul>
+                                          </ng-template>
+                                        </li>
+                                      </ul>
+                                   
+                                    <div class="tab-content" id="pills-tabContent" [ngbNavOutlet]="nav3"></div>
+
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                    </div>
+                    <!-- ROW-2 CLOSED -->
+
+                    <!-- ROW-3 OPEN -->
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header justify-content-between">
+                                    <div>
+                                        <img src="./assets/images/brand/toggle-logo.png" class="" alt="logo">
+                                    </div>
+                                    <ul ngbNav #nav4="ngbNav" class="nav nav-pills mb-3" role="tablist">
+                                        <li [ngbNavItem]="1" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="true"
+                                            >
+                                            
+                                           Home</button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="2" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="false"
+                                            >Profile</button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="3" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            class="d-flex align-items-center"
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="false"
+                                            >Contact</button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="4" class="nav-item">
+                                            <button class="nav-link" id="header-disabled-tab" data-bs-toggle="pill" data-bs-target="#header-disabled" type="button" role="tab" aria-controls="header-disabled" aria-selected="false" disabled="" tabindex="-1">Disabled</button>
+                                        
+                                        </li>
+                                      </ul>
+                                
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content" id="header-tabContent" [ngbNavOutlet]="nav4"></div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header justify-content-between">
+                                    <div class="card-title">Tabs with Icons</div>
+                                    <ul ngbNav #nav5="ngbNav" class="nav nav-pills" role="tablist">
+                                        <li [ngbNavItem]="1" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="true"
+                                            >
+                                            
+                                            <i class="fe fe-home"></i></button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="2" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="false"
+                                            ><i class="fe fe-settings"></i></button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="3" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            class="d-flex align-items-center"
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="false"
+                                            ><i class="fe fe-airplay"></i></button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="4" class="nav-item">
+                                        
+                                          <button class="nav-link" id="icon-disabled-tab" data-bs-toggle="pill" data-bs-target="#icon-disabled" type="button" role="tab" aria-controls="icon-disabled" aria-selected="false" disabled="" tabindex="-1"><i class="fe fe-wifi-off"></i></button>
+                                        </li>
+                                      </ul>
+                                 
+                                </div>
+                                <div class="card-body">
+                                        <div class="tab-content" id="icon-tabContent" [ngbNavOutlet]="nav5"></div>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                    </div>
+                    <!-- ROW-3 CLOSED -->
+
+                    <!-- ROW-4 OPEN -->
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="tab-content" [ngbNavOutlet]="nav6"></div>
+
+                                  
+                                </div>
+                                <div class="card-footer justify-content-between d-flex">
+                                    <div>
+                                        <img src="./assets/images/brand/toggle-logo.png" class="" alt="logo">
+                                    </div>
+                                    <ul ngbNav #nav6="ngbNav" class="nav nav-pills mb-3"  id="footer-tab" role="tablist">
+                                        <li [ngbNavItem]="1" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="true"
+                                            >
+                                            
+                                           Home</button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="2" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="false"
+                                            >Profile</button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="3" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            class="d-flex align-items-center"
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="false"
+                                            >Contact</button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="4" class="nav-item">
+                                            <button class="nav-link" id="footer-disabled-tab" data-bs-toggle="pill" data-bs-target="#footer-disabled" type="button" role="tab" aria-controls="footer-disabled" aria-selected="false" disabled="" tabindex="-1">Disabled</button>
+                                     
+                                        </li>
+                                      </ul>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header justify-content-between">
+                                    <div class="card-title">Colored Tabs</div>
+                                </div>
+                                <div class="card-body">
+                                    <ul ngbNav #nav7="ngbNav" class="nav nav-pills mb-3 bg-primary-transparent br-5 p-2"  id="colored-tab" role="tablist">
+                                        <li [ngbNavItem]="1" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="true"
+                                            >
+                                            
+                                           Home</button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="2" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="false"
+                                            >Profile</button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="3" class="nav-item">
+                                          <button
+                                            ngbNavLink
+                                            class="d-flex align-items-center"
+                                            data-bs-toggle="tab"
+                                            role="tab"
+                                            aria-selected="false"
+                                            >Contact</button
+                                          >
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="4" class="nav-item">
+                                            <button class="nav-link" id="colored-disabled-tab" data-bs-toggle="pill" data-bs-target="#colored-disabled" type="button" role="tab" aria-controls="colored-disabled" aria-selected="false" disabled="" tabindex="-1">Disabled</button>
+                                         
+                                        </li>
+                                      </ul>
+                                   
+                                    <div class="tab-content" [ngbNavOutlet]="nav7"></div>
+
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                    </div>
+                    <!-- ROW-4 CLOSED -->
+
+                    <!-- ROW-5 OPEN -->
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header justify-content-between">
+                                    <div class="card-title">Rounded Colored Tabs</div>
+                                </div>
+                                <div class="card-body">
+                                    <ul ngbNav #nav8="ngbNav" class="nav nav-pills mb-3 bg-primary-transparent rounded-pill p-3 px-5"  id="colored-tab" role="tablist">
+                                        <li [ngbNavItem]="1" class="nav-item">
+                                            <button ngbNavLink class="nav-link rounded-pill " id="rounded-colored-home-tab" data-bs-toggle="pill" data-bs-target="#rounded-colored-home" type="button" role="tab" aria-controls="rounded-colored-home" aria-selected="true">
+                                                <i class="fe fe-home me-2 d-inline-flex"></i>Home</button>
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="2" class="nav-item">
+                                            <button ngbNavLink class="nav-link rounded-pill" id="rounded-colored-profile-tab" data-bs-toggle="pill" data-bs-target="#rounded-colored-profile" type="button" role="tab" aria-controls="rounded-colored-profile" aria-selected="false" tabindex="-1">
+                                                <i class="fe fe-user me-2 d-inline-flex"></i>Profile</button>
+                                        
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li [ngbNavItem]="3" class="nav-item">
+                                            <button ngbNavLink class="nav-link rounded-pill" id="rounded-colored-contact-tab" data-bs-toggle="pill" data-bs-target="#rounded-colored-contact" type="button" role="tab" aria-controls="rounded-colored-contact" aria-selected="true">
+                                                <i class="fe fe-settings me-2 d-inline-flex"></i>Settings</button>
+                                        
+                                          <ng-template ngbNavContent>
+                                            <p>page editors now use Lorem Ipsum as their default model text,
+                                                and a search for 'lorem ipsum' will uncover many web sites
+                                                still in their infancy. Various versions have evolved over
+                                                the years, sometimes
+                                                by accident, sometimes on purpose (injected humour and the
+                                                like</p>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <p>'lorem ipsum' will uncover many web sites still in their
+                                                infancy. Various versions have evolved over the years,
+                                                sometimes
+                                                by accident, sometimes on purpose</p>
+                                          </ng-template>
+                                        </li>
+                                        <li  class="nav-item">
+                                            <button class="nav-link rounded-pill" id="rounded-colored-disabled-tab" data-bs-toggle="pill" data-bs-target="#rounded-colored-disabled" type="button" role="tab" aria-controls="rounded-colored-disabled" aria-selected="false" disabled="" tabindex="-1"><i class="fe fe-bell-off me-2 d-inline-flex"></i>Disabled</button>
+                                       
+                                        </li>
+                                      </ul>
+                                   
+                                    <div class="tab-content" id="colored-tabContent" [ngbNavOutlet]="nav8"></div>
+                               
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Vertical Tab Style</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            
+                                                <div ngbNav #nav9="ngbNav" class="nav flex-column nav-pills nav-pills-custom me-3 mb-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                    <ng-container [ngbNavItem]="1">
+                                                        <button ngbNavLink class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fe fe-home d-block mb-1"></i> Home</button>
+ 
+                                                        <ng-template ngbNavContent>
+                                                            <ul class="">
+                                                                <li class="media media-lg mt-0 border-bottom-0">
+                                                                    <img class="avatar avatar-xl bradius me-3 mb-3 w-100p h-10" src="./assets/images/media/29.jpg" alt="Generic placeholder image">
+                                                                    <div class="media-body">
+                                                                        <h4 class="mt-0 mb-1">Media heading 01</h4>
+                                                                        <p class="text-muted mb-0 fs-14">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
+                                                                        <ul class="list-inline mb-0 pt-3 fs-14">
+                                                                            <li class="list-inline-item"><a href="javascript:void(0);">Reply</a></li>
+                                                                            <li class="list-inline-item"><a href="javascript:void(0);">Edit</a></li>
+                                                                            <li class="list-inline-item"><a href="javascript:void(0);">Delete</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                          </ng-template>
+                                                    </ng-container>
+                                                    <ng-container [ngbNavItem]="2">
+                                                        <button ngbNavLink class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" tabindex="-1">
+                                                            <i class="fe fe-user d-block mb-1"></i>Profile</button>
+                                                   
+                                                      <ng-template ngbNavContent>
+                                                        <ul class="list-group list-scroll h-260">
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/1.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Morbi leo risus</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i> Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-pill bg-info">D</span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Dapibus ac facilisis in</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-danger"></i>Offline</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/3.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Morbi leo risus</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-danger"></i>Offline</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/4.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Porta ac consectetur ac</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i>Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-pill bg-danger-transparent">V</span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Vestibulum at eros</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i>Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/1.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Cras justo odio</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-danger"></i>Offline</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-pill bg-info">D</span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Dapibus ac facilisis in</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i>Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/3.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Morbi leo risus</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i>Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/4.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Porta ac consectetur ac</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-danger"></i>Offline</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-pill bg-danger-transparent">V</span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Vestibulum at eros</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i>Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                      </ng-template>
+                                                    </ng-container>
+                                                    <ng-container [ngbNavItem]="3" class="nav-item">
+                                                        <button ngbNavLink class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" tabindex="-1">
+                                                            <i class="fe fe-message-square d-block mb-1"></i>Messages</button>
+                                                     
+                                                      <ng-template ngbNavContent>
+                                                        <ul class="list-group list-scroll h-260">
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/1.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Morbi leo risus</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i> Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-pill bg-info">D</span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Dapibus ac facilisis in</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-danger"></i>Offline</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/3.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Morbi leo risus</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-danger"></i>Offline</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/4.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Porta ac consectetur ac</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i>Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-pill bg-danger-transparent">V</span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Vestibulum at eros</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i>Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/1.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Cras justo odio</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-danger"></i>Offline</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-pill bg-info">D</span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Dapibus ac facilisis in</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i>Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/3.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Morbi leo risus</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i>Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-circle">
+                                                                        <img src="./assets/images/users/4.jpg" class="rounded-circle" alt="img">
+                                                                    </span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Porta ac consectetur ac</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-danger"></i>Offline</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="avatar avatar-md rounded-pill bg-danger-transparent">V</span>
+                                                                    <div class="ms-3">
+                                                                        <p class="mb-0 fs-14">Vestibulum at eros</p>
+                                                                        <span class="clearfix"></span>
+                                                                        <small class="text-muted fs-12">Classic marinara sauce, authentic</small>
+                                                                    </div>
+                                                                    <div class="ms-auto">
+                                                                        <span class="badge bg-light text-dark p-2"><i class="bi bi-circle-fill fs-8 me-1 text-success"></i>Online</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                      </ng-template>
+                                                    </ng-container>
+                                                    <ng-container [ngbNavItem]="4" >
+                                                        <button ngbNavLink class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false" tabindex="-1">
+                                                            <i class="fe fe-settings d-block mb-1"></i>Settings</button>
+                                                   
+                                                      <ng-template ngbNavContent>
+                                                        <p>page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like</p>
+                                                    <p>page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like</p>
+                                                      </ng-template>
+                                                    </ng-container> </div>
+                                                     
+                                      
+                                           
+                                            
+                                           
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="tab-content" id="v-pills-tabContent" [ngbNavOutlet]="nav9"></div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                    </div>
+                    <!-- ROW-5 CLOSED -->
+
+                    <!-- ROW-6 OPEN -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Vertical Tabs</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <ul ngbNav #nav10="ngbNav" class="nav flex-column nav-pills me-3 mb-2" id="vertical-tab" role="tablist" aria-orientation="vertical">
+                                                <li [ngbNavItem]="1" class="nav-item">
+                                                  <a
+                                                    ngbNavLink
+                                                    id="vertical-tabContent"
+                                                    data-bs-toggle="tab"
+                                                    role="tab"
+                                                    aria-selected="true"
+                                                    >
+                                                    <i class="fe fe-home me-2 d-inline-flex"></i>
+                                                   Home</a
+                                                  >
+                                                  <ng-template ngbNavContent>
+                                                    <div class="media media-lg mt-0">
+                                                        <img class=" avatar avatar-xl bradius me-3 mb-4 w-100p h-10" src="./assets/images/media/28.jpg" alt="Generic placeholder image">
+                                                        <div class="media-body">
+                                                            <h4 class="mt-0 fw-bold">The point of using Lorem Ipsum</h4>
+                                                            <p class="">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                                        </div>
+                                                    </div>
+                                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident,</p>
+                                                  </ng-template>
+                                                </li>
+                                                <li [ngbNavItem]="2" class="nav-item">
+                                                  <a
+                                                    ngbNavLink
+                                                    data-bs-toggle="tab"
+                                                    role="tab"
+                                                    aria-selected="false"
+                                                    ><i class="fe fe-user me-2 d-inline-flex"></i> Profile</a
+                                                  >
+                                                  <ng-template ngbNavContent>
+                                                    <div class="media media-lg mt-0">
+                                                        <img class=" avatar avatar-xl bradius me-3 mb-4 w-100p h-10" src="./assets/images/media/3.jpg" alt="Generic placeholder image">
+                                                        <div class="media-body">
+                                                            <h4 class="mt-0 fw-bold">The point of using Lorem Ipsum</h4>
+                                                            <p class="">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                                        </div>
+                                                    </div>
+                                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident,</p>
+                                                  </ng-template>
+                                                </li>
+                                                <li [ngbNavItem]="3" class="nav-item">
+                                                  <a 
+                                                    data-bs-toggle="tab"
+                                                    role="tab"
+                                                    aria-selected="false"
+                                                    ><i class="fe fe-bell-off me-2 d-inline-flex"></i> Disabled</a
+                                                  >
+                                                  <ng-template>
+                                                    <div class="media media-lg mt-0">
+                                                        <img class=" avatar avatar-xl bradius me-3 mb-4 w-100p h-10" src="./assets/images/media/4.jpg" alt="Generic placeholder image">
+                                                        <div class="media-body">
+                                                            <h4 class="mt-0 fw-bold">The point of using Lorem Ipsum</h4>
+                                                            <p class="">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                                        </div>
+                                                    </div>
+                                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident,</p>
+                                                  </ng-template>
+                                                </li>
+                                                <li [ngbNavItem]="4" class="nav-item">
+                                                  <a
+                                                  ngbNavLink
+                                                    data-bs-toggle="tab"
+                                                    role="tab"
+                                                    aria-selected="false"
+                                                    ><i class="fe fe-message-square me-2 d-inline-flex"></i> Messages</a
+                                                  >
+                                                  <ng-template ngbNavContent>
+                                                    <div class="media media-lg mt-0">
+                                                        <img class=" avatar avatar-xl bradius me-3 mb-4 w-100p h-10" src="./assets/images/media/5.jpg" alt="Generic placeholder image">
+                                                        <div class="media-body">
+                                                            <h4 class="mt-0 fw-bold">The point of using Lorem Ipsum</h4>
+                                                            <p class="">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                                        </div>
+                                                    </div>
+                                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident,</p>
+                                                  </ng-template>
+                                                </li>
+                                                <li [ngbNavItem]="5" class="nav-item">
+                                                    <a
+                                                    ngbNavLink
+                                                      data-bs-toggle="tab"
+                                                      role="tab"
+                                                      aria-selected="false"
+                                                      ><i class="fe fe-settings me-2 d-inline-flex"></i> Settings</a
+                                                    >
+                                                    <ng-template ngbNavContent>
+                                                        <div class="media media-lg mt-0">
+                                                            <img class=" avatar avatar-xl bradius me-3 mb-4 w-100p h-10" src="./assets/images/media/6.jpg" alt="Generic placeholder image">
+                                                            <div class="media-body">
+                                                                <h4 class="mt-0 fw-bold">The point of using Lorem Ipsum</h4>
+                                                                <p class="">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                                            </div>
+                                                        </div>
+                                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident,</p>
+                                                    </ng-template>
+                                                  </li>
+                                              </ul>
+                                         
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="tab-content" id="v-pills-tabContent" [ngbNavOutlet]="nav10"></div>
+
+                                     
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                    </div>
+                    <!-- ROW-6 CLOSED -->
+
+                    <!-- ROW-7 OPEN -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card custom-card">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        Data-tabs Style
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-area">
+                                        <ul ngbNav #nav11="ngbNav" class="nav nav-tabs justify-content-center tab-style-3 gap-3" id="myTab2" role="tablist" aria-orientation="vertical">
+                                            <li [ngbNavItem]="1" class="nav-item">
+                                              <a
+                                                ngbNavLink
+                                                class="home d-flex align-items-center"
+                                                id="vertical-tabContent"
+                                                data-bs-toggle="tab"
+                                                role="tab"
+                                                aria-selected="true"
+                                                >
+                                               
+                                                Shopping Cart</a
+                                              >
+                                              <ng-template ngbNavContent>
+                                                <div class="row">
+                                                    <div class="col-xxl-5 col-xl-12">
+                                                        <div class="card shadow-none border">
+                                                            <div class="card-body">
+                                                                <div class="d-sm-flex d-block align-items-start mb-4 p-3 border br-5">
+                                                                    <div class="me-3 mb-sm-0 mb-2">
+                                                                        <span class="avatar avatar-xxl br-5">
+                                                                            <img src="./assets/images/products/3.jpg" class="br-5" alt="">
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="w-100">
+                                                                        <p class="fw-semibold fs-15  mb-2">Wireless Earphones with mic, Enhanced bass with 9.2mm Dynamic Drivers.</p>
+                                                                        <p class="mb-0">Brand:<span class="fw-semibold ms-2">Gooba</span></p>
+                                                                        <p class="text-muted fs-14">Color:<span class="fw-semibold ms-2">Foggy White</span></p>
+                                                                        <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
+                                                                            <div class="mb-sm-0 mb-2">
+                                                                                <span class="fs-16 fw-bold ">$124.99</span>
+                                                                                <!-- <span class="badge bg-secondary-transparent ms-2"><i class="ri-truck-line me-1"></i>Free Shipping</span> -->
+                                                                            </div>
+                                                                            <div class="handle-counter">
+                                                                                
+                                                                                <button type="button" id="" class="counter-minus btn btn-white lh-2 shadow-none product-quantity-minus minus" >
+                                                                                    <i class="fe fe-minus text-muted"></i>
+                                                                                </button>
+                                                                                <!-- <span class="ms-2 me-2 fs-15">1</span> -->
+                                                                                <input type="text" value="2" class="qty">
+                                                                                <button type="button" id="" class="counter-plus btn btn-white lh-2 shadow-none rounded-0 product-quantity-plus plus ">
+                                                                                    <i class="fe fe-plus text-muted"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div>
+                                                                                <button class="btn btn-outline-danger">
+                                                                                    <i class="ti ti-trash me-1 d-inline-flex"></i>Remove
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-sm-flex d-block align-items-start mb-4 p-3 border br-5">
+                                                                    <div class="me-3 mb-sm-0 mb-2">
+                                                                        <span class="avatar avatar-xxl br-5">
+                                                                            <img src="./assets/images/products/4.jpg" class="br-5" alt="">
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="w-100">
+                                                                        <p class="fw-semibold fs-15  mb-2">Fashion Women's Corduroy Buttoned Down Pocket Shirts.</p>
+                                                                        <p class="mb-0">Brand:<span class=" fw-semibold ms-2">Chokka</span></p>
+                                                                        <p class="text-muted fs-14 mb-3">Color:<span class=" fw-semibold ms-2">Pink,Grey,Orange</span></p>
+                                                                        <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
+                                                                            <div class="mb-sm-0 mb-2">
+                                                                                <span class="fs-16 fw-bold ">$324.99</span>
+                                                                            </div>
+                                                                            <div class="handle-counter">
+                                                                                <button type="button" class="counter-minus btn btn-white lh-2 shadow-none product-quantity-minus" >
+                                                                                    <i class="fe fe-minus text-muted"></i>
+                                                                                </button>
+                                                                                <input type="text" value="2" class="qty">
+                                                                                <button type="button" class="counter-plus btn btn-white lh-2 shadow-none rounded-0 product-quantity-plus">
+                                                                                    <i class="fe fe-plus text-muted"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                            <button class="btn btn-outline-danger">
+                                                                                <i class="ti ti-trash me-1 d-inline-flex"></i>Remove
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-4 col-xl-6">
+                                                        <div class="card shadow-none border">
+                                                            <div class="card-body">
+                                                                <div class="p-3 fs-14 br-5">
+                                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                                        <p class="">Items Total Price</p>
+                                                                        <p class="">$446.98</p>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                                        <p class="">Value Added Tax(Vat)</p>
+                                                                        <p class="text-danger">$24.49</p>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                                        <p class="">Additional Discount</p>
+                                                                        <p class="text-success">-$34.49</p>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                                        <p class="">Coupon Discount</p>
+                                                                        <p class="">-$4.49</p>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                                        <p class="">Shipping Charges</p>
+                                                                        <p class="text-success">$59.79</p>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center justify-content-between  text-primary fs-17 fw-600">
+                                                                        <p class="">Total Price <small class="text-muted">(Vat Included)</small></p>
+                                                                        <p class="">$531.26</p>
+                                                                    </div>
+                                                                    <div class="bg-warning-transparent p-3 rounded-3">
+                                                                        <a value="discount" (click)="scroll(discount)" class="text-warning d-flex justify-content-between flex-wrap">
+                                                                            <span><i class="bi bi-gift me-2"></i>Apply Discount Code</span>
+                                                                            <span><i class="bi bi-arrow-right"></i></span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <div class="d-flex align-items-center justify-content-between">
+                                                                    <p class="mb-0">2 items in the cart</p>
+                                                                    <button class="btn btn-primary">Proceed</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-xxl-3 col-xl-6">
+                                                        <div class="card shadow-none border">
+                                                            <div class="card-body counter-content">
+                                                                <div class="text-center mb-4">
+                                                                    <img src="./assets/images/png/1.png" alt="img" width="280" class="img-fluid">
+                                                                </div>
+                                                                <div class="bg-primary-gradient tx-fixed-white p-4 br-5">
+                                                                    <span class="badge bg-secondary fs-10 me-2">Hurry Up!</span>
+                                                                    <span>Only we have two days</span>
+                                                                    <div class="mt-1">
+                                                                        <span class="tx-fixed-white fs-20 pe-2"><i class="bi bi-calendar-day"></i></span>
+                                                                        <span class="h6 tx-fixed-white">02 Days 23 Hrs 59 Mins 43 Secs</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              </ng-template>
+                                            </li>
+                                            <li [ngbNavItem]="2" class="nav-item">
+                                              <a
+                                                ngbNavLink
+                                                class="about d-flex"
+                                                data-bs-toggle="tab"
+                                                role="tab"
+                                                aria-selected="false"
+                                                > Delivery Address</a
+                                              >
+                                              <ng-template ngbNavContent>
+                                                <h6 class="mb-4 fw-semibold">Select Delivery Address</h6>
+                                                <div class="mb-4">
+                                                    <button class="btn btn-primary-light d-flex align-items-center justify-content-center fs-14 fw-semibold"><i class="ti ti-circle-plus fs-20 me-1"></i>Add New Address</button>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <div class="col-md-3 col-sm-12">
+                                                                <div class="p-3 mb-3 br-5 border">
+                                                                    <p class="fs-14 fw-bold fs-15 mb-1">
+                                                                        <i class="ti ti-home-2 fs-18 me-1 d-inline-flex"></i>Home
+                                                                    </p>
+                                                                    <p class="mb-1 fw-semibold fs-13 mb-3">Alex Klitchsko- +91-2132-1234</p>
+                                                                    <p class="mb-0 text-muted">
+                                                                        444 Rowe Crossroad, Kohlerborough, Massach, 92389-3067,764.251.8770,1-579-220-2849
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-12">
+                                                                <div class="p-3 mb-3 br-5 border border-primary bg-light">
+                                                                    <p class="fs-14 fw-bold fs-15 mb-1 text-primary">
+                                                                        <i class="ti ti-home-2 fs-18 me-1 d-inline-flex"></i>Hostel
+                                                                    </p>
+                                                                    <p class="mb-1 fw-semibold fs-13 mb-3">Alex Klitchsko- +91-2132-1234</p>
+                                                                    <p class="mb-0 text-muted">
+                                                                        444 Rowe Crossroad, Kohlerborough, Massach, 92389-3067,764.251.8770,1-579-220-2849
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-12">
+                                                                <div class="p-3 mb-3 br-5 border">
+                                                                    <p class="fs-14 fw-bold fs-15 mb-1">
+                                                                        <i class="ti ti-home-2 fs-18 me-1 d-inline-flex"></i>Office
+                                                                    </p>
+                                                                    <p class="mb-1 fw-semibold fs-13 mb-3">Alex Klitchsko- +91-2132-1234</p>
+                                                                    <p class="mb-0 text-muted">
+                                                                        444 Rowe Crossroad, Kohlerborough, Massach, 92389-3067,764.251.8770,1-579-220-2849
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-12">
+                                                                <div class="p-3 mb-3 br-5 border">
+                                                                    <p class="fs-14 fw-bold fs-15 mb-1">
+                                                                        <i class="ti ti-building-skyscraper fs-18 me-1 d-inline-flex"></i>Work
+                                                                    </p>
+                                                                    <p class="mb-1 fw-semibold fs-13 mb-3">Alex Klitchsko- +91-2132-1234</p>
+                                                                    <p class="mb-0 text-muted">
+                                                                        6937 Smith Harbor, Southaven, Louisiana, 57814-0428,933.222.5711,1-608-479-3758
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 mt-4">
+                                                                <div class="bg-light p-2">
+                                                                    <p class="text-muted fw-semibold fs-13 mb-0 d-flex align-items-center">
+                                                                        <i class="ri-information-line fs-22 me-1"></i>If you choose another city delivery charges may differ.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center justify-content-end mt-4">
+                                                        <button class="btn btn-sm btn-primary me-2 d-flex align-items-center">Back To Cart</button>
+                                                        <button class="btn btn-sm btn-secondary d-flex align-items-center">Proceed To Payment</button>
+                                                    </div>
+                                                </div>
+                                              </ng-template>
+                                            </li>
+                                            <li [ngbNavItem]="3" class="nav-item">
+                                              <a
+                                                data-bs-toggle="tab"
+                                                ngbNavLink
+                                                class="services d-flex"
+                                                role="tab"
+                                                aria-selected="false"
+                                                >Payment Method</a
+                                              >
+                                              <ng-template ngbNavContent>
+                                                <h6 class="mb-4 text-dark fw-semibold">Select Payment Method</h6>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input class="custom-control-input" name="list-radio" id="customRadio1" type="radio">
+                                                                    <label class="cursor-pointer d-block custom-control-label" for="customRadio1">
+                                                                        <span class="mb-0 d-block">Dapibus ac facilisis in</span><span class="fs-12 text-muted">Classic marinara sauce, authentic old-world pepperoni</span>
+                                                                    </label>
+                                                                </div>
+                                                                <label class="form-check-label" for="customRadio1"><img src="./assets/images/payments/bitcoin-dark.svg" alt="" class="br-5"></label>
+                                                            </li>
+                                                            <li class="list-group-item d-flex align-items-center justify-content-between bg-primaru-tran">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input class="custom-control-input" name="list-radio" id="customRadio2" type="radio" checked="">
+                                                                    <label class="cursor-pointer d-block custom-control-label" for="customRadio2">
+                                                                        <span class="mb-0 d-block">Dapibus ac facilisis in</span><span class="fs-12 text-muted">Classic marinara sauce, authentic old-world pepperoni</span>
+                                                                    </label>
+                                                                </div>
+                                                                <label class="form-check-label" for="customRadio2"><img src="./assets/images/payments/amazon-dark.svg" alt="" class="br-5"></label>
+                                                            </li>
+                                                            <li class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input class="custom-control-input" name="list-radio" id="customRadio3" type="radio">
+                                                                    <label class="cursor-pointer d-block custom-control-label" for="customRadio3">
+                                                                        <span class="mb-0 d-block">Dapibus ac facilisis in</span><span class="fs-12 text-muted">Classic marinara sauce, authentic old-world pepperoni</span>
+                                                                    </label>
+                                                                </div>
+                                                                <label class="form-check-label" for="customRadio3"><img src="./assets/images/payments/discover-dark.svg" alt="" class="br-5"></label>
+                                                            </li>
+                                                            <li class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input class="custom-control-input" name="list-radio" id="customRadio4" type="radio">
+                                                                    <label class="cursor-pointer d-block custom-control-label" for="customRadio4">
+                                                                        <span class="mb-0 d-block">Dapibus ac facilisis in</span><span class="fs-12 text-muted">Classic marinara sauce, authentic old-world pepperoni</span>
+                                                                    </label>
+                                                                </div>
+                                                                <label class="form-check-label" for="customRadio4"><img src="./assets/images/payments/sepa-dark.svg" alt="" class="br-5"></label>
+                                                            </li>
+                                                            <li class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input class="custom-control-input" name="list-radio" id="customRadio5" type="radio">
+                                                                    <label class="cursor-pointer d-block custom-control-label" for="customRadio5">
+                                                                        <span class="mb-0 d-block">Dapibus ac facilisis in</span><span class="fs-12 text-muted">Classic marinara sauce, authentic old-world pepperoni</span>
+                                                                    </label>
+                                                                </div>
+                                                                <label class="form-check-label" for="customRadio5"><img src="./assets/images/payments/paymill-dark.svg" alt="" class="br-5"></label>
+                                                            </li>
+                                                          </ul>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="bg-danger-transparent-2 text-danger br-3 mb-4" role="alert">Please Enter Valid Details</div>
+                                                        <div class="form-group">
+                                                            <label class="form-label">Card Holder Name</label>
+                                                            <input type="text" class="form-control" placeholder="First Name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label">Card number</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" placeholder="Search for...">
+                                                                <span class="input-group-text input-text-color">
+                                                                        <i class="fa fa-cc-visa text-muted"></i> &nbsp; <i class="fa fa-cc-amex text-muted"></i> &nbsp;
+                                                                        <i class="fa fa-cc-mastercard text-muted"></i>
+                                                                    </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Expiration</label>
+                                                                    <div class="input-group">
+                                                                        <input type="number" class="form-control" placeholder="MM" name="Month">
+                                                                        <input type="number" class="form-control" placeholder="YY" name="Year">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">CVV <i class="fa fa-question-circle"></i></label>
+                                                                    <input type="number" class="form-control" required="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <a href="javascript:void(0);" class="btn  btn-lg btn-primary">Confirm</a>
+                                                    </div>
+                                                </div>
+                                              </ng-template>
+                                            </li>
+                                            <li [ngbNavItem]="4" class="nav-item">
+                                              <a
+                                              ngbNavLink
+                                              class="order d-flex"
+                                                data-bs-toggle="tab"
+                                                role="tab"
+                                                aria-selected="false"
+                                                >Confirmation</a
+                                              >
+                                              <ng-template ngbNavContent>
+                                                <div class="row justify-content-center mt-5">
+                                                    <div class="col-lg-4">
+                                                            <div class="card shadow-none border" [(ngbCollapse)]="isClosed1">
+                                                                <div class="card-header border-0">
+                                                                    <div class="alert-icon-style"><span class="avatar avatar-lg bg-success rounded-circle"><i class="fe fe-check-circle" aria-hidden="true"></i></span></div>
+                                                                    <div class="card-options">
+                                                                        <a href="javascript:void(0);" class="card-options-remove text-success z-index1" data-bs-toggle="card-remove"  (click)="Closetoggle('one')"  [attr.aria-expanded]="!isClosed1"><i class="fe fe-x"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body text-center">
+                                                                    <h4 class="fw-semibold mb-1 mt-3">Congratulations</h4>
+                                                                    <p class="card-text text-muted">Sent successfully</p>
+                                                                </div>
+                                                                <div class="card-footer text-center border-0 pt-0">
+                                                                    <div class="row">
+                                                                        <div class="text-center">
+                                                                            <a href="javascript:void(0);" class="btn btn-block btn-sm btn-success me-2">Done</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                      
+                                                    </div>
+                                                </div>
+                                              </ng-template>
+                                            </li>
+                                           
+                                          </ul>
+                                   
+                                        <div class="tab-content" id="myTabContent" [ngbNavOutlet]="nav11"></div>
+
+                                  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ROW-7 CLOSED-->
+
+                </div>
+                <!-- CONTAINER CLOSED -->
+
+    

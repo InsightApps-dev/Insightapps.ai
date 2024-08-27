@@ -1,0 +1,223 @@
+<app-page-header title="Table Columns Data" title1="Forms" activeitem="Select2"></app-page-header>
+
+   <!-- CONTAINER -->
+   <div class="main-container container-fluid">
+    <div class="row row-cards">
+        <div class="col-xl-12 p-1">
+            <div class="card p-0 mb-1">
+                <div class="card-body p-4">
+                    <div class="row align-items-center mb-2">
+                        <div class="col-xl-1 col-lg-1 p-0">
+                            <div class="card-area d-flex gap-2">
+                                <label for="inputName" class="form-control mb-0">Columns</label>
+                            </div>
+                        </div>
+                        <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 p-0">
+                            <div class="input-group">
+                                
+                                <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"
+                                #columnList="cdkDropList" 
+                                [cdkDropListData]="draggedColumns" 
+                                (cdkDropListDropped)="columndrop($event)">
+                                    @for(columns of draggedColumns;track columns){
+                                    <div class="example-box" cdkDrag>{{ columns.column }}
+                                    </div>
+                                    }
+                                </div>
+                          
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-xl-1 col-lg-1 p-0">
+                            <div class="card-area d-flex gap-2">
+                                <label for="inputName" class="form-control mb-0">Rows</label>
+                            </div>
+                        </div>
+                        <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 p-0">
+                            <div class="input-group">
+                                <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"
+                                #rowList="cdkDropList" 
+                                [cdkDropListData]="draggedRows" 
+                                (cdkDropListDropped)="rowdrop($event)">
+                                    @for(rows of draggedRows;track rows){
+                                    <div class="example-box" cdkDrag>{{ rows.column }}
+                                    </div>
+                                    }
+                                </div>
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row main-container" style="height:500px;position: fixed;width: 100.5%;">
+        <div class="row">
+            <div class="col-xl-8 col-md-8 p-1">
+                <div class="card mb-0" style=" height: 300px; overflow-y: scroll;">
+                    <div class="card-body" style=" display: flex; justify-content: center; align-items: center;">
+                      <!--  @if(!draggedtables.length){ <h6 class=" fs-12 mt-2 mb-0 drag-txt">Drop field here</h6>}
+                        <div cdkDropList 
+                        #destinationList="cdkDropList" 
+                        [cdkDropListData]="draggedtables" class="example-list-drop"
+                        (cdkDropListDropped)="drop($event)">
+                            @for(item of draggedtables;track item){
+                            <div class="example-box" cdkDrag>{{ item.column }}
+                            </div>
+                            }
+                        </div>-->
+                        <div class="col-xl-2 col-md-2 p-1">
+                        <div class="body table-responsive" style="max-height:370px;padding: 0px;">
+                            <table class="table table-bordered">
+                              <thead style="position:sticky;top: -1px;">
+                                @for(data of tablePreviewRow;track data){
+                                <tr class="table table-bordered ">
+                                  <th class="table-bg" >{{data.column}}</th>
+                                </tr>
+                            }
+                              </thead>
+                              <tbody>
+                                @for(data of tablePreviewRow;track data){
+                               
+                                    @for(row of data.result_data;track row){
+                                  <tr>{{row}}</tr>
+                                    }
+                                
+                            }
+                              </tbody>
+                            </table>
+                          </div>
+                          </div>
+                        
+                        <div class="body table-responsive" style="max-height:370px;padding: 0px;">
+                            <table class="table table-bordered">
+                              <thead style="position:sticky;top: -1px;">
+                             
+                              </thead>
+                              <tbody>
+                                @for(data of tablePreviewColumn;track data){
+                                <tr>
+                                  <td><b>{{data.column}}:</b> {{data.result_data}}</td>
+                                </tr>
+                            }
+                              </tbody>
+                            </table>
+                          </div>
+                          
+                    </div>
+                   
+                    <div class="card-footer  d-flex p-2">
+                        <ul ngbnav="" id="footer-tab border-1" role="tablist" class="nav nav-pills fs-12">
+                            <li class="nav-item" role="presentation">
+                                <button type="button" ngbnavlink="" data-bs-toggle="tab" role="tab" aria-selected="true" id="ngb-nav-24" aria-disabled="false" class="nav-link BtnNewStyle span-right" tabindex="-1">
+                                    <i data-bs-toggle="tooltip" ngbtooltip="fa fa-caret-left" class="fa fa-caret-left"></i>
+                                </button><!---->
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button type="button" ngbnavlink="" data-bs-toggle="tab" role="tab" aria-selected="true" id="ngb-nav-24" aria-disabled="false" class="nav-link BtnNewStyle span-left" tabindex="-1">
+                                    <i data-bs-toggle="tooltip" ngbtooltip="fa fa-caret-right" class="fa fa-caret-right"></i>
+                                </button><!---->
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button type="button " ngbnavlink="" data-bs-toggle="tab" role="tab" aria-selected="true" id="ngb-nav-23" aria-disabled="false" class="nav-link BtnNewStyle active" aria-controls="ngb-nav-23-panel"> Sheet 1</button>
+                                <!---->
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button type="button" ngbnavlink="" data-bs-toggle="tab" role="tab" aria-selected="true" id="ngb-nav-24" aria-disabled="false" class="nav-link BtnNewStyle" tabindex="-1">Sheet 2</button><!---->
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button type="button" ngbnavlink="" data-bs-toggle="tab" role="tab" aria-selected="true" id="ngb-nav-24" aria-disabled="false" class="nav-link BtnNewStyle" tabindex="-1">Sheet 3</button><!---->
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button type="button" ngbnavlink="" data-bs-toggle="tab" role="tab" aria-selected="true" id="ngb-nav-24" aria-disabled="false" class="nav-link BtnNewStyle" tabindex="-1">Sheet 4</button><!---->
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button type="button" ngbnavlink="" data-bs-toggle="tab" role="tab" aria-selected="true" id="ngb-nav-24" aria-disabled="false" class="nav-link BtnNewStyle" tabindex="-1">Sheet 5</button><!---->
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button type="button" ngbnavlink="" data-bs-toggle="tab" role="tab" aria-selected="true" id="ngb-nav-24" aria-disabled="false" class="nav-link BtnNewStyle" tabindex="-1">Sheet 6</button><!---->
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button type="button" ngbnavlink="" data-bs-toggle="tab" role="tab" aria-selected="true" id="ngb-nav-24" aria-disabled="false" class="nav-link BtnNewStyle" tabindex="-1">
+                                    <i class="fa fa-plus-square-o"></i>
+                                </button>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          <div class="col-xl-2 col-md-2 p-1">
+                <div  class="card" style=" height: 300px; overflow-y: scroll;">
+                    <div class="card-body" style="padding: 8px 20px;">
+                        <h6 class="fw-600 fs-12 mt-2 mb-0">Filters</h6>  
+                    </div>
+                    <div class="card-body" style="padding: 8px 20px;">
+                        <h6 class="fw-600 fs-12 mt-2 mb-0">Charts</h6>  
+                    </div>
+                    <div class="card-body" style="padding: 8px 20px;">
+                        <h5 class="fw-600 fs-12 mt-2 mb-0">Tables</h5>
+                        <div>
+                        @for(columns of tableColumnsData; track columns){
+                            <h6 class="example-box">{{columns.table_name}}</h6>
+                            <div  cdkDropList 
+                            #originList="cdkDropList"
+                            [cdkDropListData]="columns.dimensions"
+                            [cdkDropListConnectedTo]="[columnList]"
+                           
+                            (cdkDropListDropped)="columndrop($event)" >
+                            @for(dimensions of columns.dimensions; track dimensions){
+                                <div class="example-box" (cdkDragStarted)="tableNameMethod(columns.schema,columns.table_name)" cdkDrag>{{dimensions.column}}</div>
+                            }</div>
+                            <div cdkDropList
+                            #originList="cdkDropList"
+                            [cdkDropListData]="columns.measures"
+                            [cdkDropListConnectedTo]="[rowList]"
+                           
+                            (cdkDropListDropped)="rowdrop($event)">
+                            @for(measures of columns.measures; track measures){
+                                <div class="example-box" (cdkDragStarted)="tableNameMethod(columns.schema,columns.table_name)" cdkDrag># {{measures.column}}</div>
+                            }
+                            </div>
+
+                        }
+                      </div>
+                    </div>
+                </div>
+            </div>
+          <!--  <div class="col-xl-2 col-md-2 p-1">
+                <div  class="card" style=" height: 282px; overflow-y: scroll;">
+                    <div class="card-header">
+                        <div class="card-title fw-600 fs-12">Tables </div>
+                    </div>
+                    <div class="card-body" style="padding: 8px 20px;">
+                        <h6 class="fw-600 fs-12 mt-2 mb-0">Table 1</h6>
+                        <p class="card-text mb-0">Dimensions</p>
+                        <a href="javascript:void(0);" class="card-link"># Measures</a>
+                    </div>
+                    <div class="card-body" style="padding: 8px 20px;">
+                        <h6 class="fw-600 fs-12 mt-2 mb-0">Table 2</h6>
+                        <p class="card-text mb-0">Dimensions</p>
+                        <a href="javascript:void(0);" class="card-link"># Measures</a>
+                    </div>
+                    <div class="card-body" style="padding: 8px 20px;">
+                        <h6 class="fw-600 fs-12 mt-2 mb-0">Table 2</h6>
+                        <p class="card-text mb-0">Dimensions</p>
+                        <a href="javascript:void(0);" class="card-link"># Measures</a>
+                    </div>
+                    <div class="card-body" style="padding: 8px 20px;">
+                        <h6 class="fw-600 fs-12 mt-2 mb-0">Table 2</h6>
+                        <p class="card-text mb-0">Dimensions</p>
+                        <a href="javascript:void(0);" class="card-link"># Measures</a>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>
+<!-- CONTAINER CLOSED -->

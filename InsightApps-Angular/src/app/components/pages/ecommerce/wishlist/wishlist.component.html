@@ -1,0 +1,88 @@
+
+<app-page-header title="Wishlist" title1="E-commerce" activeitem="Wishlist"></app-page-header>
+      <!-- CONTAINER -->
+      <div class="main-container container-fluid">
+
+       
+          
+              <!-- ROW-1 -->
+              <div class="row">
+                  <div class="col-xl-12">
+                      <div class="card">
+                          <div class="card-body p-3">
+                              <div class="d-flex align-items-center justify-content-between">
+                                  <div>
+                                      <h6 class="mb-0 fw-semibold">Showing 1-8 of 45 results</h6>
+                                  </div>
+                                  <div>
+                                      <div class="input-group">
+                                          <input type="text" class="form-control" placeholder="Search here..." aria-label="Text input with 2 dropdown buttons">
+                                          <a href="javascript:void(0);" class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></a>
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row row-cols-xxl-5">
+                @for(products of productdata; track $index ){
+
+                    <div class="col-xxl-2 col-xl-6 col-lg-6 col-sm-6 wishlist-product">
+                        <div class="product-grid card" >
+                            <div class="card-body">
+                                <div>
+                                    <ul class="icons-wishlist">
+                                        <li><a href="javascript:void(0);" class="btn btn-danger btn-delete" (click)="click(products.id)"><i class="fe fe-trash-2"></i></a></li>
+                                    </ul>
+                                    <div>
+                                        <img src={{products.src}} class="w-100 rounded-2" alt="img">
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <div>
+                                        <h6 class="mb-0"> {{products.name}}</h6>
+                                        <small class="text-muted"> {{products.type}}</small>
+                                        <h5 class="mt-1">{{products.price}} <span class="text-muted text-decoration-line-through fs-13"> {{products.price1}}</span> <span class="text-success fw-semibold fs-14  ms-1">{{products.offer}}</span></h5>
+                                        <div class="mb-0 text-warning">
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star-half-o text-warning"></i>
+                                            <i class="fa fa-star-o text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="badge bg-{{products.bg}}">{{products.status}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer btn-list text-center p-3">
+                                <a routerLink="/pages/ecommerce/shopping-cart" class="btn btn-primary "><i class="fe fe-shopping-cart me-2"></i> Add to Cart</a>
+                                <a class="btn btn-light "><i class="fe fe-share-2 me-2"></i> Share</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+              
+              </div>
+              <!-- ROW-1 CLOSED -->
+          
+              <div class="mb-5">
+                  
+                  <ul class="pagination mb-0">
+                      <li class="page-item page-prev disabled">
+                          <a class="page-link" href="javascript:void(0);" tabindex="-1">Prev</a>
+                      </li>
+                      <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+                      <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                      <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                      <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
+                      <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
+                      <li class="page-item page-next">
+                          <a class="page-link" href="javascript:void(0);">Next</a>
+                      </li>
+                  </ul>
+              </div>
+      </div>
+      <!-- CONTAINER CLOSED -->

@@ -1,0 +1,122 @@
+ 
+ <app-page-header title="Faqs" title1="Extension" activeitem="Faqs"></app-page-header>
+      <!-- CONTAINER -->
+      <div class="main-container container-fluid">
+
+       
+        <!-- Row-->
+         <div class="row ">
+           <div class="col-md-12">
+               <div class="row">
+                   <div class="col-lg-6">
+                       <div class="card">
+                           <div class="card-header">
+                               <h3 class="card-title">Pricing Plans</h3>
+                           </div>
+                           <div class="card-body">
+                               <div
+                               ngbAccordion
+                               [closeOthers]="true"
+                               class="accordion"
+                               id="accordionExample"
+                             >
+                             @for(panel of panels; track $index){
+
+                               <div
+                                 ngbAccordionItem
+                                 [collapsed]="panel !== 'How To Insert All The Plugins?'"
+                                 class="accordion-item"
+                                 
+                               >
+                                 <h2 ngbAccordionHeader class="accordion-header" id="headingOne">
+                                   <button
+                                     ngbAccordionButton
+                                     class="accordion-button"
+                                     type="button"
+                                     data-bs-toggle="collapse"
+                                     data-bs-target="#collapseOne"
+                                     aria-expanded="true"
+                                     aria-controls="collapseOne"
+                                   >
+                                     {{ panel }}
+                                   </button>
+                                 </h2>
+                                 <div
+                                   ngbAccordionCollapse
+                                   id="collapseOne"
+                                   class="accordion-collapse collapse show"
+                                   aria-labelledby="headingOne"
+                                   data-bs-parent="#accordionExample"
+                                 >
+                                   <div class="accordion-body" ngbAccordionBody>
+                                     <ng-template>
+                                       Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+                                     </ng-template>
+                                   </div>
+                                 </div>
+                               </div>
+                             }
+                             </div>
+                                           
+                                    
+                                
+                                  
+                               </div>
+                           </div>
+                       </div>
+                
+                   <div class="col-lg-6">
+                       <div class="card">
+                           <div class="card-header">
+                               <h3 class="card-title">Sales Questions</h3>
+                           </div>
+                           <div class="card-body">
+                             <div
+                             ngbAccordion
+                             [closeOthers]="true"
+                             class="accordion"
+                             id="accordionExample"
+                           >@for(panel of panels;track $index){
+
+                             <div
+                               ngbAccordionItem
+                               [collapsed]="panel !== 'It is Easy to Customizeable?'"
+                               class="accordion-item"
+                             >
+                               <h2 ngbAccordionHeader class="accordion-header" id="headingOne">
+                                 <button
+                                   ngbAccordionButton
+                                   class="accordion-button"
+                                   type="button"
+                                   data-bs-toggle="collapse"
+                                   data-bs-target="#collapseOne"
+                                   aria-expanded="true"
+                                   aria-controls="collapseOne"
+                                 >
+                                   {{ panel }}
+                                 </button>
+                               </h2>
+                               <div
+                                 ngbAccordionCollapse
+                                 id="collapseOne"
+                                 class="accordion-collapse collapse show"
+                                 aria-labelledby="headingOne"
+                                 data-bs-parent="#accordionExample"
+                               >
+                                 <div class="accordion-body" ngbAccordionBody>
+                                   <ng-template>
+                                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+                                   </ng-template>
+                                 </div>
+                               </div>
+                             </div>
+                           }
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <!-- End Row-->
+      </div>
+      <!-- CONTAINER CLOSED -->

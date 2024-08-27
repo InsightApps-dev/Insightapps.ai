@@ -1,0 +1,762 @@
+<app-page-header title="Toast" title1="UI Kit" activeitem="Toast"></app-page-header>
+      <!-- CONTAINER -->
+      <div class="main-container container-fluid">
+
+       
+          <!-- ROW-1 OPEN -->
+          <div class="row">
+              <div class="col-xl-4 col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Live Toasts</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="card-content">
+                              <button type="button" class="btn btn-primary" id="liveToastBtn"   (click)="showToast()">Show live
+                                  toast</button>
+                          </div>
+                          <div class="toast-container position-fixed top-0 end-0 p-3">
+                            @for( toast of toasts; track $index ){
+
+                                <ngb-toast
+                                [delay]="5000"
+                                [autohide]="toast.autohide"
+                                (hide)="hideToast(toast)"
+                                [class.bg-warning]="!toast.autohide"
+                              >
+                              <ng-template ngbToastHeader>
+                                    <img
+                                      class="bd-placeholder-img rounded me-2"
+                                      src="./assets/images/brand/favicon.ico"
+                                      alt="Your Image"
+                                    />
+                                    <strong class="me-auto">insightapps</strong>
+                                    <small>11 mins ago</small>
+                                    <button
+                                      type="button"
+                                      class="btn-close"
+                                      (click)="hideToast(toast)"
+                                      aria-label="Close"
+                                    ><span aria-hidden="true">×</span></button>
+                             
+                                </ng-template>
+                                Hello, world! This is a toast message.
+                              </ngb-toast>
+                            }
+                            
+                                  
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-4 col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Basic Toasts</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="card-content">
+                            @if(show){
+
+                                <ngb-toast [autohide]="false" (hidden)="show = false">
+                                    <ng-template ngbToastHeader>
+                                        <img src="./assets/images/brand/toggle-logo.png" alt="" class="me-2" height="18">
+                                        <strong class="me-auto">Bootstrap</strong>
+                                        <small>11 mins ago</small>
+                                        
+                                    </ng-template>
+                                    Hello, world! This is a toast message.
+                                  </ngb-toast>
+                            }
+                            
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-4 col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Translucent Toasts</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="card-content">
+                            @if(show1){
+
+                                <ngb-toast  [autohide]="false" (hidden)="show1 = false">
+             <ng-template ngbToastHeader>
+               <div class="me-auto d-flex justify-content-between w-100">
+                 <div class="d-flex text-default">
+                   <img
+                     class="bd-placeholder-img rounded me-2"
+                     src="./assets/images/brand/toggle-logo.png"
+                     alt="..."
+                     height="18"
+                   />
+                   <strong class="me-auto">Bootstrap</strong>
+                 </div>
+                 <div class="d-flex">
+                   <small class="text-muted me-2 lh-lg">11 mins ago</small>
+                   <button aria-label="Close" class="btn-close fs-20  " data-bs-dismiss="toast" (click)="show1 = false"><span aria-hidden="true">×</span></button>
+                 </div>
+               </div>
+             </ng-template>
+             Hello, world! This is a toast message.
+           </ngb-toast>
+                            }
+                           
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- ROW-1 CLOSED -->
+    
+          <!-- ROW-2 OPEN  -->
+          <div class="row">
+              <div class="col-xl-6 col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Custom content Toasts</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="row">
+                              <div class="col-md-12 col-xl-6 mt-1">
+                                @if (show9) {
+
+                                    <ngb-toast
+                                    [autohide]="false"
+                                    class="toast align-items-center show"
+                                    role="alert"
+                                    aria-live="assertive"
+                                    aria-atomic="true"
+                                  >
+                                    <div class="d-flex">
+                                      <div >Hello, world! This is a toast message.</div>
+                                      <button
+                                        type="button"
+                                        class="btn-close fs-20 ms-auto pe-2"
+                                        data-bs-dismiss="toast"
+                                        aria-label="Close"
+                                        (click)="show9 = false"
+                                      > <span aria-hidden="true">×</span>
+                                    </button>
+                                    </div>
+                                  </ngb-toast>
+                                }
+                                
+                              </div>
+                              <div class="col-md-12 col-xl-6 mt-1">
+                                @if(show10){
+
+                                    <ngb-toast
+                                    [autohide]="false"
+                                    class="toast fade show mt-2"
+                                    role="alert"
+                                    aria-live="assertive"
+                                    aria-atomic="true"
+                                  >
+                                    <!-- <div class="toast-body"> -->
+                                        <!-- <ng-template> -->
+
+                                            Hello, world! This is a toast message.
+                                            <div class="mt-2 pt-2 border-top">
+                                              <button type="button" class="btn btn-primary btn-sm btn-wave me-2">
+                                                Take action
+                                              </button>
+                                              <button
+                                                type="button"
+                                                class="btn btn-secondary btn-sm btn-wave"
+                                                data-bs-dismiss="toast"
+                                                (click)="show10 = false"
+                                              >
+                                                Close
+                                              </button>
+                                            </div>
+                                        <!-- </ng-template> -->
+                                    <!-- </div> -->
+                                  </ngb-toast>
+                                }
+                                 
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-6 col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Color Toasts</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="row">
+                              <div class="col-md-6">
+                                @if(show11){
+
+                                    <ngb-toast  class="toast align-items-center text-bg-primary  border-0 mb-4" [autohide]="false">
+                                        <div
+                                          class="align-items-center show"
+                                          role="alert"
+                                          aria-live="assertive"
+                                          aria-atomic="true"
+                                          data-bs-autohide="false"
+                                        >
+                                          <div class="d-flex align-items-center gap-1">
+                                            <div class="text-fixed-white">
+                                              Hello, world! This a toast message
+                                            </div>
+                                            <button
+                                              aria-label="Close"
+                                              class="btn-close fs-20 ms-auto pe-2 tx-fixed-white"
+                                              data-bs-dismiss="toast"
+                                              (click)="show11 = false"
+                                            >
+                                              <span aria-hidden="true">×</span>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </ngb-toast>
+                                   
+                                }  
+                                 
+                              </div>
+                              <div class="col-md-6 mt-2 mt-md-0">
+                                @if(show12){
+
+                                    <ngb-toast  class="toast align-items-center text-bg-secondary border-0  mb-4" [autohide]="false">
+                                        <div
+                                          class="align-items-center show"
+                                          role="alert"
+                                          aria-live="assertive"
+                                          aria-atomic="true"
+                                          data-bs-autohide="false"
+                                        >
+                                          <div class="d-flex align-items-center gap-1">
+                                            <div class="text-fixed-white">
+                                              Hello, world! This a toast message
+                                            </div>
+                                            <button
+                                              aria-label="Close"
+                                              class="btn-close fs-20 ms-auto pe-2 tx-fixed-white"
+                                              data-bs-dismiss="toast"
+                                              (click)="show12 = false"
+                                            >
+                                              <span aria-hidden="true">×</span>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </ngb-toast>
+                                }
+                                   </div>
+                              <div class="col-md-6 mt-2">
+                                    @if(show13){
+
+                                        <ngb-toast  class="toast align-items-center text-bg-success border-0  mb-4" [autohide]="false">
+                                            <div
+                                              class="align-items-center show"
+                                              role="alert"
+                                              aria-live="assertive"
+                                              aria-atomic="true"
+                                              data-bs-autohide="false"
+                                            >
+                                              <div class="d-flex align-items-center gap-1">
+                                                <div class="text-fixed-white">
+                                                  Hello, world! This a toast message
+                                                </div>
+                                                <button
+                                                  aria-label="Close"
+                                                  class="btn-close fs-20 ms-auto pe-2 tx-fixed-white"
+                                                  data-bs-dismiss="toast"
+                                                  (click)="show13 = false"
+                                                >
+                                                  <span aria-hidden="true">×</span>
+                                                </button>
+                                              </div>
+                                            </div>
+                                          </ngb-toast>
+                                    }
+                                </div>
+                              <div class="col-md-6 mt-2">
+                                @if(show14){
+
+                                    <ngb-toast  class="toast align-items-center text-bg-info border-0 fade show" [autohide]="false">
+                                        <div
+                                          class="align-items-center show"
+                                          role="alert"
+                                          aria-live="assertive"
+                                          aria-atomic="true"
+                                          data-bs-autohide="false"
+                                        >
+                                          <div class="d-flex align-items-center gap-1">
+                                            <div class="text-fixed-white">
+                                              Hello, world! This a toast message
+                                            </div>
+                                            <button
+                                              aria-label="Close"
+                                              class="btn-close fs-20 ms-auto pe-2 tx-fixed-white"
+                                              data-bs-dismiss="toast"
+                                              (click)="show14 = false"
+                                            >
+                                              <span aria-hidden="true">×</span>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </ngb-toast>
+                                }
+                              
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- ROW-2 CLOSED -->
+    
+          <!-- ROW-3 OPEN -->
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Toasts Styles</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="card-content">
+                              <div class="row gy-3">
+                                  <div class="col-lg-6 col-xl-3 col-sm-6">
+                                    @if (show15) {
+
+                                        <ngb-toast
+                                        [autohide]="false">
+                                        
+                                        <div>
+
+                                            <div  class="toast-header flex-wrap">
+    
+                                                <img src="./assets/images/brand/toggle-logo.png" alt="" class="me-2" height="18">
+                                                <strong class="me-auto text-primary">Bootstrap</strong>
+                                                <small>11 mins ago</small>
+                                                <button aria-label="Close" class="btn-close fs-20" data-bs-dismiss="toast"  (click)="show15 = false"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                          
+                                                <div class="toast-body toast show bg-primary tx-fixed-white">
+                                                  Hello, world! This is a toast message.
+                                              </div>
+                                        </div>
+                                        </ngb-toast>
+                                    }
+                                  
+                                  </div>
+                                  <div class="col-lg-6 col-xl-3 col-sm-6">
+                                    @if (show16) {
+
+                                        <ngb-toast
+                                        [autohide]="false">
+                                        <div>
+
+                                            <div  class="toast-header bg-info tx-fixed-white flex-wrap ">
+    
+                                                <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                                <strong class="me-auto">Bootstrap</strong>
+                                                <small>11 mins ago</small>
+                                                <button aria-label="Close" class="btn-close fs-20 tx-fixed-white" data-bs-dismiss="toast"  (click)="show16 = false"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                          
+                                                <div class="toast-body">
+                                                  Hello, world! This is a toast message.
+                                              </div>
+                                        </div>
+                                        </ngb-toast>
+                                    }
+                                   
+                                  </div>
+                                  <div class="col-lg-6 col-xl-3 col-sm-6">
+                                    
+                                            @if (show17) {
+
+                                                <ngb-toast
+                                                [autohide]="false"
+                                                role="alert"
+                                                class="toast toast-border-secondary bg-secondary-transparent align-items-center show"
+                                                aria-live="assertive"
+                                                aria-atomic="true"
+                                              >
+                                                <div class="d-flex">
+                                              <div class=" d-flex flex-wrap">
+                                                <span class="avatar avatar-md avatar-radius bg-secondary me-2"><i class="bi bi-bell fs-15"></i></span>
+                                                <div>
+                                              <div>
+                                                  <h6 class="mb-0">Header Toast</h6>
+                                                  <p class="mb-0 fs-14">Hello, world! This is a toast message.</p>
+                                                </div>
+                                            </div>
+                                            
+                                              
+                                        </div>
+                                        <button aria-label="Close" class="btn-close fs-20 ms-auto mt-2 pe-2"  (click)="show17 = false" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                              
+                                              </ngb-toast>
+                                            }
+                                        
+                                  </div>
+                                  <div class="col-lg-6 col-xl-3 col-sm-6">
+                                    @if (show18) {
+
+                                        <ngb-toast
+                                        [autohide]="false"
+                                        role="alert"
+                                        class="toast toast-border-success align-items-center show"
+                                        aria-live="assertive"
+                                        aria-atomic="true"
+                                      >
+                                        <div class="d-flex">
+                                            <div class="d-flex flex-wrap">
+                                                <span class="avatar avatar-md rounded-pill bg-success me-2"><i class="bi bi-headset fs-15"></i></span>
+                                                <div>
+                                                    <h6 class="mb-0">Header Toast</h6>
+                                                    <p class="mb-0 text-muted fs-14">Hello, world! This is a toast message.</p>
+                                                </div>
+                                            </div>
+                                            <button aria-label="Close" class="btn-close fs-20 ms-auto mt-2 pe-2" (click)="show18 = false" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                      
+                                      </ngb-toast>
+                                    }
+                                     
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- ROW-3 CLOSED -->
+    
+          <!-- ROW-4 OPEN -->
+          <div class="row">
+              <div class="col-md-12 col-xl-4">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Top Toasts Alignments</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="card-content">
+                              <div class="btn-list">
+                                  <button type="button" class="btn btn-primary" id="topleftToastBtn"(click)="TopLeft()">Top Left</button>
+                                  <button type="button" class="btn btn-secondary" id="topcenterToastBtn"(click)="TopCenter()">Top Center</button>
+                                  <button type="button" class="btn btn-success" id="toprightToastBtn"(click)="TopRight()">Top Right</button>
+                                  <button type="button" class="btn btn-info" id="topfullwidthToastBtn" (click)="TopWidth()">Top Full Width</button>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed top-0 start-0 p-3">
+                              <div id="topleft-Toast" class="toast border-0" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-primary text-white">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-white" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+                              <div id="topcenter-Toast" class="toast border-0" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-secondary text-white">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-white" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed top-0 end-0 p-3">
+                              <div id="topright-Toast" class="toast border-0" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-success text-white">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-white" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed top-0 end-0 start-0 w-100 p-3" #right>
+                              <div id="topfullwidth-Toast" class="toast border-0 w-100 {{toggleclass}}" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-info text-white">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-white" data-bs-dismiss="toast" (click)="TopWidth()"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-12 col-xl-4">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Bottom Toasts Alignments</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="card-content">
+                              <div class="btn-list">
+                                  <button type="button" class="btn btn-info-light" id="bottomleftToastBtn"(click)="BottomLeft()">Bottom Left</button>
+                                  <button type="button" class="btn btn-success-light" id="bottomcenterToastBtn" (click)="BottomCenter()">Bottom Center</button>
+                                  <button type="button" class="btn btn-primary-light" id="bottomrightToastBtn" (click)="BottomRight()">Bottom Right</button>
+                                  <button type="button" class="btn btn-danger-light" id="bottomfullwidthToastBtn"(click)="BottomWidth()">Full Width</button>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed bottom-0 start-0 p-3">
+                              <div id="bottomleft-Toast" class="toast border-0 bg-info-transparent backdropfilter-20" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-info-transparent">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-info" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+                              <div id="bottomcenter-Toast" class="toast border-0 bg-success-transparent backdropfilter-20" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-success-transparent">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-success" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                              <div id="bottomright-Toast" class="toast border-0 bg-primary-transparent backdropfilter-20" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-primary-transparent">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-primary" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed bottom-0 end-0 start-0 w-100 p-3">
+                              <div id="bottomfullwidth-Toast" class="toast border-0 bg-danger-transparent backdropfilter-20 w-100 {{toggleclass1}}" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-danger-transparent">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-danger" data-bs-dismiss="toast" (click)="BottomWidth()"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-12 col-xl-4">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Middle Toasts Alignments</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="card-content">
+                              <div class="btn-list">
+                                  <button type="button" class="btn btn-outline-primary" id="middleleftToastBtn"(click)="MiddleLeft()">Middle Left</button>
+                                  <button type="button" class="btn btn-outline-secondary" id="middlecenterToastBtn" (click)="MiddleCenter()">Middle Center</button>
+                                  <button type="button" class="btn btn-outline-success" id="middlerightToastBtn"(click)="MiddleRight()">Middle Right</button>
+                                  <button type="button" class="btn btn-outline-info" id="middlefullwidthToastBtn"(click)="MiddleWidth()">Full Width</button>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed top-50 start-0 translate-middle-y p-3">
+                              <div id="middleleft-Toast" class="toast border-primary bg-primary-transparent backdropfilter-20" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-primary text-white">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-white" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed top-50 start-50 translate-middle">
+                              <div id="middlecenter-Toast" class="toast border-secondary bg-secondary-transparent backdropfilter-20" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-secondary text-white">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-white" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed top-50 end-0 translate-middle-y p-3">
+                              <div id="middleright-Toast" class="toast border-success bg-success-transparent backdropfilter-20" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-success text-white">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-white" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="toast-container position-fixed top-50 start-50 translate-middle w-100">
+                              <div id="middlefullwidth-Toast" class="toast border-info w-100 bg-info-transparent backdropfilter-20 {{toggleclass2}}" role="alert" aria-live="assertive"
+                                  aria-atomic="true">
+                                  <div class="toast-header toast-header bg-info text-white">
+                                      <img src="./assets/images/brand/toggle-dark.png" alt="" class="me-2" height="18">
+                                      <strong class="me-auto">Bootstrap</strong>
+                                      <button aria-label="Close" class="btn-close fs-20 text-white" (click)="MiddleWidth()" data-bs-dismiss="toast"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="toast-body">
+                                      Your,toast message here.
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- ROW-4 CLOSED -->
+    
+          <!-- ROW-5 OPEN -->
+          <div class="row">
+              <div class="col-xl-6 col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Stacking Toasts</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="p-4 bg-light border">
+                              <div class="toast-container position-static">
+                                      @if (show2) {
+          
+                                          <ngb-toast
+                                          [autohide]="false" class="toast show">
+                                          <div>
+          
+                                              <div  class="toast-header">
+          
+                                                  <img src="./assets/images/brand/toggle-logo.png" alt="" class="me-2" height="18">
+                                                  <strong class="me-auto">Bootstrap</strong>
+                                                  <small class="text-muted">just now</small>
+                                                  <button aria-label="Close" class="btn-close fs-20" data-bs-dismiss="toast"  (click)="show2 = false"><span aria-hidden="true">×</span></button>
+                                              </div>
+                                            
+                                                  <div class="toast-body">
+                                                      See? Just like this.
+                                                </div>
+                                          </div>
+                                          </ngb-toast>
+                                      }
+                                   
+                                    @if (show3) {
+          
+                                        <ngb-toast
+                                        [autohide]="false" class="toast show">
+                                        <div>
+        
+                                            <div  class="toast-header">
+        
+                                                <img src="./assets/images/brand/toggle-logo.png" alt="" class="me-2" height="18">
+                                                <strong class="me-auto">Bootstrap</strong>
+                                                <small class="text-muted">just now</small>
+                                                <button aria-label="Close" class="btn-close fs-20" data-bs-dismiss="toast"  (click)="show3 = false"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                          
+                                                <div class="toast-body">
+                                                    See? Just like this.
+                                              </div>
+                                        </div>
+                                        </ngb-toast>
+                                    }
+                                   
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-6 col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="card-title">
+                              <h3 class="card-title">Placement Toast</h3>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="p-4 bg-light border">
+                              <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100 h-180">
+                                @if (show4) {
+          
+                                    <ngb-toast
+                                    [autohide]="false"  class="toast show">
+                                    <div>
+    
+                                        <div  class="toast-header">
+    
+                                            <img src="./assets/images/brand/toggle-logo.png" alt="" class="me-2" height="18">
+                                            <strong class="me-auto">Bootstrap</strong>
+                                            <small class="text-muted">just now</small>
+                                            <button aria-label="Close" class="btn-close fs-20" data-bs-dismiss="toast"  (click)="show4 = false"><span aria-hidden="true">×</span></button>
+                                        </div>
+                                      
+                                            <div class="toast-body">
+                                                See? Just like this.
+                                          </div>
+                                    </div>
+                                    </ngb-toast>
+                                }
+                                 
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- ROW-5 CLOSED -->
+      </div>
+      <!-- CONTAINER CLOSED -->

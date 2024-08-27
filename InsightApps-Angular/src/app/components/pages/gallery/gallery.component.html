@@ -1,0 +1,219 @@
+
+<app-page-header title="Gallery" title1="Pages" activeitem="Gallery"></app-page-header>
+<!-- CONTAINER -->
+<div class="main-container container-fluid">
+
+
+  <!-- GALLERY DEMO OPEN -->
+  <div class="demo-gallery card">
+    <div class="card-header d-sm-flex d-block p-0">
+      <div class="card-body p-0">
+        <div class="tab-content">
+          <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-pills gy-3 p-4 border-bottom" id="pills-tab" role="tablist">
+            <li [ngbNavItem]="1" className="border-bottom"><a ngbNavLink >Images</a>
+            <ng-template ngbNavContent>
+              <div class="tab-pane show active fs-13 p-4" id="images"
+                role="tabpanel"  >
+                <div class="form-check mb-4">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                  <label class="form-check-label h6" for="flexCheckChecked">
+                    Today
+                  </label>
+                </div>
+                <ul id="lightgallery" class="list-unstyled row gy-3" gallerize >
+                  @for (img of imageData; track img) {
+                    <li
+                      class="col-xs-6 col-sm-4 col-md-4 col-xl-2"
+                      data-responsive="./assets/img/media/1.jpg"
+                      data-src="./assets/img/media/1.jpg"
+                      data-sub-html="<h4>Gallery Image 1</h4><p> Many desktop publishing packages and web page editors now use Lorem Ipsum</p>">
+                      <a>
+                        <img
+                          class="br-5"
+                          [src]="img.srcUrl"
+                          alt="image"
+                          />
+                      </a>
+                    </li>
+                  }
+                </ul>
+
+                <div class="form-check my-4">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1">
+                  <label class="form-check-label h6" for="flexCheckChecked1">
+                    Yesterday
+                  </label>
+                </div>
+                <ul id="lightgallery" class="list-unstyled row gy-3" gallerize >
+                  @for (img of imageData1; track img) {
+                    <li
+                      class="col-xs-6 col-sm-4 col-md-4 col-xl-2"
+                      data-responsive="./assets/img/media/1.jpg"
+                      data-src="./assets/img/media/1.jpg"
+                      data-sub-html="<h4>Gallery Image 1</h4><p> Many desktop publishing packages and web page editors now use Lorem Ipsum</p>">
+                      <a>
+                        <img
+                          class="br-5"
+                          [src]="img.srcUrl"
+                          alt="image"
+                          />
+                      </a>
+                    </li>
+                  }
+                </ul>
+
+                <div class="form-check my-4">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2">
+                  <label class="form-check-label h6" for="flexCheckChecked2">
+                    20 Jan 2023
+                  </label>
+                </div>
+                <ul class="list-unstyled row lightgallery gy-3" gallerize >
+                  @for (img of imageData2; track img) {
+                    <li
+                      class="col-xs-6 col-sm-4 col-md-4 col-xl-2"
+                      data-responsive="./assets/img/media/1.jpg"
+                      data-src="./assets/img/media/1.jpg"
+                      data-sub-html="<h4>Gallery Image 1</h4><p> Many desktop publishing packages and web page editors now use Lorem Ipsum</p>">
+                      <a>
+                        <img
+                          class="br-5"
+                          [src]="img.srcUrl"
+                          alt="image"
+                          />
+                      </a>
+                    </li>
+                  }
+                </ul>
+
+              </div>
+            </ng-template>
+            </li>
+            <li [ngbNavItem]="2"><a ngbNavLink >Albums</a>
+              <ng-template ngbNavContent>
+
+                <div class="tab-pane fs-13  p-4" id="albums"
+                  role="tabpanel">
+                  <h6 class="mb-4">Albums :</h6>
+                  <ul class="list-unstyled row lightgallery" gallerize >
+                    @for (img of imageData3; track img) {
+                      <li
+                        class="col-xs-6 col-sm-4 col-md-4 col-xl-2"
+                        data-responsive="./assets/img/media/1.jpg"
+                        data-src="./assets/img/media/1.jpg"
+                        data-sub-html="<h4>Gallery Image 1</h4><p> Many desktop publishing packages and web page editors now use Lorem Ipsum</p>">
+                        <a>
+                          <img
+                            class="br-5"
+                            [src]="img.srcUrl"
+                            alt="image"
+                            />
+                        </a>
+                        <h6 class="text-center mb-0 mt-3">Recent Photos</h6>
+                        <p class="text-center mb-0 mb-3 text-muted">440 Items</p>
+                      </li>
+                    }
+                  </ul>
+
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h6 class="my-4">Other Albums :</h6>
+                      <div class="card border shadow-none">
+                        <div class="card-body">
+                          <ul class="list-unstyled row row-cols-2 lightgallery gy-3" gallerize >
+                            @for (img of imageData4; track img) {
+                              <li
+                                class="col-6 px-1 border-bottom-0"
+                                data-responsive="./assets/img/media/1.jpg"
+                                data-src="./assets/img/media/1.jpg"
+                                data-sub-html="<h4>Gallery Image 1</h4><p> Many desktop publishing packages and web page editors now use Lorem Ipsum</p>">
+                                <a>
+                                  <img
+                                    class="br-5"
+                                    [src]="img.srcUrl"
+                                    alt="image"
+                                    />
+                                </a>
+                              </li>
+                            }
+                          </ul>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <h6 class="my-4">Social Albums :</h6>
+                      <div class="card border shadow-none">
+                        <div class="card-body">
+                          <ul class="list-unstyled row row-cols-2 lightgallery  gy-3" gallerize >
+                            @for (img of imageData5; track img) {
+                              <li
+                                class="col-6 px-1 border-bottom-0"
+                                data-responsive="./assets/img/media/1.jpg"
+                                data-src="./assets/img/media/1.jpg"
+                                data-sub-html="<h4>Gallery Image 1</h4><p> Many desktop publishing packages and web page editors now use Lorem Ipsum</p>">
+                                <a>
+                                  <img
+                                    class="br-5"
+                                    [src]="img.srcUrl"
+                                    alt="image"
+                                    />
+                                </a>
+                              </li>
+                            }
+                          </ul>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="list-unstyled row">
+                    <li class="col-xs-6 col-sm-4 col-md-4 col-xl-2 mb-5 border-bottom-0" data-responsive="./assets/images/media/1.jpg" data-src="./assets/images/media/1.jpg" data-sub-html="<h4>Gallery Image 1</h4><p> Many desktop publishing packages and web page editors now use Lorem Ipsum</p>">
+                    <a href="javascript:void(0);" class="btn btn-secondary-light d-inline-flex justify-content-center mb-2 w-100">
+                      <i class="fe fe-trash me-1 lh-base"></i>Trash Bin
+                    </a>
+                    <a aria-label="anchor" href="javascript:void(0);" class="btn btn-primary-light d-block">
+                      <i class="fe fe-check-circle me-1"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
+            </li>
+         </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+  </div>
+
+
+</div>
+</div>
+</div>
+<!-- GALLERY DEMO CLOSED -->
+
+<!-- PAGINATION OPEN -->
+<div class=" row mb-5">
+  <div class=" col-md-6 mt-1 d-none d-md-block">1 - 10 of 234 photos</div>
+  <div class=" col-md-6">
+    <div class=" float-end">
+      <ul class=" pagination">
+        <li class=" page-item page-prev disabled">
+          <a class=" page-link" href="javascript:void(0);">Prev</a>
+        </li>
+        <li class=" page-item active"><a class=" page-link" >1</a></li>
+        <li class=" page-item"><a class=" page-link" >2</a></li>
+        <li class=" page-item"><a class=" page-link" >3</a></li>
+        <li class=" page-item"><a class=" page-link" >4</a></li>
+        <li class=" page-item"><a class=" page-link" >5</a></li>
+        <li class=" page-item page-next">
+          <a class=" page-link" >Next</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- COL-END -->
+</div>
+<!-- PAGINATION CLOSED -->
+</div>
+<!-- CONTAINER CLOSED -->

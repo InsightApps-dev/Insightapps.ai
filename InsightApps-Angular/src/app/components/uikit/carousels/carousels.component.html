@@ -1,0 +1,372 @@
+<app-page-header title="Carousels" title1="UI Kit" activeitem="Carousels"></app-page-header>
+<div class="main-container container-fluid">
+
+   <!-- ROW-1 OPEN -->
+   <div class="row">
+    <div class="col-lg-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Default Carousel</h3>
+            </div>
+            <div class="card-body h-100">
+                <div id="carousel-default" class="carousel slide" data-bs-ride="carousel">
+                  @if(images){
+
+                    <ngb-carousel
+                    class="carousel-inner"
+                    [interval]="3400"
+                    [showNavigationArrows]="false"
+                    [showNavigationIndicators]="false"
+                  >
+                  @for(image of images; track $index){
+
+                    <ng-template
+                      ngbSlide
+                      class="carousel-item active"
+                    >
+                      <img [src]="image" class="d-block w-100 br-5" alt="..." />
+                    </ng-template>
+                  }
+                  </ngb-carousel>
+                  }
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Carousel with indicators</h3>
+            </div>
+            <div class="card-body h-100">
+                <div id="carousel-indicators" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carousel-indicators" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#carousel-indicators" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carousel-indicators" data-bs-slide-to="2"></li>
+                        <li data-bs-target="#carousel-indicators" data-bs-slide-to="3"></li>
+                        <li data-bs-target="#carousel-indicators" data-bs-slide-to="4"></li>
+                    </ol>
+                    @if(images){
+
+                      <ngb-carousel
+                      class="carousel-inner"
+                      [interval]="3100"
+                      [showNavigationArrows]="false"
+                      [showNavigationIndicators]="true"
+                    >
+                    @for(image of images1; track $index){
+  
+                      <ng-template
+                        ngbSlide
+                        class="carousel-item active"
+                      >
+                        <img [src]="image" class="d-block w-100 br-5" alt="..." />
+                      </ng-template>
+                    }
+                   
+                    </ngb-carousel>
+                   
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Carousel with controls</h3>
+            </div>
+            <div class="card-body h-100">
+                <div id="carousel-controls" class="carousel slide" data-bs-ride="carousel">
+                  @if(images){
+                    <ngb-carousel
+                    class="carousel-inner"
+                    [interval]="3000"
+                    [showNavigationArrows]="true"
+                    [showNavigationIndicators]="false"
+                  >
+                  @for(image of images2; track $index){
+
+                    <ng-template
+                      ngbSlide
+                      class="carousel-item active"
+                    >
+                      <img [src]="image" class="d-block w-100 br-5" alt="..." />
+                    </ng-template>
+                  }
+                   
+                  </ngb-carousel>
+                  }
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Carousel with captions</h3>
+            </div>
+            <div class="card-body h-100">
+                <div id="carousel-captions" class="carousel slide" data-bs-ride="carousel">
+                  @if(images){
+
+                    <ngb-carousel
+                    class="carousel-inner"
+                    [interval]="2800"
+                    [showNavigationArrows]="true"
+                    [showNavigationIndicators]="false"
+                  >
+                    <ng-template ngbSlide class="carousel-item">
+                      <img
+                        src="./assets/images/media/9.jpg"
+                        class="d-block w-100 br-5"
+                        alt="..."
+                      />
+                      <div class="carousel-item-background d-none d-md-block"></div>
+                      <div class="carousel-caption d-none d-md-block">
+                        <h3>Slide label</h3>
+                        <p>Secure other greater pleasures</p>
+                      </div>
+                    </ng-template>
+                    <ng-template ngbSlide class="carousel-item">
+                      <img
+                        src="./assets/images/media/10.jpg"
+                        class="d-block w-100 br-5"
+                        alt="..."
+                      />
+                      <div class="carousel-item-background d-none d-md-block"></div>
+                      <div class="carousel-caption d-none d-md-block">
+                        <h3>Slide label</h3>
+                        <p>Secure other greater pleasures</p>
+                      </div>
+                    </ng-template>
+                    <ng-template ngbSlide class="carousel-item">
+                      <img
+                        src="./assets/images/media/11.jpg"
+                        class="d-block w-100 br-5"
+                        alt="..."
+                      />
+                      <div class="carousel-item-background d-none d-md-block"></div>
+                      <div class="carousel-caption d-none d-md-block">
+                        <h3>Slide label</h3>
+                        <p>Secure other greater pleasures</p>
+                      </div>
+                    </ng-template>
+                  </ngb-carousel>
+                  }
+                  
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Carousel with custom indicators</h3>
+            </div>
+            <div class="card-body h-100">
+                <div id="carousel-indicators1" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators carousel-indicators1">
+                        <li data-bs-target="#carousel-indicators1" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#carousel-indicators1" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carousel-indicators1" data-bs-slide-to="2"></li>
+                        <li data-bs-target="#carousel-indicators1" data-bs-slide-to="3"></li>
+                        <li data-bs-target="#carousel-indicators1" data-bs-slide-to="4"></li>
+                    </ol>
+                    @if(images){
+                      <ngb-carousel
+                      class="carousel-inner"
+                      [interval]="3100"
+                      [showNavigationArrows]="false"
+                      [showNavigationIndicators]="false"
+                    >
+                    @for(image of images5; track $index){
+  
+                      <ng-template
+                        ngbSlide
+                        class="carousel-item active"
+                      >
+                        <img [src]="image" class="d-block w-100 br-5" alt="..." />
+                      </ng-template>
+                    }
+                   
+                    </ngb-carousel>
+                
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Crossfade</h3>
+            </div>
+            <div class="card-body h-100">
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                  @if(images){
+                    <ngb-carousel
+                    class="carousel-inner"
+                    [interval]="3200"
+                    [showNavigationArrows]="true"
+                    [showNavigationIndicators]="false"
+                  >
+                  @for(image of images3; track $index){
+
+                    <ng-template
+                      ngbSlide
+                      class="carousel-item active"
+                    >
+                      <img [src]="image" class="d-block w-100 br-5" alt="..." />
+                    </ng-template>
+                  }
+                  
+                  </ngb-carousel>
+                 
+                  }
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Individual .carousel-item interval</h3>
+            </div>
+            <div class="card-body h-100">
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <ngb-carousel
+                    class="carousel-inner"
+                    [interval]="2800"
+                    [showNavigationArrows]="true"
+                    [showNavigationIndicators]="false"
+                  >
+                    <ng-template ngbSlide class="carousel-item">
+                      <img
+                        src="./assets/images/media/24.jpg"
+                        class="d-block w-100 br-5"
+                        alt="..."
+                      />
+                    </ng-template>
+                    <ng-template ngbSlide class="carousel-item">
+                      <img
+                        src="./assets/images/media/25.jpg"
+                        class="d-block w-100 br-5"
+                        alt="..."
+                      />
+                    </ng-template>
+                    <ng-template ngbSlide class="carousel-item">
+                      <img
+                        src="./assets/images/media/1.jpg"
+                        class="d-block w-100 br-5" 
+                        alt="..."
+                      />
+                    </ng-template>
+                  </ngb-carousel>
+                  
+                   
+                  </div>
+            </div>
+        </div>
+    </div>
+    <!-- COL-END -->
+    <div class="col-lg-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Disable touch swiping</h3>
+            </div>
+            <div class="card-body h-100">
+                <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+                  @if(images1){
+
+                    <ngb-carousel
+                    class="carousel-inner"
+                    [interval]="2800"
+                    [showNavigationArrows]="true"
+                    [showNavigationIndicators]="false"
+                  >
+                  @for(image of images4; track $index){
+
+                    <ng-template
+                      ngbSlide
+                      class="carousel-item active"
+                    >
+                      <img [src]="image" class="d-block w-100 br-5" alt="..." />
+                    </ng-template>
+                  }
+                  
+                  </ngb-carousel>
+                  }
+                 
+                  </div>
+            </div>
+        </div>
+    </div>
+    <!-- COL-END -->
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Dark variant</h3>
+            </div>
+            <div class="card-body h-100">
+                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                   
+                
+                    <ngb-carousel
+                    class="carousel-inner"
+                    [showNavigationArrows]="true"
+                    [showNavigationIndicators]="false"
+                  >
+                    <ng-template ngbSlide class="carousel-item">
+                      <img
+                        src="./assets/images/media/5.jpg"
+                        class="d-block w-100"
+                        alt="..."
+                      />
+                      <div class="carousel-caption d-none d-md-block tx-fixed-white">
+                        <h5>First slide label</h5>
+                        <p class="op-7">
+                          Some representative placeholder content for the first slide.
+                        </p>
+                      </div>
+                    </ng-template>
+                    <ng-template ngbSlide class="carousel-item">
+                      <img
+                        src="./assets/images/media/6.jpg"
+                        class="d-block w-100"
+                        alt="..."
+                      />
+                      <div class="carousel-caption d-none d-md-block tx-fixed-white">
+                        <h5>Second slide label</h5>
+                        <p class="op-7">
+                          Some representative placeholder content for the second slide.
+                        </p>
+                      </div>
+                    </ng-template>
+                    <ng-template ngbSlide class="carousel-item">
+                      <img
+                        src="./assets/images/media/6.jpg"
+                        class="d-block w-100"
+                        alt="..."
+                      />
+                      <div class="carousel-caption d-none d-md-block tx-fixed-white">
+                        <h5>Third slide label</h5>
+                        <p class="op-7">
+                          Some representative placeholder content for the third slide.
+                        </p>
+                      </div>
+                    </ng-template>
+                  </ngb-carousel>
+               
+                  </div>
+            </div>
+        </div>
+    </div>
+    <!-- COL-END -->
+  </div>
+  <!-- ROW-1 CLOSED -->
+</div>

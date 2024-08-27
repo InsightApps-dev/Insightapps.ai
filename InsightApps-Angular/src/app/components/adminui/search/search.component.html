@@ -1,0 +1,677 @@
+<app-page-header title="Search" title1="Adminui" activeitem="Search" ></app-page-header>
+      <!-- CONTAINER -->
+      <div class="main-container container-fluid">
+
+       
+          <!-- Row -->
+          <div class="row">
+             <div class="col-sm-12 col-md-12">
+                 <div class="card">
+                     <div class="card-body pb-0">
+                         <div class="row">
+                             <div class="col-lg-9 col-xxl-6">
+                                 <div class="d-flex align-items-center mb-4">
+                                         <img src="./assets/images/brand/toggle-logo.png" alt="">
+         
+                                     <div class="input-group ms-2">
+                                         <input type="text" class="form-control border-end-0" placeholder="Search ..." value="Search...">
+                                         <button class="input-group-text bg-transparent border-start-0 text-muted">
+                                             <i class="fe fe-mic text-muted" aria-hidden="true"></i>
+                                         </button>
+                                         <button class="input-group-text bg-transparent border-start-0 text-muted">
+                                             <i class="fe fe-camera text-muted" aria-hidden="true"></i>
+                                         </button>
+                                         <button class="input-group-text bg-transparent border-start-0   border-end text-muted">
+                                             <i class="fe fe-search text-muted" aria-hidden="true"></i>
+                                         </button>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-lg-3 col-xxl-6">
+                                 <div class="d-flex justify-content-end">
+                                     <button class="btn btn-icon btn-outline-light rounded-circle me-2">
+                                         <i class="fe fe-settings"></i>
+                                     </button>
+                                     <button class="btn btn-icon btn-outline-light rounded-circle me-2">
+                                         <i class="fe fe-grid"></i>
+                                     </button>
+                                     <div class="my-auto toggledrop" ngbDropdown>
+                                         <a href="javascript:void(0);"  id="userprofile" data-bs-toggle="dropdown" aria-expanded="false" ngbDropdownToggle>
+                                             <img src="./assets/images/users/3.jpg" alt="img" width="32" height="32" class="rounded-circle">
+                                         </a>
+                                         <ul class="dropdown-menu overflow-hidden mt-3" aria-labelledby="userprofile" ngbDropdownMenu>
+                                             <li class="bg-primary p-3 mb-2">
+                                                 <div class="d-flex align-items-center w-100">
+                                                     <div class="me-3">
+                                                         <img class="avatar rounded-circle" src="./assets/images/users/3.jpg" alt="img">
+                                                     </div>
+                                                     <div class="flex-grow-1">
+                                                         <h6 class="fs-15 tx-fixed-white font-weight-semibold mb-0">Json Taylor</h6>
+                                                         <span class="tx-fixed-white op-8 fs-11">Web Designer</span>
+                                                     </div>
+                                                 </div>
+                                             </li>
+                                             <li><a ngbDropdownItem class="dropdown-item d-inline-flex" routerLink="/pages/profile"><i class="ti ti-user-circle fs-18 me-2 op-7"></i>Profile</a></li>
+                                             <li><a ngbDropdownItem class="dropdown-item d-inline-flex" routerLink="/dashboard"><i class="ti ti-inbox fs-18 me-2 op-7"></i>Dashboard</a></li>
+                                             <li><a ngbDropdownItem class="dropdown-item d-inline-flex border-block-end" routerLink="/pages/extension/blog-post"><i class="ti ti-clipboard-check fs-18 me-2 op-7"></i>Posts & Activities</a></li>
+                                             <li><a ngbDropdownItem class="dropdown-item d-inline-flex" routerLink="/pages/extension/settings"><i class="ti ti-adjustments-horizontal fs-18 me-2 op-7"></i>Settings & Privacy</a></li>
+                                             <li><a ngbDropdownItem class="dropdown-item d-inline-flex border-block-end" routerLink="/pages/extension/faqs"><i class="ti ti-help fs-18 me-2 op-7"></i>Help Center</a></li>
+                                             <li><hr  class="dropdown-divider"></li>
+                                             <li><a ngbDropdownItem class="dropdown-item d-inline-flex" routerLink="/authentication/login"><i class="ti ti-user-plus fs-18 me-2 op-7"></i>Add Another Account</a></li>
+                                             <li><a ngbDropdownItem class="dropdown-item d-inline-flex" routerLink="/auth/login"><i class="ti ti-power fs-18 me-2 op-7"></i>Sign Out</a></li>
+                                         </ul>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-lg-12">
+                                 <div class="tabs-menu search-tabs">
+                                     <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav panel-tabs">
+         
+                                         <li [ngbNavItem]="1" ><a ngbNavLink class=" d-flex align-items-center" ><i class="fe fe-search fs-13 me-2 d-inline-flex"></i> All Results</a>
+                                             <ng-template ngbNavContent>
+                                                 <div class="tab-pane active" id="tab5">
+                                                     <div class="row">
+                                                         <div class="col-lg-8">
+                                                             <div class="card">
+                                                                 <div class="card-body">
+                                                                     <div class="mb-2">
+                                                                         <a href="https://spruko.com/demo/templist/" target="_blank" class="h5 text-dark">Templist – HTML5 Digital Marketplace Template by ...</a>
+                                                                     </div>
+                                                                     <a href="https://spruko.com/demo/templist/" target="_blank" class="text-primary">https://www.spruko.com/demo/templist</a>
+                                                                     <p class="text-muted mt-2 mb-2">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia
+                                                                         dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                                                                 </div>
+                                                                 <div class="card-body">
+                                                                     <div class="mb-2">
+                                                                         <a href="https://themeforest.net/user/spruko/portfolio" target="_blank" class="h5 text-dark"><i class="fe fe-image fs-15"></i> Images For "insightapps Solutions Pvt Ltd"</a>
+                                                                     </div>
+                                                                     <div class="tags my-3">
+                                                                         <a href="javascript:void(0);" class="tag rounded-pill bg-primary-transparent">
+                                                                             <img class="tag-avatar avatar avatar-sm cover-image rounded-pill" src="./assets/images/users/1.jpg"> Valex
+                                                                         </a>
+                                                                         <a href="javascript:void(0);" class="tag rounded-pill bg-secondary-transparent">
+                                                                             <img class="tag-avatar avatar avatar-sm cover-image rounded-pill" src="./assets/images/users/2.jpg"> insightapps
+                                                                         </a>
+                                                                         <a href="javascript:void(0);" class="tag rounded-pill bg-success-transparent">
+                                                                             <img class="tag-avatar avatar avatar-sm cover-image rounded-pill" src="./assets/images/users/3.jpg"> Spruha
+                                                                         </a>
+                                                                         <a href="javascript:void(0);" class="tag rounded-pill bg-warning-transparent">
+                                                                             <img class="tag-avatar avatar avatar-sm cover-image rounded-pill" src="./assets/images/users/4.jpg"> Dayone
+                                                                         </a>
+                                                                     </div>
+                                                                     <div class="row">
+                                                                         <div class="col-sm-2">
+                                                                             <a href="./assets/images/media/files/05.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                 <img src="./assets/images/media/files/05.jpg" alt="image" class="br-5">
+                                                                             </a>
+                                                                         </div>
+                                                                         <div class="col-sm-2">
+                                                                             <a href="./assets/images/media/files/06.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                 <img src="./assets/images/media/files/06.jpg" alt="image" class="br-5">
+                                                                             </a>
+                                                                         </div>
+                                                                         <div class="col-sm-2">
+                                                                             <a href="./assets/images/media/files/07.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                 <img src="./assets/images/media/files/07.jpg" alt="image" class="br-5">
+                                                                             </a>
+                                                                         </div>
+                                                                         <div class="col-sm-2">
+                                                                             <a href="./assets/images/media/files/08.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                 <img src="./assets/images/media/files/08.jpg" alt="image" class="br-5">
+                                                                             </a>
+                                                                         </div>
+                                                                         <div class="col-sm-2">
+                                                                             <div class="search-images">
+                                                                                 <img class="img-responsive br-5 mb-3 op-2" src="./assets/images/media/files/01.jpg" alt="Thumb-1">
+                                                                                 <a href="javascript:void(0);"  class="view-all-search tx-fixed-white fs-16 fw-600">View All</a>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                                 <div class="card-body">
+                                                                     <div class="mb-2">
+                                                                         <a href="https://www.spruko.com/demo/spruha/spruha/HTML/index.html" target="_blank" class="h5 text-dark">Spruha template related Images</a>
+                                                                     </div>
+                                                                     <div class="tags mb-2">
+                                                                         <span class="tag">
+                                                                     background
+                                                                     <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                                 </span>
+                                                                         <span class="tag">
+                                                                     admin template
+                                                                     <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                                 </span>
+                                                                         <span class="tag">
+                                                                     UX designs
+                                                                     <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                                 </span>
+                                                                         <span class="tag">
+                                                                     Presentation
+                                                                     <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                                 </span>
+                                                                     </div>
+                                                                     <div class="mb-2">
+                                                                         <a href="https://spruko.com/demo/spruha/" target="_blank" class="h5 text-dark">Spruha - Bootstrap HTML Dashboard Template</a>
+                                                                     </div>
+                                                                     <a href="https://spruko.com/demo/spruha/" target="_blank" class="text-primary">https://www.spruko.com/demo/spruha/html/</a>
+                                                                     <p class="text-muted mt-2 mb-1">Treal Template included in 30 versions. In the demo 30 versions is shown in 4 floders. And In the final each version has single floder corresponding to that ...</p>
+                                                                     <p class="text-muted  mb-2">Tags: admin, admin dashboard, admin panel, admin template, backend, bootstrap, bootstrap 4, clean, dashboard, flat, jquery, modern, premium admin templates ...</p>
+                                                                     <div>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);" class="me-4 d-inline-block"> (48) Reviews</a>
+                                                                         <a href="javascript:void(0);" class="fw-semibold">USD-$24</a>
+                                                                     </div>
+                                                                 </div>
+                                                                 <div class="card-body">
+                                                                     <div class="mb-2">
+                                                                         <a href="https://spruko.com/demo/zanex/" target="_blank" class="h5 text-dark">Zanex Website Templates from ThemeForest</a>
+                                                                     </div>
+                                                                     <a href="https://spruko.com/demo/zanex/" target="_blank" class="text-primary">https://spruko.com/demo/zanex/html/</a>
+                                                                     <p class="text-muted mt-2 mb-2">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia
+                                                                         dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                                                                     <div>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);" class="me-4 d-inline-block"> (18) Reviews</a>
+                                                                         <a href="javascript:void(0);" class="fw-semibold">USD-$12</a>
+                                                                     </div>
+                                                                 </div>
+                                                                 <div class="card-body">
+                                                                     <div class="mb-2">
+                                                                         <a href="https://spruko.com/demo/gowell/" target="_blank" class="h5 text-dark">Gowell - Travel HTML Template</a>
+                                                                     </div>
+                                                                     <a href="https://spruko.com/demo/gowell/" target="_blank" class="text-primary">https://www.spruko.com/demo/gowell/html/</a>
+                                                                     <p class="text-muted mt-2 mb-1"> Gowell - Travel HTML Template by sprukosoft HostOne -HTML Templates is a Clean, Simple Responsive Template Design.</p>
+                                                                     <p class="text-muted  mb-2">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim
+                                                                         ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
+                                                                         nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                                                                     <div>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                         <a href="javascript:void(0);" class="me-4 d-inline-block"> (18) Reviews</a>
+                                                                         <a href="javascript:void(0);" class="fw-semibold">USD-$12</a>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                         <div class="col-lg-4">
+                                                             <div class="card">
+                                                                 <div class="card-body">
+                                                                     <div class="d-flex gap-3 align-items-center mb-4">
+                                                                         <div class="flex-grow-1">
+                                                                             <h5 class="mb-1">insightapps Solutions</h5>
+                                                                             <div class="d-flex align-items-center gap-2">
+                                                                                 <p class="text-muted mb-0">4.8</p>
+                                                                                 <div class="text-yellow">
+                                                                                     <i class="bi bi-star-fill me-1"></i>
+                                                                                     <i class="bi bi-star-fill me-1"></i>
+                                                                                     <i class="bi bi-star-fill me-1"></i>
+                                                                                     <i class="bi bi-star-fill me-1"></i>
+                                                                                     <i class="bi bi-star-fill"></i>
+                                                                                 </div>
+                                                                                 <p class="text-muted mb-0">80 reviews</p>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="btn-list">
+                                                                         <a class="btn btn-default btn-sm" href="javascript:void(0);" role="button">Website</a>
+                                                                         <a class="btn btn-default btn-sm" href="javascript:void(0);" role="button">Contact</a>
+                                                                         <a class="btn btn-default btn-sm" href="javascript:void(0);" role="button">Location</a>
+                                                                     </div>
+                                                                     <div class="my-4">
+                                                                         <div class="d-flex mb-3">
+                                                                             <div>
+                                                                                 <a class="nav-link border rounded-pill avatar avatar-sm bg-light me-2" href="javascript:void(0);"><i class="fe fe-mail"></i></a>
+                                                                             </div>
+                                                                             <div class="ms-2">
+                                                                                 <p class="fs-13 fw-600 mb-0">Email</p>
+                                                                                 <p class="fs-12 text-muted">gracie435&#64;gmail.com.</p>
+                                                                             </div>
+                                                                         </div>
+                                                                         <div class="d-flex mb-3 mt-2">
+                                                                             <div>
+                                                                                 <a class="nav-link border rounded-pill avatar avatar-sm bg-light me-2" href="javascript:void(0);"><i class="fe fe-map-pin"></i></a>
+                                                                             </div>
+                                                                             <div class="ms-2">
+                                                                                 <p class="fs-13 fw-600 mb-0">Address</p>
+                                                                                 <p class="fs-12 text-muted">2nd street,houston texas,united states.</p>
+                                                                             </div>
+                                                                         </div>
+                                                                         <div class="d-flex mb-3">
+                                                                             <div>
+                                                                                 <a class="nav-link border rounded-pill avatar avatar-sm bg-light me-2" href="javascript:void(0);"><i class="fe fe-clock"></i></a>
+                                                                             </div>
+                                                                             <div class="ms-2">
+                                                                                 <p class="fs-13 fw-600 mb-0">Open Hours</p>
+                                                                                 <p class="fs-12 text-muted">24/7</p>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div>
+                                                                         <div class="fs-15 fw-600 mt-3 mb-2">Related Products
+                                                                             <span class="float-end fs-12"><a href="javascript:void(0);" class="text-underline"><u>View All</u></a></span>
+                                                                         </div>
+                                                                         <div class="row">
+                                                                             <div class="col-sm-3">
+                                                                                 <a href="./assets/images/media/files/01.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                     <img src="./assets/images/media/files/01.jpg" alt="image" class="br-5">
+                                                                                 </a>
+                                                                             </div>
+                                                                             <div class="col-sm-3">
+                                                                                 <a href="./assets/images/media/files/02.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                     <img src="./assets/images/media/files/02.jpg" alt="image" class="br-5">
+                                                                                 </a>
+                                                                             </div>
+                                                                             <div class="col-sm-3">
+                                                                                 <a href="./assets/images/media/files/03.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                     <img src="./assets/images/media/files/03.jpg" alt="image" class="br-5">
+                                                                                 </a>
+                                                                             </div>
+                                                                             <div class="col-sm-3">
+                                                                                 <a href="./assets/images/media/files/04.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                     <img src="./assets/images/media/files/04.jpg" alt="image" class="br-5">
+                                                                                 </a>
+                                                                             </div>
+                                                                             <div class="col-sm-3">
+                                                                                 <a href="./assets/images/media/files/05.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                     <img src="./assets/images/media/files/05.jpg" alt="image" class="br-5">
+                                                                                 </a>
+                                                                             </div>
+                                                                             <div class="col-sm-3">
+                                                                                 <a href="./assets/images/media/files/06.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                     <img src="./assets/images/media/files/06.jpg" alt="image" class="br-5">
+                                                                                 </a>
+                                                                             </div>
+                                                                             <div class="col-sm-3">
+                                                                                 <a href="./assets/images/media/files/07.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                     <img src="./assets/images/media/files/07.jpg" alt="image" class="br-5">
+                                                                                 </a>
+                                                                             </div>
+                                                                             <div class="col-sm-3">
+                                                                                 <a href="./assets/images/media/files/08.jpg" class="glightbox card br-5" data-gallery="gallery1">
+                                                                                     <img src="./assets/images/media/files/08.jpg" alt="image" class="br-5">
+                                                                                 </a>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="fs-15 fw-600 mt-3 mb-2">Related Tags</div>
+                                                                     <div class="tags">
+                                                                         <a href="javascript:void(0);" class="tag">Development</a>
+                                                                         <a href="javascript:void(0);" class="tag">Design</a>
+                                                                         <a href="javascript:void(0);" class="tag">Technology</a>
+                                                                         <a href="javascript:void(0);" class="tag">Popular</a>
+                                                                         <a href="javascript:void(0);" class="tag">Codiegniter</a>
+                                                                         <a href="javascript:void(0);" class="tag">JavaScript</a>
+                                                                         <a href="javascript:void(0);" class="tag">Bootstrap</a>
+                                                                         <a href="javascript:void(0);" class="tag">PHP</a>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 </ng-template>
+                                                 </li>
+                                                 <li [ngbNavItem]="2" ><a ngbNavLink class=" text-dark  d-flex align-items-center" ><i class="fe fe-image fs-13 me-2 d-inline-flex"></i> Images</a>
+                                                  <ng-template ngbNavContent>
+                                                     <div class="tab-pane" id="tab6">
+                                                         <div class="demo-gallery card">
+                                                             <div class="card-body">
+                                                                 <div class="row mb-4 gy-3">
+                                                                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4">
+                                                                         <div class="d-flex align-items-center border rounded-pill">
+                                                                             <img class="avatar avatar-md rounded-circle cover-image avatar-pullup me-2" src="./assets/images/media/files/02.jpg" data-bs-placement="top" data-bs-toggle="tooltip" ngbTooltip="Jooliee">
+                                                                             <p class="mb-0">Admin Template</p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4">
+                                                                         <div class="d-flex align-items-center border rounded-pill">
+                                                                             <img class="avatar avatar-md rounded-circle cover-image avatar-pullup me-2" src="./assets/images/users/9.jpg" data-bs-placement="top" data-bs-toggle="tooltip" ngbTooltip="Jooliee">
+                                                                             <p class="mb-0">Personal</p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4">
+                                                                         <div class="d-flex align-items-center border rounded-pill">
+                                                                             <img class="avatar avatar-md rounded-circle cover-image avatar-pullup me-2" src="./assets/images/media/files/03.jpg" data-bs-placement="top" data-bs-toggle="tooltip" ngbTooltip="Jooliee">
+                                                                             <p class="mb-0">Task</p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4">
+                                                                         <div class="d-flex align-items-center border rounded-pill">
+                                                                             <img class="avatar avatar-md rounded-circle cover-image avatar-pullup me-2" src="./assets/images/media/files/04.jpg" data-bs-placement="top" data-bs-toggle="tooltip" ngbTooltip="Jooliee">
+                                                                             <p class="mb-0">Job Search</p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4">
+                                                                         <div class="d-flex align-items-center border rounded-pill">
+                                                                             <img class="avatar avatar-md rounded-circle cover-image avatar-pullup me-2" src="./assets/images/media/files/05.jpg" data-bs-placement="top" data-bs-toggle="tooltip" ngbTooltip="Jooliee">
+                                                                             <p class="mb-0">Dashboard</p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4">
+                                                                         <div class="d-flex align-items-center border rounded-pill">
+                                                                             <img class="avatar avatar-md rounded-circle cover-image avatar-pullup me-2" src="./assets/images/media/files/06.jpg" data-bs-placement="top" data-bs-toggle="tooltip" ngbTooltip="Jooliee">
+                                                                             <p class="mb-0">Website</p>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                                 <ul id="lightgallery" class="list-unstyled row" gallerize>
+
+                                                                    
+                                                                    @for(img of imageData;track img.srcUrl){
+
+                                                                        <li
+                                                                       
+                                                                        class={{img.class}}
+                                                                          data-responsive="./assets/img/media/1.jpg"
+                                                                          data-src="./assets/img/media/1.jpg"
+                                                                          data-sub-html="<h4>Gallery Image 1</h4><p> Many desktop publishing packages and web page editors now use Lorem Ipsum</p>">
+                                                                          <a>
+                                                                            <img
+                                                                            class="br-5"
+                                                                              [src]="img.srcUrl"
+                                                                              alt="image"
+                                                                            />
+                                                                          </a>
+                                                                        </li>
+                                                                    }
+                                                                   </ul>
+                                                                
+                                                              
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                   </ng-template>
+                                                    </li>
+                                                   <li [ngbNavItem]="3" ><a ngbNavLink class="text-dark   d-flex align-items-center" ><i class="fe fe-book-open fs-13 me-2 d-inline-flex"></i> Books</a>
+                                                    <ng-template ngbNavContent>
+                                                     
+                                                        <div class="tab-pane" id="tab7">
+                                                         <div class="card">
+                                                             <div class="card-body">
+                                                                 <div class="mb-2">
+                                                                     <a href="javascript:void(0);" class="h5 text-dark">Zendash - Bootstrap HTML Dashboard Template</a>
+                                                                 </div>
+                                                                 <a href="https://spruko.com/demo/zendash/" target="_blank" class="text-primary">https://www.spruko.com/demo/zendash/html/</a>
+                                                                 <p class="text-muted mt-2 mb-1">Treal Template included in 30 versions. In the demo 30 versions is shown in 4 floders. And In the final each version has single floder corresponding to that ...</p>
+                                                                 <p class="text-muted  mb-2">Tags: admin, admin dashboard, admin panel, admin template, backend, bootstrap, bootstrap 4, clean, dashboard, flat, jquery, modern, premium admin templates ...</p>
+                                                                 <div>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);" class="me-4 d-inline-block"> (48) Reviews</a>
+                                                                     <a href="javascript:void(0);" class="fw-semibold">USD-$24</a>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                         <div class="card">
+                                                             <div class="card-body">
+                                                                 <div class="mb-2">
+                                                                     <a href="javascript:void(0);" class="h5 text-dark">Zendash template related Images</a>
+                                                                 </div>
+                                                                 <div class="tags mb-2">
+                                                                     <span class="tag">
+                                                                 background
+                                                                 <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                             </span>
+                                                                     <span class="tag">
+                                                                 admin template
+                                                                 <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                             </span>
+                                                                     <span class="tag">
+                                                                 UX designs
+                                                                 <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                             </span>
+                                                                     <span class="tag">
+                                                                 Presentation
+                                                                 <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                             </span>
+                                                                 </div>
+                                                                 <div class="mb-2">
+                                                                     <a href="javascript:void(0);" class="h5 text-dark">Zendash - Bootstrap HTML Dashboard Template</a>
+                                                                 </div>
+                                                                 <a href="https://spruko.com/demo/zendash/" target="_blank" class="text-primary">https://www.spruko.com/demo/zendash/html/</a>
+                                                                 <p class="text-muted mt-2 mb-1">Treal Template included in 30 versions. In the demo 30 versions is shown in 4 floders. And In the final each version has single floder corresponding to that ...</p>
+                                                                 <p class="text-muted  mb-2">Tags: admin, admin dashboard, admin panel, admin template, backend, bootstrap, bootstrap 4, clean, dashboard, flat, jquery, modern, premium admin templates ...</p>
+                                                                 <div>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);" class="me-4 d-inline-block"> (48) Reviews</a>
+                                                                     <a href="javascript:void(0);" class="fw-semibold">USD-$24</a>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                         <div class="card">
+                                                             <div class="card-body">
+                                                                 <div class="mb-2">
+                                                                     <a href="javascript:void(0);" class="h5 text-dark">Eduserv Website Templates from ThemeForest</a>
+                                                                 </div>
+                                                                 <a href="https://themeforest.net/user/spruko/portfolio" target="_blank" class="text-primary">https://spruko.com/demo/eduserv/html/</a>
+                                                                 <p class="text-muted mt-2 mb-2">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia
+                                                                     dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                                                                 <div>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);" class="me-4 d-inline-block"> (18) Reviews</a>
+                                                                     <a href="javascript:void(0);" class="fw-semibold">USD-$12</a>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                         <div class="card">
+                                                             <div class="card-body">
+                                                                 <div class="mb-2">
+                                                                     <a href="javascript:void(0);" class="h5 text-dark">HostOne – Web Hosting HTML Creative Responsive Clean Template</a>
+                                                                 </div>
+                                                                 <a href="https://spruko.com/demo/hostone/" target="_blank" class="text-primary">https://www.spruko.com/demo/hostone/html/</a>
+                                                                 <p class="text-muted mt-2 mb-1"> HostOne - Web Hosting HTML Creative Responsive Clean Template by sprukosoft HostOne -HTML Templates is a Clean, Simple Responsive Template Design.</p>
+                                                                 <p class="text-muted  mb-2">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim
+                                                                     ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
+                                                                     nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                                                                 <div>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                     <a href="javascript:void(0);" class="me-4 d-inline-block"> (18) Reviews</a>
+                                                                     <a href="javascript:void(0);" class="fw-semibold">USD-$12</a>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </ng-template>
+                                                         </li>
+                                                         <li [ngbNavItem]="4" ><a ngbNavLink class="text-dark   d-flex align-items-center" ><i class="fe fe-film fs-13 me-2 d-inline-flex"></i> News</a>
+                                                             <ng-template ngbNavContent>
+                                                                
+                                                                 <div class="tab-pane" id="tab8">
+                                                                     <div class="card">
+                                                                         <div class="card-body">
+                                                                             <div class="mb-2">
+                                                                                 <a href="javascript:void(0);" class="h5 text-dark">Zendash template related Images</a>
+                                                                             </div>
+                                                                             <div class="tags mb-2">
+                                                                                 <span class="tag">
+                                                                             background
+                                                                             <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                                         </span>
+                                                                                 <span class="tag">
+                                                                             admin template
+                                                                             <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                                         </span>
+                                                                                 <span class="tag">
+                                                                             UX designs
+                                                                             <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                                         </span>
+                                                                                 <span class="tag">
+                                                                             Presentation
+                                                                             <a href="javascript:void(0);" class="tag-addon"><i class="fe fe-x"></i></a>
+                                                                         </span>
+                                                                             </div>
+                                                                             <div class="mb-2">
+                                                                                 <a href="javascript:void(0);" class="h5 text-dark">Zendash - Bootstrap HTML Dashboard Template</a>
+                                                                             </div>
+                                                                             <a href="https://spruko.com/demo/zendash/" target="_blank" class="text-primary">https://www.spruko.com/demo/zendash/html/</a>
+                                                                             <p class="text-muted mt-2 mb-1">Treal Template included in 30 versions. In the demo 30 versions is shown in 4 floders. And In the final each version has single floder corresponding to that ...</p>
+                                                                             <p class="text-muted  mb-2">Tags: admin, admin dashboard, admin panel, admin template, backend, bootstrap, bootstrap 4, clean, dashboard, flat, jquery, modern, premium admin templates ...</p>
+                                                                             <div>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);" class="me-4 d-inline-block"> (48) Reviews</a>
+                                                                                 <a href="javascript:void(0);" class="fw-semibold">USD-$24</a>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="card">
+                                                                         <div class="card-body">
+                                                                             <div class="mb-2">
+                                                                                 <a href="https://themeforest.net/user/spruko/portfolio" target="_blank" class="h5 text-dark">Eduserv Website Templates from ThemeForest</a>
+                                                                             </div>
+                                                                             <a href="https://themeforest.net/user/spruko/portfolio" target="_blank" class="text-primary">https://spruko.com/demo/eduserv/html/</a>
+                                                                             <p class="text-muted mt-2 mb-2">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia
+                                                                                 dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                                                                             <div>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);" class="me-4 d-inline-block"> (18) Reviews</a>
+                                                                                 <a href="javascript:void(0);" class="fw-semibold">USD-$12</a>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="card">
+                                                                         <div class="card-body">
+                                                                             <div class="mb-2">
+                                                                                 <a href="https://spruko.com/demo/hostone/" target="_blank" class="h5 text-dark">HostOne – Web Hosting HTML Creative Responsive Clean Template</a>
+                                                                             </div>
+                                                                             <a href="https://spruko.com/demo/hostone/" target="_blank" class="text-primary">https://www.spruko.com/demo/hostone/html/</a>
+                                                                             <p class="text-muted mt-2 mb-1"> HostOne - Web Hosting HTML Creative Responsive Clean Template by sprukosoft HostOne -HTML Templates is a Clean, Simple Responsive Template Design.</p>
+                                                                             <p class="text-muted  mb-2">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim
+                                                                                 ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
+                                                                                 nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                                                                             <div>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                                 <a href="javascript:void(0);" class="me-4 d-inline-block"> (18) Reviews</a>
+                                                                                 <a href="javascript:void(0);" class="fw-semibold">USD-$12</a>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                             </ng-template>
+                                                                  </li>          
+                                                                  <li [ngbNavItem]="5" ><a ngbNavLink class="text-dark   d-flex align-items-center" ><i class="fe fe-video fs-13 me-2 d-inline-flex"></i> Videos</a>
+                                                                     <ng-template ngbNavContent>
+                                                                     
+                                                                         
+                                                                         <div class="tab-pane" id="tab9">
+                                                                             <div class="card">
+                                                                                 <div class="card-body">
+                                                                                     <div class="mb-2">
+                                                                                         <a href="https://themeforest.net/user/spruko/portfolio" target="_blank" class="h5 text-dark">Eduserv Website Templates from ThemeForest</a>
+                                                                                     </div>
+                                                                                     <a href="https://themeforest.net/user/spruko/portfolio" target="_blank" class="text-primary">https://spruko.com/demo/eduserv/html/</a>
+                                                                                     <p class="text-muted mt-2 mb-2">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia
+                                                                                         dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                                                                                     <div>
+                                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                         <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                                         <a href="javascript:void(0);" class="me-4 d-inline-block"> (18) Reviews</a>
+                                                                                         <a href="javascript:void(0);" class="fw-semibold">USD-$12</a>
+                                                                                     </div>
+                                                                                 </div>
+                                                                             </div>
+                                                                             <div class="card">
+                                                                                 <div class="card-body">
+                                                                                     <div class="mb-2">
+                                                                                         <a href="https://spruko.com/demo/hostone/" target="_blank" class="h5 text-dark">HostOne – Web Hosting HTML Creative Responsive Clean Template</a>
+                                                                                     </div>
+                                                                                     <a href="https://spruko.com/demo/hostone/" target="_blank" class="text-primary">https://www.spruko.com/demo/hostone/html/</a>
+                                                                                     <p class="text-muted mt-2 mb-1"> HostOne - Web Hosting HTML Creative Responsive Clean Template by sprukosoft HostOne -HTML Templates is a Clean, Simple Responsive Template Design.</p>
+                                                                                     <p class="text-muted  mb-2">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim
+                                                                                         ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
+                                                                                         nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                                                                                     <div>
+                                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                         <a href="javascript:void(0);"><i class="fa fa-star text-yellow fs-16"></i></a>
+                                                                                         <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                                         <a href="javascript:void(0);"><i class="fa fa-star-o text-yellow fs-16"></i></a>
+                                                                                         <a href="javascript:void(0);" class="me-4 d-inline-block"> (18) Reviews</a>
+                                                                                         <a href="javascript:void(0);" class="fw-semibold">USD-$12</a>
+                                                                                     </div>
+                                                                                 </div>
+                                                                             </div>
+                                                                         </div>
+                                                                     </ng-template>
+                                                                         </li>        
+                                                                         </ul>
+                                    
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="card-body p-5">
+                         <p class="text-muted mb-0 ps-3">About 12,546,90000 results (0.56 Seconds)</p>
+                     </div>
+                 </div>
+                 <div class="panel-body tabs-menu-body p-0 border-0">
+                     <div class="tab-content">
+                         <div [ngbNavOutlet]="nav" class="mt-2"></div>
+         
+                     
+                        
+                      
+                     </div>
+                 </div>
+                 <div class="text-center">
+                     <div class="mb-5">
+                         <ul class="pagination justify-content-start">
+                             <li class="page-item page-prev disabled">
+                                 <a class="page-link" href="javascript:void(0);" tabindex="-1">Prev</a>
+                             </li>
+                             <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+                             <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                             <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                             <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
+                             <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
+                             <li class="page-item page-next">
+                                 <a class="page-link" href="javascript:void(0);">Next</a>
+                             </li>
+                         </ul>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <!-- End Row -->
+      </div>
+      <!-- CONTAINER CLOSED -->

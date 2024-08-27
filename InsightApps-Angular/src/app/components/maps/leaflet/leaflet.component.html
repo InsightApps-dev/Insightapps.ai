@@ -1,0 +1,45 @@
+<app-page-header title="Leaflet Maps" title1="Maps" activeitem="Leaflet Maps"></app-page-header>
+
+   
+   <!-- CONTAINER -->
+   <div class="main-container container-fluid">
+
+    <!-- ROW-1 START -->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Basic Vector Map</div>
+                </div>
+                <div class="card-body">
+                    <div id="vector-map" leaflet [leafletOptions]="options1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Map With Lines</div>
+                </div>
+                <div class="card-body">
+                    <div id="lines-map1" leaflet [leafletOptions]="options2" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Map With Markers</div>
+                </div>
+                <div class="card-body">
+                    <div id="marker-map" leaflet [leafletOptions]="options3"></div>
+                </div>
+            </div>
+        </div>
+     
+    
+    </div>
+    <!-- ROW-1 END -->
+
+</div>
+<!-- CONTAINER CLOSED -->

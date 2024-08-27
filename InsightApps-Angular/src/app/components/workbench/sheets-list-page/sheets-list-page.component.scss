@@ -1,0 +1,26 @@
+.card-icon-top{
+    height: 100px;
+    background-color: #86b8b7;
+  }
+  .table thead th{
+    color: #fff;
+}
+.card-box-shadow{
+    box-shadow: 5px 10px 10px 5px #0000001a;
+  }
+  .dropdown-toggle::after{
+    display: none;
+  }
+  a {
+    cursor: pointer;
+}
+.tiled-header-bg {
+  display: flex;
+  justify-content: space-between;
+  background: #00a5a2;
+  color: #fff;
+}
+.fe-more-vertical:before {
+  content: "\e99a";
+  color: #fff;
+}

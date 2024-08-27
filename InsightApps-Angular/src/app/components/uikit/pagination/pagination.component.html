@@ -1,0 +1,293 @@
+<app-page-header title="Pagination" title1="UI Kit" activeitem="Pagination"></app-page-header>
+<div class="main-container container-fluid">
+
+
+    <!-- ROW-1 START -->
+    <div class="row">
+        <div class="col-md-12 col-xl-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Basic pagination</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                            <ngb-pagination [collectionSize]="20" [(page)]="page" aria-label="Custom pagination">
+                                <ng-template ngbPaginationPrevious>Previous</ng-template>
+                                <ng-template ngbPaginationNext>Next</ng-template>
+                                <ng-template ngbPaginationNumber let-p>{{ getPageSymbol(p) }}</ng-template>
+                            </ngb-pagination>
+                            </ul>
+                        </nav>
+                        <!-- pagination-wrapper -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xl-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Pagination with icons</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                            
+                            <ngb-pagination [collectionSize]="30" [(page)]="page1" aria-label="Default pagination" />
+                            
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xl-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Active Pagination</h3>
+                </div>
+                <div class="card-body ">
+                    <div class="card-content">
+                        <nav aria-label="...">
+                            <ul class="pagination">
+                            <ngb-pagination [collectionSize]="20" [(page)]="page2" aria-label="Custom pagination">
+                                <ng-template ngbPaginationPrevious>Previous</ng-template>
+                                <ng-template ngbPaginationNext>Next</ng-template>
+                                <ng-template ngbPaginationNumber let-p>{{ getPageSymbol(p) }}</ng-template>
+                            </ngb-pagination>
+                            </ul>
+                            
+                        </nav>
+                    </div>
+                </div>
+                <!-- pagination-wrapper -->
+            </div>
+            <!-- section-wrapper -->
+        </div>
+    </div>
+    <!-- ROW-1 END -->
+
+    <!-- ROW-2 START -->
+    <div class="row">
+        <div class="col-md-12 col-xl-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Disable Pagination</h3>
+                </div>
+                <div class="card-body ">
+                    <div class="card-content">
+                        <nav aria-label="...">
+                            <ul class="pagination">
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                            <li class="page-item"><a class="page-link" >1</a></li>
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link">2</span>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" >Next</a>
+                            </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- pagination-wrapper -->
+            </div>
+            <!-- section-wrapper -->
+        </div>
+        <div class="col-md-12 col-xl-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Rounded Pagination</h3>
+                </div>
+                <div class="card-body ">
+                    <div class="card-content">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination rounded-pagination">
+                            <ngb-pagination [collectionSize]="40" [(page)]="page4" aria-label="Default pagination" />
+
+                            
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- pagination-wrapper -->
+            </div>
+            <!-- section-wrapper -->
+        </div>
+        <div class="col-md-12 col-xl-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Radius Pagination</h3>
+                </div>
+                <div class="card-body ">
+                    <div class="card-content">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination radius-pagination">
+                            <ngb-pagination [collectionSize]="40" [(page)]="page5" [maxSize]="5" [boundaryLinks]="true" />
+
+                            
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- pagination-wrapper -->
+            </div>
+            <!-- section-wrapper -->
+        </div>
+    </div>
+    <!-- ROW-2 END -->
+
+    <!-- ROW-3 START -->
+    <div class="row">
+        <div class="col-md-12 col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Colored Paginations</h3>
+                </div>
+                <div class="card-body ">
+                    <div class="card-content">
+                        <div class="row gy-3">
+                            <div class="col-xl-3">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination primary-pagination">
+                                    <ngb-pagination [collectionSize]="40" [(page)]="page6" aria-label="Default pagination" />
+
+                                
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-xl-3">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination secondary-pagination">
+                                    <ngb-pagination [collectionSize]="40" [(page)]="page7" aria-label="Default pagination" />
+
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-xl-3">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination success-pagination">
+                                    <ngb-pagination [collectionSize]="40" [(page)]="page8" aria-label="Default pagination" />
+
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-xl-3">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination info-pagination">
+                                    <ngb-pagination [collectionSize]="40" [(page)]="page9" aria-label="Default pagination" />
+
+                                    
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- pagination-wrapper -->
+            </div>
+            <!-- section-wrapper -->
+        </div>
+    </div>
+    <!-- ROW-3 END-->
+
+    <!-- ROW-4 START -->
+    <div class="row">
+        <div class="col-md-12 col-xl-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Pagination Alignments</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                            <ngb-pagination [collectionSize]="30" [(page)]="page10" aria-label="Custom pagination">
+                                <ng-template ngbPaginationPrevious>Previous</ng-template>
+                                <ng-template ngbPaginationNext>Next</ng-template>
+                                <ng-template ngbPaginationNumber let-p>{{ getPageSymbol1(p) }}</ng-template>
+                            </ngb-pagination>
+                            
+                            </ul>
+                        </nav>
+                        <br>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                            <ngb-pagination [collectionSize]="30" [(page)]="page11" aria-label="Custom pagination">
+                                <ng-template ngbPaginationPrevious>Previous</ng-template>
+                                <ng-template ngbPaginationNext>Next</ng-template>
+                                <ng-template ngbPaginationNumber let-p>{{ getPageSymbol1(p) }}</ng-template>
+                            </ngb-pagination>
+                            </ul>
+                        </nav>
+                        <br>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-end">
+                            <ngb-pagination [collectionSize]="30" [(page)]="page12" aria-label="Custom pagination">
+                                <ng-template ngbPaginationPrevious>Previous</ng-template>
+                                <ng-template ngbPaginationNext>Next</ng-template>
+                                <ng-template ngbPaginationNumber let-p>{{ getPageSymbol1(p) }}</ng-template>
+                            </ngb-pagination>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xl-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Pagination Sizing</h3>
+                </div>
+                <div class="card-body ">
+                    <div class="card-content d-sm-flex d-block justify-content-between">
+                        <nav aria-label="...">
+                            <ul class="pagination pagination-lg mb-xs-0 mb-2">
+                            <ngb-pagination [collectionSize]="30" [(page)]="page13" aria-label="Custom pagination">  </ngb-pagination>
+                            
+                            </ul>
+                        </nav>
+                        <nav aria-label="...">
+                            <ul class="pagination pagination-sm">
+                            <ngb-pagination [collectionSize]="30" [(page)]="page14" aria-label="Custom pagination">  </ngb-pagination>
+
+                            
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- pagination-wrapper -->
+            </div>
+            <!-- section-wrapper -->
+        </div>
+    </div>
+    <!-- ROW-4 END-->
+
+    <!-- ROW-5 START -->
+    <div class="row">
+        <div class="col-lg-12 col-xl-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Dotted Paginations</h3>
+                </div>
+                <div class="card-body ">
+                    <div class="card-content">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination dotted-pagination">
+                            <ngb-pagination [collectionSize]="30" [(page)]="page15" aria-label="Custom pagination">
+                                <ng-template ngbPaginationNumber let-p>{{ getPageSymbol2(p) }}</ng-template>
+                            </ngb-pagination>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- pagination-wrapper -->
+            </div>
+        </div>
+    </div>
+    <!-- ROW-5 END -->
+</div>

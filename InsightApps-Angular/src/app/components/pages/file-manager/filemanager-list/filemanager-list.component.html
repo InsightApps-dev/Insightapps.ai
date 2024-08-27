@@ -1,0 +1,493 @@
+<app-page-header title="FileManager-List" title1="File Manager" activeitem="File Manager-List"></app-page-header>
+
+      <!-- CONTAINER -->
+      <div class="main-container container-fluid">
+
+       
+          <!-- ROW-1 -->
+          <div class="row">
+              <h5 class="mb-3 fw-semibold">File-Manager List</h5>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Dropper.pdf</a>
+                          <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-2">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/documents/2.png" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                 (click)="toggleStar1()">
+                                  <i class="mdi fs-18 {{toggleClass1}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Track.mp4</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-2">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/documents/5.png" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                              (click)="toggleStar2()">
+                              <i class="mdi fs-18 {{toggleClass2}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Project.XLSX</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-2">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/documents/1.png" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar3()">
+                              <i class="mdi fs-18 {{toggleClass3}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> insightapps.zip</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-2">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/documents/4.png" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar4()">
+                              <i class="mdi fs-18 {{toggleClass4}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Project.doc</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-2">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/documents/3.png" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar5()">
+                              <i class="mdi fs-18 {{toggleClass5}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Flyyer.ppt</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-2">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/documents/3.png" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar6()">
+                              <i class="mdi fs-18 {{toggleClass6}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Image01.jpg</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/04.jpg" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar7()">
+                              <i class="mdi fs-18 {{toggleClass7}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Image02.jpg</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/06.jpg" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar8()">
+                              <i class="mdi fs-18 {{toggleClass8}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Image03.jpg</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/03.jpg" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar9()">
+                              <i class="mdi fs-18 {{toggleClass9}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Image04.jpg</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/01.jpg" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar10()">
+                              <i class="mdi fs-18 {{toggleClass10}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Image05.jpg</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/02.jpg" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar11()">
+                              <i class="mdi fs-18 {{toggleClass11}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Image06.jpg</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/07.jpg" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar12()">
+                              <i class="mdi fs-18 {{toggleClass12}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Image07.jpg</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/02.jpg" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar13()">
+                              <i class="mdi fs-18 {{toggleClass13}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Image08.jpg</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/01.jpg" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar14()">
+                              <i class="mdi fs-18 {{toggleClass14}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Image09.jpg</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/04.jpg" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar15()">
+                              <i class="mdi fs-18 {{toggleClass15}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                  <div class="card">
+                      <div class="card-header justify-content-between">
+                          <a><i class="mdi mdi-file fs-18 text-primary"></i> Image10.jpg</a>
+                           <div class="file-dropdown toggledrop" ngbDropdown>
+                              <a href="javascript:void(0);" class="text-muted" data-bs-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-dots-vertical fs-20"></i></a>
+                              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-edit me-2"></i> Edit</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-share me-2"></i> Share</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-download me-2"></i> Download</a>
+                                  <a class="dropdown-item" ngbDropdownItem href="javascript:void(0);"><i class="fe fe-trash me-2"></i> Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="bg-light text-center rounded-2">
+                              <img src="./assets/images/media/files/06.jpg" alt="img">
+                          </div>
+                      </div>
+                      <div class="card-footer py-2 px-4 list-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="javascript:void(0);" class="fs-12 text-dark">20-12-2023, 245MB</a>
+                              <a href="javascript:void(0);" class="text-dark fs-12"
+                                  (click)="toggleStar16()">
+                              <i class="mdi fs-18 {{toggleClass16}}"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- ROW-1 CLOSED -->
+      </div>
+      <!-- CONTAINER CLOSED -->

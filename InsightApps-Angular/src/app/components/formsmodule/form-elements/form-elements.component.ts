@@ -1,0 +1,424 @@
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import wNumb from 'wnumb';
+import noUiSlider from 'nouislider';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { SharedModule } from '../../../shared/sharedmodule';
+import { NgxSliderModule ,Options} from '@angular-slider/ngx-slider';
+import { NouisliderModule } from 'ng2-nouislider';
+import { FlatpickrDefaults,FlatpickrModule } from 'angularx-flatpickr';
+import { MaterialModuleModule } from '../../../material-module/material-module.module';
+import { CommonModule } from '@angular/common';
+interface SimpleSliderModel {
+  value: number;
+  options: Options;
+}
+interface SimpleSliderModel {
+  value5: number;
+  options6: Options;
+}
+interface RangeSliderModel {
+  minValue: number;
+  maxValue: number;
+  options: Options;
+}
+@Component({
+  selector: 'app-form-elements',
+  standalone: true,
+  imports: [CommonModule,SharedModule,NgSelectModule,NgbModule,FormsModule,ReactiveFormsModule,NouisliderModule,FlatpickrModule,MaterialModuleModule,NgxSliderModule],
+  providers:[FlatpickrDefaults],
+  templateUrl: './form-elements.component.html',
+  styleUrls: ['./form-elements.component.scss']
+})
+export class FormElementsComponent {
+  public someRange: number[] = [0, 7];
+  public someRange1: number[] = [3, 7];
+  public someRange2: number[] = [4];
+  public someRange3: number[] = [3];
+  public someRange4: number[] = [4, 8];
+  public someRange5: number[] = [4, 8];
+  public someRange6: number[] = [4, 7];
+  public someMin: number = -10;
+  public someValue: number = 5;
+  public someMax: number = 10;
+  public someStep: number = 1;
+  public form1: FormGroup | any;
+  public form2: FormGroup | any;
+  public form3: FormGroup | any;
+
+  value2 = 100;
+  value3 = 20;
+  value4 = 60;
+
+  value7 = 50;
+  value8 = 50;
+  value9 = 20;
+  value10 = 40;
+  value11 = 60;
+  value12 = 50;
+  value13 = 50;
+  value14 = 50;
+  minValue = 10;
+  maxValue = 90;
+  minValue1 = 10;
+  maxValue1 = 90;
+  minValue2 = 10;
+  maxValue2 = 90;
+  minValue3 = 15;
+  maxValue3 = 85;
+  minValue4 = 15;
+  maxValue4 = 85;
+  red = 0;
+  green = 0;
+  blue = 0;
+
+  updateColor(): void {
+    // No changes required for this method
+  }
+
+  getColor(): string {
+    return `rgb(${this.red}, ${this.green}, ${this.blue})`;
+  }
+
+  @ViewChild('result') resultElement!: ElementRef;
+  @ViewChild('slider1') slider1!: ElementRef;
+  @ViewChild('slider2') slider2!: ElementRef;
+  @ViewChild('slider3') slider3!: ElementRef;
+
+  ngOnInit() {
+
+  }
+
+  sliderControl: FormControl = new FormControl(100);
+  options: Options = {
+    floor: 0,
+    ceil: 100,
+    step: 0,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#5a66f1',
+      to: '#5a66f1',
+    },
+  };
+  value6 = 6;
+  options1: Options = {
+    floor: 0,
+    ceil: 12,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#5a66f1',
+      to: '#5a66f1',
+    },
+    getSelectionBarColor: (value: any): string => {
+      if (value <= 3) {
+        return 'red';
+      }
+      if (value <= 6) {
+        return 'orange';
+      }
+      if (value <= 9) {
+        return 'yellow';
+      }
+      return '#2AE02A';
+    },
+  };
+
+
+
+  options3: Options = {
+    floor: 0,
+    ceil: 100,
+    showTicksValues: true,
+    tickStep: 10,
+    tickValueStep: 10,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#5a66f1',
+      to: '#5a66f1',
+    },
+  };
+  options4: Options = {
+    floor: 0,
+    ceil: 100,
+    showTicksValues: true,
+    ticksArray: [25, 50],
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#5a66f1',
+      to: '#5a66f1',
+    },
+  };
+  minValue5 = 15;
+  maxValue5 = 85;
+  value1: number = 6;
+    options5: Options = {
+      floor: 0,
+      ceil: 12,
+      showSelectionBar: true,
+      getSelectionBarColor: (value: number): string => {
+        if (value <= 3) {
+          return 'red';
+        }
+        if (value <= 6) {
+          return 'orange';
+        }
+        if (value <= 9) {
+          return 'yellow';
+        }
+        return '#2AE02A';
+      },
+    };
+  minValue6 = 15;
+  maxValue6 = 85;
+  options6: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#60a5fa',
+      to: '#60a5fa',
+    },
+  };
+  minValue7 = 15;
+  maxValue7 = 85;
+  options7: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#eab308',
+      to: '#eab308',
+    },
+  };
+  minValue8 = 15;
+  maxValue8 = 85;
+  options8: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#4c75cf',
+      to: '#4c75cf',
+    },
+  };
+  minValue9 = 15;
+  maxValue9 = 85;
+  options9: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#22c55e',
+      to: '#22c55e',
+    },
+  };
+  minValue10 = 15;
+  maxValue10 = 85;
+  options10: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#f43f5e',
+      to: '#f43f5e',
+    },
+  };
+  minValue17 = 20;
+  maxValue17 = 60;
+  options17: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#db555d',
+      to: '#db555d',
+    },
+  };
+  minValue12 = 20;
+  maxValue12 = 60;
+  options12: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#db555d',
+      to: '#db555d',
+    },
+  };
+  minValue13 = 20;
+  maxValue13 = 60;
+  options13: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#f7b725',
+      to: '#f7b725',
+    },
+  };
+  minValue14 = 20;
+  maxValue14 = 60;
+  options14: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#17b1df',
+      to: '#17b1df',
+    },
+  };
+  minValue15 = 20;
+  maxValue15 = 60;
+  options15: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#44b86c',
+      to: '#44b86c',
+    },
+  };
+  minValue16 = 20;
+  maxValue16 = 60;
+  options16: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#e82646',
+      to: '#e82646',
+    },
+  };
+  verticalSlider1: SimpleSliderModel = {
+    value5: 5,
+    options6: {
+      floor: 0,
+      ceil: 5,
+      vertical: true,
+    },
+    value: 0,
+    options: new Options
+  };
+
+  disabled = false;
+  max = 100;
+  min = 0;
+  showTicks = false;
+  step = 1;
+  thumbLabel = false;
+  value = 20;
+
+  public someKeyboard: number[] = [3];
+  public someKeyboardConfig: any = {
+    behaviour: 'drag',
+    connect: true,
+    start: [0, 5],
+    keyboard: true,
+    step: 0.1,
+    pageSteps: 10, // number of page steps, defaults to 10
+    range: {
+      min: 0,
+      max: 5,
+    },
+    pips: {
+      mode: 'count',
+      density: 2,
+      values: 6,
+      stepped: true,
+    },
+  };
+
+  public keyupLabelOn: boolean = false;
+  public keydownLabelOn: boolean = false;
+  blinkKeyupLabel() {
+    this.keyupLabelOn = true;
+    setTimeout(() => {
+      this.keyupLabelOn = false;
+    }, 450);
+  }
+
+  blinkKeydownLabel() {
+    this.keydownLabelOn = true;
+    setTimeout(() => {
+      this.keydownLabelOn = false;
+    }, 450);
+  }
+  minValue11 = 15;
+  options11: Options = {
+    ceil: 50,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: '#00a5a2',
+      to: '#00a5a2',
+    },
+  };
+
+  public someKeyboard2: number[] = [1, 3];
+  public someKeyboardConfig2: any = {
+    behaviour: 'drag',
+    connect: true,
+    start: [0, 5],
+    step: 0.1,
+    range: {
+      min: 0,
+      max: 5,
+    },
+    pips: {
+      mode: 'count',
+      density: 2,
+      values: 6,
+      stepped: true,
+    },
+    keyboard: true,
+  };
+  onChange(value: any) {
+    // console.log('Value changed to', value);
+  }
+  status1: boolean = true;
+  status2: boolean = true;
+  status3: boolean = true;
+  status4: boolean = true;
+  status5: boolean = true;
+  status6: boolean = true;
+  status7: boolean = true;
+  status8: boolean = true;
+  status9: boolean = true;
+  status10: boolean = true;
+  status11: boolean = true;
+
+  clickEvent1() {
+    document.querySelector('.toggle-primary')?.classList.toggle('on')
+  }
+  clickEvent2() {
+    document.querySelector('.toggle-secondary')?.classList.toggle('on');
+  }
+  clickEvent3() {
+    document.querySelector('.toggle-warning')?.classList.toggle('on');
+  }
+  clickEvent4() {
+    document.querySelector('.toggle-info ')?.classList.toggle('on');
+  }
+  clickEvent5() {
+    document.querySelector('.toggle-success')?.classList.toggle('on');
+  }
+  clickEvent6() {
+    document.querySelector('.toggle-danger')?.classList.toggle('on');
+  }
+  clickEvent7() {
+    document.querySelector('.toggle-light')?.classList.toggle('on');
+  } 
+  clickEvent8() {
+    document.querySelector('.toggle-dark')?.classList.toggle('on');
+  } 
+ 
+  clickEvent9() {
+    document.querySelector('.toggle-sm')?.classList.toggle('on');
+  }
+  clickEvent10() {
+    document.querySelector('.toggle-danger1')?.classList.toggle('on');
+  }
+   clickEvent11() {
+     document.querySelector('.toggle-lg')?.classList.toggle('on');
+   }
+   scroll(el: HTMLElement) {
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  scrolled: boolean | unknown = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.scrolled = window.scrollY > 10;
+
+  }
+}

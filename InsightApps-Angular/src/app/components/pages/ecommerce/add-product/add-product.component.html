@@ -1,0 +1,178 @@
+<app-page-header title="Add Product" title1="E-commerce" activeitem="Add Product"></app-page-header>
+      <!-- CONTAINER -->
+      <div class="main-container container-fluid">
+
+       
+          <!-- ROW-1 -->
+          <div class="row justify-content-center">
+             <div class="col-xl-7">
+                 <div class="card">
+                     <div class="card-header">
+                         <div class="card-title">Add New Product</div>
+                     </div>
+                     <div class="card-body">
+                         <label>Product Name</label>
+                         <div>
+                             <input type="text" class="form-control" id="input-placeholder" placeholder="Enter product Name">
+                         </div>
+                         <label class="mt-4">Product Description</label>
+                         <div class="">
+                             <div id="product-features">
+                                 <form [formGroup]="form">
+                                     <div class="editor">
+                                   <ngx-editor-menu
+                                         class="border-1"
+                                         [editor]="editor"
+                                         [toolbar]="toolbar"
+                                       >
+                                       </ngx-editor-menu>
+                                       <ngx-editor [editor]="editor" formControlName="editorContent">
+                                       </ngx-editor>
+                                     </div>
+                                   </form>
+                             
+                             
+                             </div>
+                         </div>
+                         <h6 class="fw-semibold mt-4">Upload Product</h6>
+                         <div>
+                             <div class="dropzone" [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
+         
+                         </div>
+                         <div>
+                             <h6 class="fw-semibold mt-4">General Informatioon</h6>
+                             <div class="row mt-3">
+                                 <div class="col-xl-6">
+                                     <div>
+                                         <label>Category</label>
+                                         <ng-select class="form-control p-0" name="Category" id="Category" placeholder="select">
+                                             <ng-option value="">Select</ng-option>
+                                             <ng-option value="1">Fashions</ng-option>
+                                             <ng-option value="2">Electronics</ng-option>
+                                             <ng-option value="3">Accessories</ng-option>
+                                             <ng-option value="4">Furnitures</ng-option>
+                                             <ng-option value="5">Pharmacy</ng-option>
+                                         </ng-select>
+                                     </div>
+                                 </div>
+                                 <div class="col-xl-6">
+                                     <div>
+                                         <label>Brand</label>
+                                         <ng-select class="form-control p-0" name="Brands" id="Brands" placeholder="Choose one">
+                                             <ng-option value="">Choose one</ng-option>
+                                             <ng-option value="1">Bitter Drum</ng-option>
+                                             <ng-option value="2">Empty Plate</ng-option>
+                                             <ng-option value="3">Distinct</ng-option>
+                                             <ng-option value="4">Getaway</ng-option>
+                                             <ng-option value="5">Dizzy Crow</ng-option>
+                                         </ng-select>
+                                     </div>
+                                 </div>
+                                 <div class="col-xl-6">
+                                     <div>
+                                         <label class="form-label">Size</label>
+                                         <ng-select class="form-control p-0" name="Sizes" id="Sizes" placeholder="Choose one">
+                                             <ng-option value="">Choose one</ng-option>
+                                                  <ng-option value="1">S</ng-option>
+                                                 <ng-option value="2">M</ng-option>
+                                                 <ng-option value="3">L</ng-option>
+                                                 <ng-option value="4">XL</ng-option>
+                                                 <ng-option value="5">XXL</ng-option>
+                                         </ng-select>
+                                     </div>
+                                 </div>
+                                 <div class="col-xl-6">
+                                     <div>
+                                         <label class="form-label">Color</label>
+                                         <ng-select class="form-control p-0" name="Color" id="Color" placeholder="Choose one">
+                                             <ng-option value="">Choose one</ng-option>
+                                              <ng-option value="1">Red</ng-option>
+                                             <ng-option value="2">White</ng-option>
+                                             <ng-option value="3">Black</ng-option>
+                                             <ng-option value="4">Yellow</ng-option>
+                                             <ng-option value="5">Green</ng-option>
+                                             <ng-option value="6">Blue</ng-option>
+                                             <ng-option value="7">Pink</ng-option>
+                                         </ng-select>
+                                     </div>
+                                 </div>
+                                 <div class="col-xl-6">
+                                     <label class="form-label">Cost</label>
+                                     <div class="input-group">
+                                         <button class="btn btn-light" type="button">$</button>
+                                         <input type="text" class="form-control" placeholder="0.000 /-" aria-label="Example text with button addon">
+                                     </div>
+                                 </div>
+                                 <div class="col-xl-6">
+                                     <label class="form-label">Discount</label>
+                                     <div class="input-group">
+                                         <button class="btn btn-light" type="button">%</button>
+                                         <input type="text" class="form-control" placeholder="0.000 /-" aria-label="Example text with button addon"  >
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div>
+                             <h6 class="fw-semibold mt-4">Publishing Status</h6>
+                             <div class="row mt-3">
+                                 <div class="col-xl-6">
+                                     <label for="publish-date">Published Date</label>
+                                     <div class="form-group">
+                                         <div class="input-group">
+                                             <div class="input-group-text tx-fixed-white"> <i class="ri-calendar-line"></i> </div>
+                                             <input type="text" class="form-control" id="publish-date" placeholder="Choose date"  mwlFlatpickr
+                                             [enableTime]="true"
+                                             [convertModelValue]="true"
+                                             [dateFormat]="'Y-m-d H:i'">
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-xl-6">
+                                     <label for="publish-time" >Published Time</label>
+                                     <div class="form-group">
+                                         <div class="input-group">
+                                             <div class="input-group-text tx-fixed-white"> <i class="ri-time-line"></i> </div>
+                                             <input type="text" class="form-control" id="publish-time" placeholder="Choose time"  mwlFlatpickr
+                                             [enableTime]="true"
+                                             [noCalendar]="true"
+                                             [dateFormat]="' H:i'">
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-xl-6">
+                                     <div>
+                                         <label class="form-label">Status</label>
+                                         <ng-select class="form-control p-0" name="status" id="status" placeholder="Choose one">
+                                             <ng-option value="">Choose one</ng-option>
+                                             <ng-option value="1">Choose One</ng-option>
+                                             <ng-option value="2">Published</ng-option>
+                                             <ng-option value="2">Scheduled</ng-option>
+                                         </ng-select>
+                                     </div>
+                                 </div>
+                                 <div class="col-xl-6">
+                                     <div>
+                                         <label class="form-label">Visibility</label> 
+                                         <ng-select class="form-control p-0" name="Visibility" id="Visibility" placeholder="Choose one">
+                                             <ng-option value="">Choose one</ng-option>
+                                             <ng-option value="1">Choose One</ng-option>
+                                             <ng-option value="2">Public</ng-option>
+                                             <ng-option value="2">Private</ng-option>
+                                         </ng-select>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="card-footer">
+                         <div class="float-end btn-list">
+                             <a href="javascript:void(0);" class="btn btn-light">Discard</a>
+                             <a href="javascript:void(0);" class="btn btn-primary">Add Product</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <!-- ROW-1 CLOSED -->
+      </div>
+      <!-- CONTAINER CLOSED -->

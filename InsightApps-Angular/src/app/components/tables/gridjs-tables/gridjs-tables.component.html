@@ -1,0 +1,122 @@
+<app-page-header title="GridJs Tables" title1="Tables" activeitem="GridJs Tables"></app-page-header>
+
+<!-- Start::row-1 -->
+<div class="row">
+    <div class="col-xl-12">
+      <div class="card custom-card">
+        <div class="card-header">
+          <div class="card-title">Basic Table</div>
+        </div>
+        <div class="card-body">
+          <div id="grid-example1">
+            <ngx-table
+              [configuration]="configuration"
+              [data]="data"
+              [columns]="columns"
+            >
+            </ngx-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End::row-1 -->
+  
+  <!-- Start:: row-2 -->
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card custom-card">
+        <div class="card-header">
+          <div class="card-title">Table With Pagination</div>
+        </div>
+        <div class="card-body">
+          <div id="grid-pagination">
+            <ngx-table
+              [data]="data"
+              [configuration]="configuration"
+              [columns]="columns"
+            >
+            </ngx-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End:: row-2 -->
+  
+  <!-- Start:: row-3 -->
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card custom-card">
+        <div class="card-header">
+          <div class="card-title">Table With Search</div>
+        </div>
+        <div class="card-body">
+          <input
+            class="form-input"
+            type="text"
+            id="globalSearch"
+            (input)="onChange($event)"
+            placeholder="Search"
+          />
+          <div id="grid-search">
+            <ngx-table
+              [configuration]="configuration"
+              [data]="data"
+              #table
+              [columns]="columns"
+            >
+            </ngx-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End:: row-3 -->
+  
+  <!-- Start:: row-4 -->
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card custom-card">
+        <div class="card-header">
+          <div class="card-title">Table Sorting</div>
+        </div>
+        <div class="card-body">
+          <div id="grid-sorting">
+            <ngx-table
+              [configuration]="configuration"
+              [data]="data"
+              [columns]="columns"
+              (event)="eventEmitted($event)"
+            >
+            </ngx-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End:: row-4 -->
+  
+  <!-- Start:: row-5 -->
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card custom-card">
+        <div class="card-header">
+          <div class="card-title">Table Loading</div>
+        </div>
+        <div class="card-body">
+          <div id="grid-loading">
+           
+            <ngx-table
+              [configuration]="configuration"
+              [data]="data"
+              [columns]="columns"
+            >
+            </ngx-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End:: row-5 -->
+  

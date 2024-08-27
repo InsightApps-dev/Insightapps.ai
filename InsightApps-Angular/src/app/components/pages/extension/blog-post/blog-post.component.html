@@ -1,0 +1,178 @@
+
+<app-page-header title="Blog Post" title1="Extension" activeitem="Blog Post"></app-page-header>
+      <!-- CONTAINER -->
+      <div class="main-container container-fluid">
+
+       
+ 
+                <!-- CONTAINER -->
+                    <div class="row">
+                        <div class="col-xl-9">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Add New Post</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-4">
+                                        <label class="col-md-3 mt-0 form-label">Blog Title :</label>
+                                        <div class="">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <label class="col-md-3 form-label">Categories :</label>
+                                        <div class="">
+                                            <ng-select class="form-control p-0" name="Category" id="Category" placeholder="Select">
+                                                <ng-option value="br">Technology</ng-option>
+                                                <ng-option value="cz">Travel</ng-option>
+                                                <ng-option value="de">Food</ng-option>
+                                                <ng-option value="pl">Fashion</ng-option>
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-lg-6">
+                                            <div class="">
+                                                <label class="col-md-3 form-label">Author Name:</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="">
+                                                <label class="col-md-3 form-label">Author Email:</label>
+                                                <input type="email" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Row -->
+                                    <div class="row">
+                                        <label class="col-md-3 form-label mb-4">Blog Description :</label>
+                                        <div class="mb-2">
+                                            <div id="product-features">
+                                                <form [formGroup]="form">
+                                                    <div class="editor">
+                                                  <ngx-editor-menu
+                                                        class="border-1"
+                                                        [editor]="editor"
+                                                        [toolbar]="toolbar"
+                                                      >
+                                                      </ngx-editor-menu>
+                                                      <ngx-editor [editor]="editor" formControlName="editorContent">
+                                                      </ngx-editor>
+                                                    </div>
+                                                  </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End Row-->
+
+                                    <div class="form-group mb-0">
+                                        <label class="col-md-3 form-label mb-4">File Upload :</label>
+                                        <file-pond #myPond 
+                                        [options]="pondOptions" 
+                                        [files]="pondFiles"
+                                        (oninit)="pondHandleInit()"
+                                        (onaddfile)="pondHandleAddFile($event)">
+                                    </file-pond>
+                                 </div>
+                                </div>
+                                <div class="card-footer text-end">
+                                    <a href="javascript:void(0);" class="btn btn-primary me-1">Create Post</a>
+                                    <a href="javascript:void(0);" class="btn btn-default">Discard</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Recent Posts</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <div class="d-flex overflow-visible align-items-center">
+                                            <a aria-label="anchor" routerLink="/pages/extension/blog-details"  >
+                                                <img  src="./assets/images/media/files/05.jpg" class="avatar avatar-xxl br-5 me-3 ">
+                                            </a>
+                                            <div class="ps-4 flex-column">
+                                                <span class="badge bg-primary-transparent mb-1">Lifestyle</span>
+                                                <h6 class="mb-0"><a routerLink="/pages/extension/blog-details">Generator on the Internet..</a></h6>
+                                                <div class="text-muted">Excepteur sint occaecat....</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex overflow-visible align-items-center mt-4">
+                                            <a aria-label="anchor" routerLink="/pages/extension/blog-details">
+                                                <img  src="./assets/images/media/files/10.jpg" class="avatar avatar-xxl br-5 me-3 ">
+                                            </a>
+                                            <div class="ps-4 flex-column">
+                                                <span class="badge bg-secondary-transparent mb-1">Business</span>
+                                                <h6 class="mb-0"><a routerLink="/pages/extension/blog-details">Voluptatem quia voluptas...</a></h6>
+                                                <div class="text-muted">Excepteur sint occaecat....</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex overflow-visible align-items-center mt-4">
+                                            <a aria-label="anchor" routerLink="/pages/extension/blog-details" >
+                                                <img  src="./assets/images/media/files/11.jpg" class="avatar avatar-xxl br-5 me-3 ">
+                                            </a>
+                                            <div class="ps-4 flex-column">
+                                                <span class="badge bg-success-transparent mb-1">Travel</span>
+                                                <h6 class="mb-0"><a routerLink="/pages/extension/blog-details">Generator on the Internet..</a></h6>
+                                                <div class="text-muted">Excepteur sint occaecat....</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex overflow-visible align-items-center mt-4">
+                                            <a aria-label="anchor" routerLink="/pages/extension/blog-details">
+                                                <img  src="./assets/images/media/files/06.jpg" class="avatar avatar-xxl br-5 me-3 ">
+                                            </a>
+                                            <div class="ps-4 flex-column">
+                                                <span class="badge bg-info-transparent mb-1">Meeting</span>
+                                                <h6 class="mb-0"><a routerLink="/pages/extension/blog-details">Voluptatem quia voluptas...</a></h6>
+                                                <div class="text-muted">Excepteur sint occaecat....</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Professional Blog Writers</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <div class="d-flex overflow-visible">
+                                            <img class="avatar bradius avatar-xl me-3" src="./assets/images/users/1.jpg" alt="avatar-img">
+                                            <div class="media-body valign-middle">
+                                                <a routerLink="/pages/profile" class="h6 fw-semibold">Simon Sais</a>
+                                                <p class="text-muted mb-0">There are many variations of passages of Lorem Ipsum available ...</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex overflow-visible mt-4">
+                                            <img class="avatar bradius avatar-xl me-3" src="./assets/images/users/3.jpg" alt="avatar-img">
+                                            <div class="media-body valign-middle">
+                                                <a routerLink="/pages/profile" class="h6 fw-semibold">Cherry Blossom</a>
+                                                <p class="text-muted mb-0">There are many variations of passages of Lorem Ipsum available ...</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex overflow-visible mt-4">
+                                            <img class="avatar bradius avatar-xl me-3" src="./assets/images/users/5.jpg" alt="avatar-img">
+                                            <div class="media-body valign-middle">
+                                                <a routerLink="/pages/profile" class="h6 fw-semibold">Ivan Notheridiya</a>
+                                                <p class="text-muted mb-0">There are many variations of passages of Lorem Ipsum available ...</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex overflow-visible mt-4">
+                                            <img class="avatar bradius avatar-xl me-3" src="./assets/images/users/15.jpg" alt="avatar-img">
+                                            <div class="media-body valign-middle">
+                                                <a routerLink="/pages/profile" class="h6 fw-semibold">Manny Jah</a>
+                                                <p class="text-muted mb-0">There are many variations of passages of Lorem Ipsum available ...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- CONTAINER CLOSED -->
+            </div>
+            <!-- CONTAINER CLOSED -->
