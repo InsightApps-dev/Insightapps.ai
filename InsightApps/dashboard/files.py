@@ -1,7 +1,7 @@
 import os,requests,pdfplumber,boto3
 from project import settings
 import pandas as pd
-from dashboard import views,serializers,models,roles,previlages
+from dashboard import views,serializers,models,roles,previlages,Connections
 import datetime,re
 from io import BytesIO
 from pytz import utc
@@ -12,6 +12,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from pathlib import Path
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 
 
 
@@ -30,12 +32,13 @@ def read_excel_file(file_path,filename,file_id):
         result = {"schemas": []}
         l=[]
         file_n=Path(str(file_path))
+        cleaned_name = re.sub(r'^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}', '', str(filename))
         for i in xls.sheet_names:
             data_csv = pd.read_excel(file_path,sheet_name=i)
             data_csv = data_csv.fillna(value='NA')
             headers = data_csv.columns.tolist()
 
-            l.append({"schema":filename,"table":i,"columns":[{'column':colm,'datatypes':None} for colm in headers]})
+            l.append({"schema":cleaned_name,"table":i,"columns":[{'column':colm,'datatypes':None} for colm in headers]})
             # data ={
             #     # "schemas":filename,
             #     "schemas":a,
@@ -45,15 +48,15 @@ def read_excel_file(file_path,filename,file_id):
             #     # "columns":[{'columns':colm,'datatypes':None} for colm in headers]
             # }
             # l.append(data)
-        result["schemas"].append({"schema": file_n.stem, "tables": l})
+        result["schemas"].append({"schema": cleaned_name, "tables": l})
 
         f_dt={
             "status":200,
             "message":"Successfully Connected to file",
             "data":result,
             "file_id":file_id,
-            "filename":filename,
-            "display_name":filename
+            "filename":cleaned_name,
+            "display_name":cleaned_name
         }
         return f_dt
     except Exception as e:
@@ -62,6 +65,7 @@ def read_excel_file(file_path,filename,file_id):
             "message":e
         }
         return f_dt
+
 
 
 def read_csv_file(file_path,filename,file_id):
@@ -79,14 +83,15 @@ def read_csv_file(file_path,filename,file_id):
         #     "columns":[{'columns':colm,'datatypes':None} for colm in headers]
         # }
         # l1.append(d1)
-        l1.append({"schema":file_n.stem,"table":file_n.stem,"columns":[{'column':colm,'datatypes':None} for colm in headers]})
+        cleaned_name = re.sub(r'^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}', '', str(file_n.stem))
+        l1.append({"schema":cleaned_name,"table":cleaned_name,"columns":[{'column':colm,'datatypes':None} for colm in headers]})
         result["schemas"].append({"schema": filename, "tables": l1})
         f_dt={
             "status":200,
             "message":"Successfully Connected to file",
             "file_id":file_id,
             "filename":filename,
-            "sheet_names":[file_n.stem],
+            "sheet_names":[cleaned_name],
             # "data":df
             "data":result,
             "display_name":filename
@@ -174,23 +179,22 @@ class UploadFileAPI(CreateAPIView):
             serializer = self.serializer_class(data=request.data)
             if serializer.is_valid(raise_exception=True):
                 file_type = serializer.validated_data['file_type']
-                file_path1 = serializer.validated_data['file_path']
+                file_path112 = serializer.validated_data['file_path']
                 s3 = boto3.client('s3', aws_access_key_id=settings.AWS_S3_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_S3_SECRET_ACCESS_KEY)
-                filename = get_file_name(file_path1)
-                fileext = get_file_extension(file_path1)
-                file_path=file_path1.name.replace('_','').replace(' ','').replace('&','') ## to clean the unnecessary spaces in file name
-                file_key = f'insightapps/{file_path}'
-                try:
-                    s3.upload_fileobj(file_path1, settings.AWS_STORAGE_BUCKET_NAME, file_key)
-                except:
-                    with open(file_path1.temporary_file_path(), 'rb') as data:  ## read that binary data in a file(before replace file data)
-                        s3.upload_fileobj(data, settings.AWS_STORAGE_BUCKET_NAME, file_key)  ## pass that data in data and replaced file name in file key.
-                file_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{file_key}"
+                filename = get_file_name(file_path112)
+                fileext = get_file_extension(file_path112)
+                file_path=file_path112.name.replace('_','').replace(' ','').replace('&','') ## to clean the unnecessary spaces in file name
+
+                file_save=Connections.file_files_save(file_path,file_path112)
+                file_url=file_save['file_url']
+                file_path1=file_save['file_key']
+
                 if models.FileType.objects.filter(file_type=file_type.upper()).exists:
                     ft = models.FileType.objects.get(file_type=file_type.upper())
                     file_cr=models.FileDetails.objects.create(
                         file_type = ft.id,
                         source = file_url,
+                        datapath=file_path1,
                         display_name = str(file_path),
                         user_id = tok1['user_id'],
                     )
@@ -228,14 +232,15 @@ def files_data_fetch(request,file_id,token):
             if models.FileDetails.objects.filter(id=file_id,user_id=tok1['user_id']).exists():
                 file=models.FileDetails.objects.get(id=file_id,user_id=tok1['user_id'])
                 fi_type=models.FileType.objects.get(id=file.file_type)
+                filename = re.sub(r'^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}', '', file.display_name)
                 if fi_type.file_type=='EXCEL':
-                    data = read_excel_file(file.source,file.display_name,file.id)
+                    data = read_excel_file(file.source,filename,file.id)
                 elif fi_type.file_type=='CSV':
-                    data = read_csv_file(file.source,file.display_name,file.id)
+                    data = read_csv_file(file.source,filename,file.id)
                 elif fi_type.file_type=='PDF':
-                    data = read_pdf_file(file.source,file.display_name,file.id)
+                    data = read_pdf_file(file.source,filename,file.id)
                 elif fi_type.file_type=='TEXT':
-                    data = read_text_file(file.source,file.display_name,file.id)
+                    data = read_text_file(file.source,filename,file.id)
                 else:
                     return Response({'error': 'Unsupported file type/format'}, status=status.HTTP_406_NOT_ACCEPTABLE)
                 if data['status']==200:
@@ -258,12 +263,26 @@ def files_delete(request,file_id,token):
         if tok1['status']==200:
             if models.FileDetails.objects.filter(id=file_id,user_id=tok1['user_id']).exists():
                 file=models.FileDetails.objects.get(id=file_id,user_id=tok1['user_id'])
-                pattern = r'/insightapps/(.*)'
-                match = re.search(pattern, file.source)
-                result = match.group(1)
-                s3 = boto3.client('s3', aws_access_key_id=settings.AWS_S3_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_S3_SECRET_ACCESS_KEY)
-                s3.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=str(result))
-                file=models.FileDetails.objects.filter(id=file_id,user_id=tok1['user_id']).delete()
+                # pattern = r'/insightapps/(.*)'
+                # match = re.search(pattern, file.source)
+                # result = match.group(1)
+                # s3 = boto3.client('s3', aws_access_key_id=settings.AWS_S3_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_S3_SECRET_ACCESS_KEY)
+                # s3.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=str(result))
+                qr_list=models.QuerySets.objects.filter(file_id=file.id).values()
+                for qr_id in qr_list:
+                    sh_dt=models.sheet_data.objects.filter(queryset_id=qr_id['queryset_id']).values()
+                    for qr in sh_dt:
+                        dsdt=models.dashboard_data.objects.filter(sheet_ids__contains=str(qr['id'])).values()
+                        Connections.sheet_ds_delete(dsdt,qr['id'],file.id,qr_id['queryset_id'])
+                    models.QuerySets.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    models.DataSource_querysets.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    models.DataSourceFilter.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    models.sheet_data.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    models.SheetFilter_querysets.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    models.ChartFilters.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    models.DashboardFilters.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                models.FileDetails.objects.filter(id=file_id,user_id=tok1['user_id']).delete()
+                Connections.delete_file(file.datapath)
                 return Response({'message':'File deleted successfully'},status=status.HTTP_200_OK)
             else:
                 return Response({'message':'File not found'},status=status.HTTP_404_NOT_FOUND)

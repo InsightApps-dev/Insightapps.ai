@@ -182,7 +182,7 @@
                     </div>
                 </div>
                 <div *ngIf="savedDashboardList.length === 0">
-                    No Dashboard please CREATE ONE!
+                    No dashboards to display!
                 </div>
                 <ng-container *ngFor="let dashboardList of savedDashboardList;let i = index" >
                     <div *ngIf="i < 11" class="col-xxl-3 col-xl-3 col-lg-3 col-md-3">
@@ -283,7 +283,7 @@
                     </div>
                 </div>
                 <div *ngIf="userSheetsList.length === 0">
-                    No Charts please CREATE ONE!
+                    No charts to display!
                 </div>
                 <ng-container *ngFor="let sheetlist of userSheetsList;let i = index">
                     <div *ngIf="i < 11" class="col-xxl-3 col-xl-3 col-lg-3 col-md-3">
@@ -427,7 +427,7 @@
                     </div>
                 </div>
                 <div *ngIf="savedQueryList.length === 0">
-                    No Queries please CREATE ONE!
+                    No queries to display!
                 </div>
 
                 <ng-container *ngFor="let savedQuery of savedQueryList;let i = index">
@@ -503,9 +503,9 @@
                 <div class="d-flex align-items-center justify-content-between border-bottom mb-2">
                     <h6 class="fw-bold mb-1 fs-18"> Quick Start</h6>
                     <div class="view-card">
-                            <a class="">
+                            <!-- <a class="">
                                 <span class="add-txt text-info me-2 card-title" >View More <i class="fa fa-angle-double-right"> </i></span>
-                            </a>
+                            </a> -->
                     </div>
                 </div>
                 <div  class="col-xxl-3 col-xl-3 col-lg-6 col-md-6">
@@ -620,7 +620,7 @@
           <div class="">
             
             <p class="fw-semibold mb-2 mt-3">Share/publish</p>
-            <ng-select class="form-control p-0" name="choices-multiple-remove-button" id="choices-multiple-remove-button" (change)="sharePublish($event)" [closeOnSelect]="true" [(ngModel)]="selectedRoleIds"  placeholder="Share or Publish">
+            <ng-select class="form-control p-0" name="choices-multiple-remove-button" id="choices-multiple-remove-button" (change)="sharePublish($event)" [closeOnSelect]="true" placeholder="Share or Publish">
              <ng-option  value="public" selected>Public</ng-option>
              <ng-option  value="private" selected>Private</ng-option>
             </ng-select>
@@ -641,7 +641,7 @@
               
             </ng-select>
        </div>
-       <div *ngIf="createUrl" class="">
+       <div *ngIf="publishedDashboard" class="">
             
         <p class="fw-semibold mb-2 mt-3">Url</p>
         <button class="btn text-left" style="border: 1px solid #edebeb;width: 100%;">{{publicUrl}}
@@ -654,7 +654,9 @@
    </div>
       </div>
       <div class="modal-footer">
-        <button type="button" (click)="saveDashboardProperties()" class="btn ripple btn-primary">Apply</button>
+        <button type="button" *ngIf="!createUrl" (click)="saveDashboardProperties()" class="btn ripple btn-primary">Apply</button>
+        <button type="button" *ngIf="createUrl" (click)="publishDashboard()" class="btn ripple btn-primary">Publish</button>
+
         <button
           type="button"
           class="btn ripple btn-secondary"

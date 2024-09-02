@@ -34,7 +34,8 @@
               "src/.htaccess"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ckeditor5/dist/ckeditor5.css"
             ],
             "scripts": []
           },

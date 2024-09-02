@@ -39,6 +39,7 @@ usersOnSelectedRole =[] as any;
 selectedUserIds = [] as any;
 selectedUserIdsToNumbers = [] as any;
 dashboardPropertyTitle :any;
+dashboardPropertyId:any;
 dashboardId :any;
 createUrl =false;
 shareAsPrivate = false;
@@ -46,6 +47,8 @@ UrlCopy:string | null = null;
 publicUrl:any;
 port:any;
 host:any;
+publishedDashboard = false;
+testVariableToChange! : string ;
 @ViewChild('propertiesModal') propertiesModal : any;
 
 constructor(private router:Router,private workbechService:WorkbenchService,private templateService:ViewTemplateDrivenService,public modalService:NgbModal,private cdr: ChangeDetectorRef,private toasterservice:ToastrService){
@@ -83,7 +86,7 @@ getDbConnectionList(){
   const Obj ={
     search : this.searchDbName
   }
-  if(Obj.search == '' || Obj.search == null){
+  if(Obj.search === '' || Obj.search === null){
     delete Obj.search;
   }
   this.workbechService.getdatabaseConnectionsList(Obj).subscribe({
@@ -108,7 +111,7 @@ getuserSheets(){
     search:this.wholeSearch,
     // page_count:'12'
   }
-  if(Obj.search === ' ' || Obj.search === null){
+  if(Obj.search === '' || Obj.search === null || Obj.search === ' '){
     delete Obj.search;
   }
   this.workbechService.getUserSheetListPut(Obj).subscribe(
@@ -135,7 +138,7 @@ getuserDashboardsList(){
     page_count:'12'
 
   }
-  if(Obj.search == ' ' || Obj.search == null){
+  if(Obj.search === ' ' || Obj.search === null || Obj.search === ''){
     delete Obj.search;
   }
   this.workbechService.getuserDashboardsListput(Obj).subscribe(
@@ -162,7 +165,7 @@ getSavedQueries(){
     page_count:'12'
 
   }
-  if(Obj.search == ' ' || Obj.search == null){
+  if(Obj.search === ' ' || Obj.search === null || Obj.search === ''){
     delete Obj.search;
   }
   this.workbechService.getSavedQueryList(Obj).subscribe({
@@ -182,8 +185,8 @@ getSavedQueries(){
   }) 
 }
 viewDashboard(serverId:any,querysetId:any,dashboardId:any){
-  const encodedServerId = btoa(serverId.toString());
-  const encodedQuerySetId = btoa(querysetId.toString());
+  // const encodedServerId = btoa(serverId.toString());
+  // const encodedQuerySetId = btoa(querysetId.toString());
   const encodedDashboardId = btoa(dashboardId.toString());
 
   this.router.navigate(['/workbench/landingpage/sheetsdashboard/'+encodedDashboardId])
@@ -420,9 +423,11 @@ viewSheet(serverId:any,fileId:any,querysetId:any,sheetId:any){
   this.modalService.open(this.propertiesModal);
   this.getRoleDetailsDshboard();
   this.dashboardPropertyTitle = name;
+  this.dashboardPropertyId = dashboardId;
   this.dashboardId = dashboardId;
+  this.publishedDashboard = false;
+  this.shareAsPrivate = false;
   this.getAddedDashboardProperties();
-
   }
   getAddedDashboardProperties(){
     this.workbechService.getAddedDashboardProperties(this.dashboardId).subscribe({
@@ -486,6 +491,7 @@ getUsersforRole(){
 ///share publish
 sharePublish(value:any){
 console.log(value);
+this.testVariableToChange = value;
 if(value === 'public'){
   this.createUrl = true;
   this.shareAsPrivate = false
@@ -573,6 +579,25 @@ saveDashboardProperties(){
         text: data.message,
         width: '400px',
       })
+     },
+    error:(error)=>{
+      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'oops!',
+        text: error.error.message,
+        width: '400px',
+      })
+    }
+  })
+}
+
+publishDashboard(){
+  this.workbechService.publishDashbord(this.dashboardPropertyId).subscribe({
+    next:(data)=>{
+      console.log(data);
+      this.toasterservice.success('Dashboard Published','success',{ positionClass: 'toast-center-center'})
+      this.publishedDashboard = true;
      },
     error:(error)=>{
       console.log(error);

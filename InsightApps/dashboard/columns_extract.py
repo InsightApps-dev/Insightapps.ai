@@ -15,8 +15,10 @@ import datetime
 import boto3,pyodbc
 import json
 import requests
+import os
 from project import settings
 import io
+from pathlib import Path
 import sqlite3
 import sqlparse
 from sqlparse.sql import IdentifierList, Identifier
@@ -31,7 +33,10 @@ from urllib.parse import quote
 
 
 def server_connection(username, password, database, hostname,port,service_name,parameter,server_path):
-    password1234=views.decode_string(password)
+    try:
+        password1234=views.decode_string(password)
+    except:
+        pass
     try:
         if parameter=="POSTGRESQL":
             url = "postgresql://{}:{}@{}:{}/{}".format(username,password1234,hostname,port,database)
@@ -157,32 +162,62 @@ def get_sqlalchemy_type(type_code):
     value =type_code_map.get(type_code, String)()
     return value
 
+
+def file_check(para,file_name):
+    project_directory = os.path.dirname(os.path.abspath(__file__))
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    db_file_path = os.path.join(BASE_DIR, str(file_name))
+
+    if para=='check':
+        if not os.path.exists(db_file_path):
+            open(db_file_path, 'a').close()
+        else:
+            pass
+    else:
+        os.remove(db_file_path)
+        open(db_file_path, 'a').close()
+        
+
+def excel_file_data(xls,sheet_name):
+    for i in xls.sheet_names:
+        sheet_name.append(i)
+        data_csv = pd.read_excel(xls,sheet_name=i)
+        data_csv = data_csv.fillna(value='NA')
+        url =f'sqlite:///columns.db'
+        engine = create_engine(url)
+        for column in data_csv.columns:
+            if data_csv[column].dtype == 'object':
+                data_csv[column] = data_csv[column].astype(str)  # Convert to TEXT
+            elif data_csv[column].dtype == 'int64':
+                data_csv[column] = data_csv[column].astype(int)  # Convert to INTEGER
+            elif data_csv[column].dtype == 'float64':
+                data_csv[column] = data_csv[column].astype(float)
+        data_csv.to_sql(i, engine, index=False, if_exists='replace')
+    data = {
+        'engine':engine,
+        'sheet_name':sheet_name
+    }
+    return data
+
 def read_excel_file_data(file_path,filename):
     try:
         encoded_url = quote(file_path, safe=':/')
         xls = pd.ExcelFile(encoded_url)
         l=[]
         sheet_name = []
-        for i in xls.sheet_names:
-            sheet_name.append(i)
-            data_csv = pd.read_excel(xls,sheet_name=i)
-            data_csv = data_csv.fillna(value='NA')
-            url =f'sqlite:///columns.db'
-            engine = create_engine(url)
-            for column in data_csv.columns:
-                if data_csv[column].dtype == 'object':
-                    data_csv[column] = data_csv[column].astype(str)  # Convert to TEXT
-                elif data_csv[column].dtype == 'int64':
-                    data_csv[column] = data_csv[column].astype(int)  # Convert to INTEGER
-                elif data_csv[column].dtype == 'float64':
-                    data_csv[column] = data_csv[column].astype(float)
-            data_csv.to_sql(i, engine, index=False, if_exists='replace')
-            f_dt = {
-                "status":200,
-                "engine":engine,
-                "cursor":engine.connect(),
-                "tables_names":sheet_name
-            }
+        file_check('check',file_name='columns.db')
+        try:
+            excl_dt=excel_file_data(xls,sheet_name)
+        except:
+            file_check('remove',file_name='columns.db')
+            excl_dt=excel_file_data(xls,sheet_name)
+
+        f_dt = {
+            "status":200,
+            "engine":excl_dt['engine'],
+            "cursor":excl_dt['engine'].connect(),
+            "tables_names":excl_dt['sheet_name']
+        }
         return f_dt
     except Exception as e:
         f_dt = {
@@ -196,9 +231,16 @@ def read_csv_file_data(file_path,filename):
     try:
         df = pd.read_csv(file_path)
         df = df.fillna(value='NA')
+        file_check('check',file_name='columns.db')
         url =f'sqlite:///columns.db'
-        engine = create_engine(url)
-        df.to_sql(filename, engine, index=False, if_exists='replace')
+        try:
+            engine = create_engine(url)
+            df.to_sql(filename, engine, index=False, if_exists='replace')
+        except:
+            file_check('remove',file_name='columns.db')
+            engine = create_engine(url)
+            df.to_sql(filename, engine, index=False, if_exists='replace')
+            
         f_dt = {
                 "status":200,
                 "engine":engine,
@@ -213,6 +255,47 @@ def read_csv_file_data(file_path,filename):
         }
         return f_dt
     
+
+def columns_first_data(codes,result):
+    seen_columns = {}
+    column_list = []
+    for column in codes:
+        column_name = column[0]
+        if column_name in seen_columns:
+            seen_columns[column_name] += 1
+            column_name = f"{column_name}_{seen_columns[column_name]}"
+        else:
+            seen_columns[column_name] = 0
+        column_list.append(column_name)
+    first_record = result.fetchone()
+    column_wise_first_record = {}
+    if first_record is not None:
+        for index, column_name in enumerate(column_list):
+            column_wise_first_record[column_name] = first_record[index]
+    data_values = list(column_wise_first_record.values())
+    return data_values
+    
+
+def classify_data_type(value):
+    if isinstance(value, int):  # Rule for Integer
+        return 'int'
+    elif isinstance(value, float):  # Rule for Float
+        return 'float'
+    elif isinstance(value, bool):  # Rule for Boolean
+        return 'bool'
+    elif isinstance(value, datetime.datetime):  # Rule for Date
+        return 'date'
+    elif isinstance(value, str):  # Rule for String-based types
+        if re.match(r'^[a-zA-Z]+$', value):  # Rule for pure string
+            return 'string'
+        elif re.match(r'^[a-zA-Z0-9]+$', value):  # Rule for alphanumeric (varchar)
+            return 'varchar'
+        elif re.match(r'^\d{1,2}-\d{1,2}-\d{4}$', value):  # Rule for date-like string (dd-mm-yyyy)
+            return 'date'
+    # Default case: If none of the above, consider it as varchar
+    return 'varchar'  
+
+
 
 def delete_tables_sqlite(cur,engine,tables):
     # if len(tables)>0:
@@ -234,48 +317,56 @@ def delete_tables_sqlite(cur,engine,tables):
 
     
 def file_details(file_type,file_data):
-    if file_type is not None or  file_data !='' or file_data is not  None or file_data !='':
-        pattern = r'/insightapps/(.*)'
-        match = re.search(pattern, str(file_data.source))
-        filename = match.group(1)
-        file,fileext = filename.split('.')
-        file_url = file_data.source
-        if (file_type.upper()=='EXCEL' and fileext == 'xlsx') or (file_type.upper()=='EXCEL' and fileext == 'xls'):
-            read_data = read_excel_file_data(file_url,file)
-        elif  file_type.upper()=='CSV' and fileext == 'csv':
-            read_data = read_csv_file_data(file_url,file)
-        else:
-            return 'Nodata'
+    try:
+        if file_type is not None or  file_data !='' or file_data is not  None or file_data !='':
+            pattern = r'/insightapps/(.*)'
+            match = re.search(pattern, str(file_data.source))
+            filename = match.group(1)
+            file12,fileext = filename.split('.')
+            file = re.sub(r'^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}', '', str(file12))
+            file_url = file_data.source
+            if (file_type.upper()=='EXCEL' and fileext == 'xlsx') or (file_type.upper()=='EXCEL' and fileext == 'xls'):
+                read_data = read_excel_file_data(file_url,file)
+            elif  file_type.upper()=='CSV' and fileext == 'csv':
+                read_data = read_csv_file_data(file_url,file)
+            else:
+                return 'Nodata'
 
-        if read_data['status'] ==200:
-            data = {
-                'status':200,
-                'engine':read_data['engine'],
-                'cursor':read_data['cursor'],
-                'tables_names':read_data['tables_names']
-            } 
-        else:
-            data = {
-                'status':read_data['status'],
-                'message':read_data
-            }
-        return data
-    else:
+            if read_data['status'] ==200:
+                data = {
+                    'status':200,
+                    'engine':read_data['engine'],
+                    'cursor':read_data['cursor'],
+                    'tables_names':read_data['tables_names']
+                } 
+            else:
+                data = {
+                    'status':read_data['status'],
+                    'message':read_data
+                }
+            return data
+    except:
         data = {
             'status':400,
-            'message':'no Data'
+            'message':'no Data/database locked'
         }
         return data 
     
 
 
-def classify_columns(names, type):
+def classify_columns(column_wise_first_record,names, type):
     types=[str(col).replace("()", '').lower() for col in type]
-    dimension_types = ['String','string','Date', 'TIMESTAMP', 'Boolean', 'Time', 'datetime','varchar','bp char','text','varchar2','NVchar2','long','char','Nchar','character varying','date','time','datetime','timestamp','timestamp with time zone','timestamp without time zone','timezone','time zone','bool','boolean']
+    dimension_types = ['String','string','Date', 'TIMESTAMP', 'Boolean','bool', 'Time', 'datetime','varchar','bp char','text','varchar2','NVchar2','long','char','Nchar','character varying','date','time','datetime','timestamp','timestamp with time zone','timestamp without time zone','timezone','time zone','bool','boolean']
     measure_types = ['Integer', 'Float', 'Numeric', 'int', 'float','numeric','float','number','double precision','smallint','integer','bigint','decimal','numeric','real','smallserial','serial','bigserial','binary_float','binary_double']
     dimensions = []
     measures = []
-    for name, dtype in zip(names, types):
+    classified_data_types = [classify_data_type(value) for value in column_wise_first_record]
+    if classified_data_types==[] or classified_data_types==None:
+        classified_data_types=types
+    else:
+        classified_data_types=classified_data_types
+    # for name, dtype,cl_data in zip(names,types,column_wise_first_record):
+    for name, dtype in zip(names,classified_data_types):
         if dtype in dimension_types:
             dimensions.append({"column":name,"data_type":str(dtype)})
         elif dtype in measure_types:
@@ -350,7 +441,7 @@ def query_filter(sql_query,server_type):
         return columns_info
 
 
-def custom_sql(cursor,type_codes,column_list,ser_db_data,server_details_id,queryset_id,data_types,parameter):
+def custom_sql(column_wise_first_record,cursor,type_codes,column_list,ser_db_data,server_details_id,queryset_id,data_types,parameter):
     if parameter=="file":
         server_id=None
         file_id=server_details_id
@@ -365,7 +456,7 @@ def custom_sql(cursor,type_codes,column_list,ser_db_data,server_details_id,query
         dt_list=dt_list
     else:
         dt_list=data_types
-    dimensions,measures=classify_columns(column_list,dt_list)
+    dimensions,measures=classify_columns(column_wise_first_record,column_list,dt_list)
     fl_data=[]
     data = {
         "database_name":ser_db_data.display_name,
@@ -381,7 +472,7 @@ def custom_sql(cursor,type_codes,column_list,ser_db_data,server_details_id,query
     fl_data.append(data)
     return Response(fl_data,status=status.HTTP_200_OK)
 
-def joining_sql(cursor,type_codes,engine,quer_tb,queryset_id,server_id,ser_db_data,server_type,data_types,parameter):
+def joining_sql(column_wise_first_record,search,cursor,type_codes,engine,quer_tb,queryset_id,server_id,ser_db_data,server_type,data_types,parameter):
     if parameter=="file":
         server_id1=None
         file_id=server_id
@@ -440,7 +531,7 @@ def joining_sql(cursor,type_codes,engine,quer_tb,queryset_id,server_id,ser_db_da
         for i in user_columns:
             cls1.append(i['column'])
             dts1.append(i['data_type'])
-        dimensions,measures=classify_columns(cls1,dts1)
+        dimensions,measures=classify_columns(column_wise_first_record,cls1,dts1)
         del res1[table_index][1]['columns']  # Remove the 'columns' key from the table data
         res1[table_index][1]['dimensions'] = dimensions
         res1[table_index][1]['measures'] = measures
@@ -456,7 +547,11 @@ def joining_sql(cursor,type_codes,engine,quer_tb,queryset_id,server_id,ser_db_da
         cleaned_data=cleaned_data
     else:
         cleaned_data=cleaned_data[:-1]
-    return Response(cleaned_data,status=status.HTTP_200_OK)
+    if search=='' or search==None:
+        data_fn=cleaned_data
+    else:
+        data_fn=[item for item in cleaned_data if str(search).lower() in item.get('table_alias', '').lower()]
+    return Response(data_fn,status=status.HTTP_200_OK)
 
 
 def mongo_db_data(engine,display_name,server_id,queryset_id):
@@ -500,6 +595,7 @@ class new_column_extraction(CreateAPIView):
                 server_details_id=serializer.validated_data['db_id']
                 queryset_id=serializer.validated_data['queryset_id']
                 file_id=serializer.validated_data['file_id']
+                search=serializer.validated_data['search']
                 if server_details_id==None or server_details_id=='':
                     try:
                         file_db_data=models.FileDetails.objects.get(id=file_id)
@@ -531,14 +627,15 @@ class new_column_extraction(CreateAPIView):
                         type_codes = [column[1] for column in codes]
                         column_list = [column[0] for column in codes]
                         data_types=None
+                        column_wise_first_record=columns_first_data(codes,result)
                     else:
                         return Response({"message":files_data['message']},status=files_data['status'])
                     if quer_tb.is_custom_sql==True:
                         custom=custom_sql(cursor,type_codes,column_list,file_db_data,file_id,queryset_id,data_types,parameter="file")
-                        delete_tables_sqlite(cursor,engine,files_data['tables_names'])
+                        delete_tables_sqlite(column_wise_first_record,cursor,engine,files_data['tables_names'])
                         return custom
                     else:
-                        joining=joining_sql(cursor,type_codes,engine,quer_tb,queryset_id,file_id,file_db_data,file_data.file_type.upper(),data_types,parameter="file")
+                        joining=joining_sql(column_wise_first_record,search,cursor,type_codes,engine,quer_tb,queryset_id,file_id,file_db_data,file_data.file_type.upper(),data_types,parameter="file")
                         delete_tables_sqlite(cursor,engine,files_data['tables_names'])
                         return joining
                 elif file_id==None or file_id=='':
@@ -550,6 +647,7 @@ class new_column_extraction(CreateAPIView):
                             mongo=mongo_db_data(engine,ser_db_data.display_name,server_details_id,queryset_id)
                             return mongo
                         else:
+                            column_wise_first_record = {}
                             if ser_data.server_type.upper()=="MICROSOFTSQLSERVER":
                                 query = "{}".format(quer_tb.custom_query)
                                 result = cursor.execute(query)
@@ -557,19 +655,21 @@ class new_column_extraction(CreateAPIView):
                                 column_list = [column[0] for column in codes]
                                 type_codes = [column[1] for column in codes]
                                 data_types = [data_type[1].__name__ for data_type in codes]
+                                column_wise_first_record=columns_first_data(codes,result)
                             else:
                                 result=cursor.execute(text(quer_tb.custom_query))
                                 codes=result.cursor.description
                                 type_codes = [column[1] for column in codes]
                                 column_list = [column[0] for column in codes]
                                 data_types=None
+                                column_wise_first_record=columns_first_data(codes,result)
                     else:
                         return Response({"message":connect1['message']},status=connect1['status'])
                     if quer_tb.is_custom_sql==True:
-                        custom=custom_sql(cursor,type_codes,column_list,ser_db_data,server_details_id,queryset_id,data_types,parameter="server")
+                        custom=custom_sql(column_wise_first_record,cursor,type_codes,column_list,ser_db_data,server_details_id,queryset_id,data_types,parameter="server")
                         return custom
                     else:
-                        joining=joining_sql(cursor,type_codes,engine,quer_tb,queryset_id,server_details_id,ser_db_data,ser_data.server_type.upper(),data_types,parameter="server")
+                        joining=joining_sql(column_wise_first_record,search,cursor,type_codes,engine,quer_tb,queryset_id,server_details_id,ser_db_data,ser_data.server_type.upper(),data_types,parameter="server")
                         return joining
                 else:
                     return Response({'message':'not acceptable'},status=status.HTTP_406_NOT_ACCEPTABLE)

@@ -331,8 +331,8 @@ class DashboardFilterSave(CreateAPIView):
         
 class DashboardFilterColumnDataPreview(CreateAPIView):
     serializer_class = serializers.Dashboard_datapreviewSerializer
-    def post(self, request, token):
-        if token==settings.DEFAULT_TOKEN:
+    def post(self, request, token=None):
+        if token==None:
             tok_status=200
         else:
             tok1 = test_token(token)
@@ -355,12 +355,14 @@ class DashboardFilterColumnDataPreview(CreateAPIView):
         column = DashboardFilters.objects.get(id = filter_id).column_name
         datatype = DashboardFilters.objects.get(id = filter_id).column_datatype
         database_id,file_id,joining_tables,custom = get_server_id(query_id)
-        
-        if token==settings.DEFAULT_TOKEN:
-            dashboarddata=dashboard_data.objects.get(id=dashboard_id)
+        dashboarddata=dashboard_data.objects.get(id=dashboard_id)
+
+        if dashboarddata.is_public==True and token==None:
             user_id=dashboarddata.user_id
+        elif dashboarddata.is_public==False and token==None:
+            return Response({'message':'access token in needed'},status=status.HTTP_406_NOT_ACCEPTABLE)
         else:
-            user_id = tok1['user_id']
+            user_id=tok1['user_id']  
         try:
             con_data =connection_data_retrieve(database_id,file_id,user_id)
             if con_data['status'] ==200:                
@@ -436,8 +438,8 @@ class DashboardFilterColumnDataPreview(CreateAPIView):
 class FinalDashboardFilterData(CreateAPIView):
     serializer_class = serializers.SheetDataSerializer
 
-    def post(self, request, token):
-        if token==settings.DEFAULT_TOKEN:
+    def post(self, request, token=None):
+        if token==None:
             tok_status=200
         else:
             tok1 = test_token(token)
@@ -470,11 +472,13 @@ class FinalDashboardFilterData(CreateAPIView):
         except dashboard_data.DoesNotExist:
             return Response({'message': 'Invalid dashboard ID'}, status=status.HTTP_404_NOT_FOUND)
 
-        if token==settings.DEFAULT_TOKEN:
-            dashboarddata=dashboard_data.objects.get(id=dashboard_id)
+        dashboarddata=dashboard_data.objects.get(id=dashboard_id)
+        if dashboarddata.is_public==True and token==None:
             user_id=dashboarddata.user_id
+        elif dashboarddata.is_public==False and token==None:
+            return Response({'message':'access token in needed'},status=status.HTTP_406_NOT_ACCEPTABLE)
         else:
-            user_id = tok1['user_id']
+            user_id=tok1['user_id']   
 
         try:
             con_data =connection_data_retrieve(database_id,file_id,user_id)
@@ -646,8 +650,8 @@ class FinalDashboardFilterData(CreateAPIView):
 class Dashboard_filters_list(CreateAPIView):
     serializer_class = serializers.dashboard_filter_list
 
-    def post(self, request, token):
-        if token==settings.DEFAULT_TOKEN:
+    def post(self, request, token=None):
+        if token==None:
             tok_status=200
         else:
             role_list = roles.get_previlage_id(previlage=[previlages.view_dashboard_filter,previlages.view_dashboard,previlages.edit_dasboard])
@@ -858,18 +862,66 @@ class Nofiltersheet(CreateAPIView):
 
     
 class DashboardFilterDelete(CreateAPIView):
-    def delete(self, request, token,filter_id):
+    serializer_class = serializers.dashboard_filter_delete
+    def post(self, request, token):
         role_list=roles.get_previlage_id(previlage=[previlages.delete_dashboard_filter])
         tok1 = roles.role_status(token,role_list)
         if tok1['status'] != 200:
             return Response({"message": tok1['message']}, status=status.HTTP_404_NOT_FOUND)
-        sheet_ids = eval(DashboardFilters.objects.get(id = filter_id).sheet_id_list)
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        filter_ids = serializer.validated_data["filter_id"]
+        for fil in filter_ids:
+            if DashboardFilters.objects.filter(id=fil).exists():
+                DashboardFilters.objects.get(id=fil).delete()
+            else:
+                return Response({"message": "Dashboard filter ID not found"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"message": "Filter Deleted Successfully"},status=status.HTTP_200_OK)
+        
 
-        if DashboardFilters.objects.filter(id=filter_id).exists():
-            DashboardFilters.objects.get(id=filter_id).delete()
-            return Response({"message": "Filter Deleted Successfully","sheet_ids":sheet_ids})
-        else:
-            return Response({"message": "Dashboard filter ID not found"}, status=status.HTTP_404_NOT_FOUND)
+class Dashboard_filtersheet_update(CreateAPIView):
+    serializer_class = serializers.dashboard_filtersheet
+    
+    def post(self, request, token):
+        tok1 = test_token(token)
+        if tok1['status'] != 200:
+            return Response({"message": tok1['message']}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        dashboard_id = serializer.validated_data["dashboard_id"]
+        update_sheet_ids = serializer.validated_data["sheet_ids"]
+        
+        try:
+            dash_filters = DashboardFilters.objects.filter(dashboard_id=dashboard_id)
+            for fil in dash_filters:
+                filter_sheets = eval(fil.sheet_id_list)
+                
+                if update_sheet_ids in filter_sheets:
+                    filter_sheets.remove(update_sheet_ids)
+                
+                if not filter_sheets:  # If filter_sheets is empty
+                    DashboardFilters.objects.filter(id=fil.id).delete()
+                else:
+                    DashboardFilters.objects.filter(
+                        id=fil.id
+                    ).update(
+                        user_id=fil.user_id,
+                        dashboard_id=fil.dashboard_id,
+                        sheet_id_list=filter_sheets,
+                        filter_name=fil.filter_name,
+                        column_name=fil.column_name,
+                        column_datatype=fil.column_datatype,
+                        queryset_id=fil.queryset_id,
+                        updated_at=datetime.now()
+                    )
+        except Exception as e:
+            return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({"message": "Filters Updated Successfully for sheet f{}".format(sheet_data.objects.get(id=update_sheet_ids).sheet_name)}, status=status.HTTP_200_OK)
+
+        
    
 
 

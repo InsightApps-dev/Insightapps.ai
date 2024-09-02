@@ -83,6 +83,7 @@ export class SheetsComponent {
   dimensionExpand = false;
   chartSuggestions: any = null;
   errorMessage : any;
+  errorMessage1:any;
   userPrompt: string = '';
   selectedChartPlugin : string = 'apex'	
   isApexCharts : boolean = true;
@@ -95,6 +96,9 @@ export class SheetsComponent {
   xGridColor : string = '#00a5a2';
   yLabelColor : string = '#00a5a2';
   yGridColor : string = '#00a5a2';
+  filterSearch! : string;
+  editFilterSearch! : string;
+  tableSearch! : string;
  /* private data = [
     {"Framework": "Vue", "Stars": "166443", "Released": "2014"},
     {"Framework": "React", "Stars": "150793", "Released": "2013"},
@@ -423,7 +427,7 @@ if(this.fromFileId){
             },
           },
           xaxis: {
-            categories: this.chartsColumnData,
+            categories: this.chartsColumnData.map((category : any)  => category === null ? 'null' : category),
             position: 'bottom',
             labels: {
               show: true,
@@ -636,7 +640,7 @@ chart.updateOptions(this.chartOptions3);
               type: 'pie',
           },
           colors: ["#00a5a2", "#31d1ce", "#f5b849", "#49b6f5", "#e6533c"],
-          labels: this.chartsColumnData,
+          labels: this.chartsColumnData.map((category : any)  => category === null ? 'null' : category),
           legend: {
               show: true,
               position: "bottom"
@@ -746,7 +750,7 @@ chart.updateOptions(this.chartOptions3);
                   },
               },
               xaxis: {
-                  categories: this.chartsColumnData,
+                ategories: this.chartsColumnData.map((category : any)  => category === null ? 'null' : category),
                   labels: {
                       show: true,
                       hideOverlappingLabels: false,
@@ -919,7 +923,7 @@ chart.updateOptions(this.chartOptions3);
               }
             },
           },
-          labels: this.chartsColumnData,
+          labels: this.chartsColumnData.map((category : any)  => category === null ? 'null' : category),
           title: {
             text: "",
             align: "left",
@@ -1153,7 +1157,7 @@ chart.updateOptions(this.chartOptions3);
   flattenDimensions(dimensions: Dimension[]): string[] {
     const numCategories = Math.max(...dimensions.map(dim => dim.values.length));
     return Array.from({ length: numCategories }, (_, index) => {
-      return dimensions.map(dim => dim.values[index] || '').join(',');
+      return dimensions.map(dim => dim.values[index] === null ? 'null' : dim.values[index] || '').join(',');
     });
   }
   stockedBar(){
@@ -1812,7 +1816,7 @@ chart.updateOptions(this.chartOptions3);
         chart: {
           type: "donut"
         },
-        labels: this.chartsColumnData,
+        labels: this.chartsColumnData.map((category : any)  => category === null ? 'null' : category),
         responsive: [
           {
             breakpoint: 480,
@@ -1843,6 +1847,7 @@ tableMeasures = [] as any;
     const obj={
       "db_id":this.databaseId,
       "queryset_id":this.qrySetId,
+      "search":this.tableSearch
   }as any;
   if(this.fromFileId){
     delete obj.db_id;
@@ -2112,6 +2117,9 @@ tableMeasures = [] as any;
    // });
     
   }
+  dateList=['date','time','datetime','timestamp','timestamp with time zone','timestamp without time zone','timezone','time zone','timestamptz'];
+  integerList=['numeric','int','float','number','double precision','smallint','integer','bigint','decimal','numeric','real','smallserial','serial','bigserial','binary_float','binary_double'];
+  boolList=['bool','boolean'];
   rowdrop(event: CdkDragDrop<string[]>){
    console.log(event)
     let item: any = event.previousContainer.data[event.previousIndex];
@@ -2136,9 +2144,15 @@ tableMeasures = [] as any;
           const indexB = rowIndexMap.get(b[0]) ?? -1;
           return indexA - indexB;
         });
+        this.draggedRows.forEach((row: any, index: number) => {
+          if (row.column === element.column) {
+            if(event.currentIndex !== index){
+              event.currentIndex = index;
+            }
+          }
+        });
         console.log(this.draggedRowsData);
-        const dateList=['date','time','datetime','timestamp','timestamp with time zone','timestamp without time zone','timezone','time zone','timestamptz']
-        if(!dateList.includes(element.data_type)){
+        if(this.integerList.includes(element.data_type)){
           this.rowMeasuresCount(element,event.currentIndex,'sum');
         }else {
           this.dataExtraction();
@@ -2899,8 +2913,8 @@ this.workbechService.sheetGet(obj,this.retriveDataSheet_id).subscribe({next: (re
           this.kpi = true;
         }
        if(responce.chart_id == 6){
-        this.chartsRowData = responce.sheet_reload_data.row[0].rows_data;
-        this.chartsColumnData = responce.sheet_reload_data.col[0].rows_data;
+        this.chartsRowData = this.sheetResponce.results.barYaxis;
+        this.chartsColumnData = this.sheetResponce.results.barXaxis;
        if(this.isApexCharts){
         this.barOptions = this.sheetResponce.results.barOptions;
        } else {
@@ -2923,8 +2937,8 @@ this.workbechService.sheetGet(obj,this.retriveDataSheet_id).subscribe({next: (re
           this.kpi = false;
        }
        if(responce.chart_id == 24){
-        this.chartsRowData = responce.sheet_reload_data.row[0].rows_data;
-        this.chartsColumnData = responce.sheet_reload_data.col[0].rows_data;
+        this.chartsRowData = this.sheetResponce.results.pieYaxis;
+        this.chartsColumnData = this.sheetResponce.results.pieXaxis;
         if(this.isApexCharts){
           this.pieOptions = this.sheetResponce.results.pieOptions;
         } else {
@@ -2947,8 +2961,8 @@ this.workbechService.sheetGet(obj,this.retriveDataSheet_id).subscribe({next: (re
           this.kpi = false;
        }
        if(responce.chart_id == 13){
-        this.chartsRowData = responce.sheet_reload_data.row[0].rows_data;
-        this.chartsColumnData = responce.sheet_reload_data.col[0].rows_data;
+        this.chartsRowData = this.sheetResponce.results.lineYaxis;
+        this.chartsColumnData = this.sheetResponce.results.lineXaxis
         if(this.isApexCharts){
           this.lineOptions = this.sheetResponce.results.lineOptions;
         } else {
@@ -2971,8 +2985,8 @@ this.workbechService.sheetGet(obj,this.retriveDataSheet_id).subscribe({next: (re
           this.kpi = false;
        }
        if(responce.chart_id == 17){
-        this.chartsRowData = responce.sheet_reload_data.row[0].rows_data;
-        this.chartsColumnData = responce.sheet_reload_data.col[0].rows_data;
+        this.chartsRowData = this.sheetResponce.results.areaYaxis;
+        this.chartsColumnData = this.sheetResponce.results.areaXaxis;
         if(this.isApexCharts){
           this.areaOptions = this.sheetResponce.results.areaOptions;
         } else {
@@ -3142,8 +3156,8 @@ this.workbechService.sheetGet(obj,this.retriveDataSheet_id).subscribe({next: (re
           this.kpi = false;
        }
        if(responce.chart_id == 10){
-        this.chartsRowData = responce.sheet_reload_data.row[0].rows_data;
-        this.chartsColumnData = responce.sheet_reload_data.col[0].rows_data;
+        this.chartsRowData = this.sheetResponce.results.donutYaxis
+        this.chartsColumnData = this.sheetResponce.results.donutXaxis;
         this.donutOptions = this.sheetResponce.results.donutOptions;
         this.donutChart();
         this.bar = false;
@@ -3184,6 +3198,24 @@ this.workbechService.sheetGet(obj,this.retriveDataSheet_id).subscribe({next: (re
   }
   filterData = [] as any;
   filter_id: any;
+  minValue: any;
+  maxValue: any;
+  floor: any;
+  ceil: any;
+  minDate: string = '';
+  maxDate: string = '';
+  options: Options ={};
+  filterDateRange : any[] = [];
+  updateDateRange() {
+    const format: Intl.DateTimeFormatOptions = { 
+      month: '2-digit', 
+      day: '2-digit', 
+      year: 'numeric' 
+    };
+    this.minDate = new Date(this.minValue).toLocaleDateString('en-US', format);
+    this.maxDate = new Date(this.maxValue).toLocaleDateString('en-US', format);
+    this.filterDateRange = [this.minDate, this.maxDate];
+  }
   filterDataGet(){
     const obj={
       "database_id" :this.databaseId,
@@ -3192,6 +3224,7 @@ this.workbechService.sheetGet(obj,this.retriveDataSheet_id).subscribe({next: (re
       "datasource_queryset_id" :this.filterQuerySetId,
       "col_name":this.filterName,
        "data_type":this.filterType,
+       "search":this.filterSearch
       // "format_date":""
 }as any;
 if(this.fromFileId){
@@ -3201,6 +3234,26 @@ if(this.fromFileId){
   this.workbechService.filterPost(obj).subscribe({next: (responce:any) => {
         console.log(responce);
         this.filterData = responce.col_data;
+        if(this.dateList.includes(responce.dtype)){
+          this.floor = new Date(this.filterData[0]).getTime();
+          this.ceil = new Date(this.filterData[this.filterData.length - 1]).getTime();
+          this.minValue = this.floor;
+          this.maxValue = this.ceil;
+          this.options = {
+            floor: this.floor,
+            ceil: this.ceil,
+            step: 24 * 60 * 60 * 1000,
+            showSelectionBar: true,
+            selectionBarGradient: {
+              from: '#5a66f1',
+              to: '#5a66f1',
+            },
+            translate: (value: number): string => {
+              return new Date(value).toLocaleDateString();
+            }
+          };
+          this.updateDateRange();
+        }
         //this.filter_id = responce.filter_id;
       },
       error: (error) => {
@@ -3232,7 +3285,7 @@ if(this.fromFileId){
     "queryset_id": this.qrySetId,
     "type_of_filter":"sheet",
     "datasource_querysetid" : this.filterQuerySetId,
-    "range_values": [],
+    "range_values": this.filterDateRange,
     "select_values":this.filterDataArray,
     "col_name":this.filterName,
        "data_type":this.filterType,
@@ -3248,6 +3301,7 @@ if(this.fromFileId){
         this.dimetionMeasure.push({"col_name":this.filterName,"data_type":this.filterType,"filter_id":responce.filter_id});
         this.dataExtraction();
         this.filterDataArray = [];
+        this.filterDateRange = [];
       },
       error: (error) => {
         console.log(error);
@@ -3260,7 +3314,8 @@ if(this.fromFileId){
     const obj={
       "type_filter":"chartfilter",
       "database_id" :this.databaseId,
-      "filter_id" :this.filter_id
+      "filter_id" :this.filter_id,
+      "search":this.editFilterSearch
 }as any;
 if(this.fromFileId){
   delete obj.database_id;
@@ -3279,6 +3334,9 @@ if(this.fromFileId){
             this.filterDataArray.push(filter.label);
           }
         })
+        if(this.dateList.includes(responce.dtype)){
+          this.updateDateRange();
+        }
       },
       error: (error) => {
         console.log(error);
@@ -3294,7 +3352,7 @@ if(this.fromFileId){
       "queryset_id": this.qrySetId,
       "type_of_filter":"sheet",
       "datasource_querysetid" : this.filterQuerySetId,
-      "range_values": [],
+      "range_values": this.filterDateRange,
       "select_values":this.filterDataArray,
       "col_name":this.filterName,
       "data_type":this.filterType
@@ -3308,6 +3366,7 @@ if(this.fromFileId){
           console.log(responce);
           this.dataExtraction();
           this.filterDataArray = [];
+          this.filterDateRange = [];
         },
         error: (error) => {
           console.log(error);
@@ -3345,10 +3404,37 @@ openSuperScalededitFilter(modal: any,data:any) {
     centered: true,
     windowClass: 'animate__animated animate__zoomIn',
   });
-  this.filterName = data.col_name;
+  console.log(data);
   this.filterType = data.data_type;
-  this.filter_id = data.filter_id;
+  if ('filter_id' in data) {
+    this.filterName = data.col_name;
+    this.filter_id = data.filter_id;
+  }
+  else{
+    this.filterName = data.column;
+    this.dimetionMeasure.forEach((column:any)=>{
+      if(column.col_name === data.column){
+        this.filter_id = column.filter_id;
+      }
+    })
+  }
   this.filterEditGet();
+}
+filterAdded : boolean = false;
+editFilterCheck(data:any){
+  if(this.dimetionMeasure.length>0){
+    this.dimetionMeasure.forEach((column:any)=>{
+      if(column.col_name === data){
+        this.filterAdded = true;
+      }
+      else{
+        this.filterAdded = false;
+      }
+    })
+  }
+  else{
+    this.filterAdded = false;
+  }
 }
 gotoDashboard(){
   if(!this.fromFileId){
@@ -3484,11 +3570,12 @@ renameColumns(){
     this.editor = !this.editor;
   }
   updateSheetName() {
-    const inputElement = document.getElementById('htmlContent') as HTMLInputElement;
-    if (inputElement) {
-      inputElement.innerHTML = this.sheetTagName;
-      inputElement.style.paddingTop = '1.5%';
-    }
+    // const inputElement = document.getElementById('htmlContent') as HTMLInputElement;
+    // if (inputElement) {
+    //   inputElement.innerHTML = this.sheetTagName;
+    //   inputElement.style.paddingTop = '1.5%';
+    // }
+    this.sheetTagTitle = this.sanitizer.bypassSecurityTrustHtml(this.sheetTagName);
     const parser = new DOMParser();
     const doc = parser.parseFromString(this.sheetTagName, 'text/html');
     this.sheetTitle = doc.body.textContent+'';
@@ -4923,10 +5010,13 @@ renameColumns(){
       const apiKey = localStorage.getItem('API_KEY');
     
       if (!apiKey || apiKey.trim() === '') {
+        // Store the current URL before navigating to the configure page
+        localStorage.setItem('previousUrl', this.router.url);
         this.chartSuggestions = null;
-        // API Key is missing or empty, show the message and navigate to the configure page
-        this.errorMessage = `The GPT API Key is missing. Please <a href="/workbench/configure-page/configure">add the GPT API Key</a> to proceed.`;
-        this.router.navigate(['/workbench/configure-page/configure']);
+        // API Key is missing or empty, show the message and navigate to the configure page on click
+        // this.errorMessage = `The GPT API Key is missing. Please <a href="/workbench/configure-page/configure">add the GPT API Key</a> to proceed.`;
+        this.errorMessage1 = 'the GPT API key is missing. Please'
+        // this.router.navigate(['/workbench/configure-page/configure']);
       } else {
         // Handle other errors
         console.log("Error:", error.message);
@@ -4937,6 +5027,10 @@ renameColumns(){
     }
   );
 }
+routeConfigure(){
+  this.router.navigate(['/workbench/configure-page/configure'])
+}
+
 fetchChartData(chartData: any){
   this.databaseId = chartData.database_id;
           this.qrySetId = chartData.queryset_id;
@@ -5037,8 +5131,9 @@ fetchChartData(chartData: any){
           if (!apiKey || apiKey.trim() === '') {
             this.chartSuggestions = null;
             // API Key is missing or empty, show the message and navigate to the configure page
-            this.errorMessage = `The GPT API Key is missing. Please <a href="/workbench/configure-page/configure">add the GPT API Key</a> to proceed.`;
-            this.router.navigate(['/workbench/configure-page/configure']);
+            // this.errorMessage = `The GPT API Key is missing. Please <a href="/workbench/configure-page/configure">add the GPT API Key</a> to proceed.`;
+            this.errorMessage1 = 'the GPT API key is missing. Please'
+            // this.router.navigate(['/workbench/configure-page/configure']);
           } else {
             // Handle other errors
             console.log("Error:", error.message);
@@ -5216,18 +5311,7 @@ fetchChartData(chartData: any){
       this.dataExtraction();
      }
   }
-  options: Options = {
-    floor: 0,
-    ceil: 100,
-    step: 0,
-    showSelectionBar: true,
-    selectionBarGradient: {
-      from: '#5a66f1',
-      to: '#5a66f1',
-    },
-  };
-  minValue2 = 10;
-  maxValue2 = 90;
+  
   kpiFontSize: string = '3';
   kpiColor: string = '#000000';
 
@@ -5240,4 +5324,12 @@ fetchChartData(chartData: any){
   getFontSize(): string {
     return `${this.kpiFontSize}rem`;
   }
+
+  searchFilterList(){
+    this.filterDataGet();
+  }
+  editFilterList(){
+    this.filterEditGet();
+  }
+  titleShow : boolean = true;
 }

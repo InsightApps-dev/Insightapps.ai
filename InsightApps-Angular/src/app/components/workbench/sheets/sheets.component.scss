@@ -72,7 +72,7 @@ button.BtnRowStyle.span-left {
   }
 
 .example-box {
-padding: 3px 13px;
+padding: 3px 5px;
 // border-bottom: solid 1px #ccc;
 color: rgb(var(--info-rgb))!important;
 display: flex;
@@ -188,10 +188,10 @@ span.abc-txt {
  }
  .charts-card-height{
   overflow-y: scroll; 
-  height: 220px;
+  height: 240px;
  }
  .marks-card-height{
-  height: 168px; 
+  height: 203px; 
   overflow-y: scroll;
  }
 
@@ -250,7 +250,7 @@ span.abc-txt {
 
 .title-editor{
   cursor: pointer;
-  display: flex;
+  // display: flex;
   align-items: center;
 }
 
@@ -335,6 +335,9 @@ span.abc-txt {
 .inp{
   bottom: 5px;
   position: absolute;
+  right: 28px;
+  left: 0;
+  padding: 10px;
 }
 
 .inp-btn{
@@ -395,3 +398,176 @@ span.abc-txt {
 .controls input[type="range"] {
   margin-right: 10px;
 }
+.table-card-h{
+  height: 510px;
+  overflow-y: scroll
+}
+.show-chart-card{
+  height: 522px;
+}
+.sheet-table-h{
+  height: 459px;
+   overflow-y: scroll;
+}
+.panel-body-h{
+  height: 620px;
+}
+
+
+// for Mobile Resolution //
+@media only screen and ( max-width : 578px ) {
+  
+}
+// for Tab Resolution //
+@media ( 768px <= width <= 1198px) {
+
+}
+// for 90% Resolution //
+@media ( 1420px <= width <= 1560px) {
+h6 {
+  font-size: 14px;
+}
+app-insights-button {
+  font-size: 12px;
+}
+.example-box {
+  font-size: 12px;
+}
+.title-container {
+  font-size: 13px;
+}
+.nav-link {
+  font-size: 12px;
+}
+.sheet-table-h{
+  height: 387px;
+  overflow-y: scroll;
+}
+.show-chart-card {
+  height: 443px;
+}
+.panel-body-h {
+  height: 539px;
+}
+.charts-card-height {
+  overflow-y: scroll;
+  height: 210px;
+}
+.filter-card-height {
+  height: 150px;
+  overflow-y: scroll;
+}
+.marks-card-height{
+  height: 164px;
+  overflow-y: scroll;
+}
+.column-text {
+  font-size: 12px;
+}
+.row-text{
+  font-size: 12px;
+}
+.mat-mdc-tab:not(.mdc-tab--stacked) {
+  height: 41px;
+}
+.update-btn{
+  font-size: 12px;
+}
+
+
+}
+ // for 100% Resolution //
+ @media ( 1280px <= width <= 1420px) {
+  h6 {
+    font-size: 13px;
+  }
+  app-insights-button {
+    font-size: 12px;
+  }
+  .example-box {
+    font-size: 12px;
+  }
+  .title-container {
+    font-size: 13px;
+  }
+  .nav-link {
+    font-size: 12px;
+  }
+  .sheet-table-h {
+    height: 326px;
+    overflow-y: scroll;
+}
+.show-chart-card {
+  height: 376px;
+}
+.filter-card-height {
+  height: 130px;
+  overflow-y: scroll;
+}
+.charts-card-height {
+  overflow-y: scroll;
+  height: 185px;
+}
+.marks-card-height {
+  height: 142px;
+  overflow-y: scroll;
+}
+.panel-body-h {
+  height: 475px;
+}
+.column-text {
+  font-size: 12px;
+}
+.row-text{
+  font-size: 12px;
+}
+.mat-mdc-tab:not(.mdc-tab--stacked) {
+  height: 33px;
+}
+.update-btn{
+  font-size: 11px;
+}
+}
+
+
+ // for 110% Resolution //
+ @media ( 1163px <= width <= 1279px) {
+  h6 {
+    font-size: 13px;
+  }
+  app-insights-button {
+    font-size: 12px;
+  }
+  .example-box {
+    font-size: 11px;
+  }
+  .title-container {
+    font-size: 13px;
+  }
+  .nav-link {
+    font-size: 11px;
+  }
+}
+    // for 125% Resolution //
+    @media ( 1024px <= width <= 1163px) {
+      h6 {
+        font-size: 12px;
+    }
+    app-insights-button {
+      font-size: 12px;
+    }
+    .example-box {
+      font-size: 11px;
+    }
+    .title-container {
+      font-size: 13px;
+    }
+    .nav-link {
+      font-size: 11px;
+    }
+  }
+  .chart-icon.active {
+    border-color:#00a2a5 !important; /* Change to the color you prefer for the active state */
+    opacity: 1;
+    background-color: #ecf0f1;
+  }

@@ -30,7 +30,8 @@ def quickbooks_file_save(qb_id,data1,us_id,disp_name):
         qbmod=dshb_models.FileDetails.objects.get(quickbooks_user_id=qb_id,display_name=disp_name)
         pattern = r'/insightapps/(.*)'
         match = re.search(pattern, qbmod.source)
-        dl_key = match.group(1)
+        dl_key12 = match.group(1)
+        dl_key = re.sub(r'^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}', '', str(dl_key12))
     else:
         dl_key=""
 

@@ -78,6 +78,7 @@ class FileType(models.Model):
 class FileDetails(models.Model):
     id  = models.AutoField(primary_key=True,db_column='file_details_id')
     file_type = models.PositiveBigIntegerField(db_column='file_type_id')
+    datapath = models.FileField(db_column='file_data_path', null=True, blank=True, upload_to='insightapps/files/',max_length=1000)
     source = models.CharField(max_length=500,null=True,blank=True,db_column='source_path')
     display_name = models.CharField(max_length=500,null=True,db_column='display_name')
     uploaded_at = models.DateTimeField(default=datetime.datetime.now())
@@ -128,7 +129,7 @@ class QuerySets(models.Model):
     query_name = models.CharField(null=True,blank=True,max_length=500,db_column = 'query_name')
     created_at = models.DateTimeField(default=datetime.datetime.now())
     updated_at = models.DateTimeField(auto_now=True)
-    datasource_path = models.CharField(max_length=200,null=True,db_column='datasource_filename')
+    datasource_path = models.FileField(null=True,db_column='datasource_filename',upload_to='insightapps/datasource/')
     datasource_json =models.URLField(null=True,db_column = 'datasource_json_url')
     class Meta:
         db_table = 'querysets'
@@ -251,6 +252,7 @@ class sheet_data(models.Model):
     queryset_id = models.IntegerField()
     filter_ids = models.CharField(max_length=1000,blank=True,null=True)
     sheet_name = models.CharField(max_length=500,null=True,blank=True)
+    user_ids = models.CharField(max_length=1000,blank=True,null=True)
     sheet_filt_id = models.CharField(max_length=1000,blank=True,null=True,db_column='sheetfilter_querysets_id')
     datapath = models.FileField(db_column='sheet_data_path', null=True, blank=True, upload_to='insightapps/sheetdata/',max_length=1000)
     datasrc = models.CharField(max_length=1000,null=True,blank=True,db_column='sheet_data_source')
@@ -284,9 +286,10 @@ class dashboard_data(models.Model):
     dashboard_name = models.CharField(max_length=500,null=True,blank=True)
     datapath = models.FileField(db_column='dashboard_data_path', null=True, blank=True, upload_to='insightapps/dashboard/',max_length=1000)
     datasrc = models.CharField(max_length=1000,null=True,blank=True,db_column='dashboard_data_source')
-    imagepath = models.FileField(db_column='dashboard_image_path', null=True, blank=True, upload_to='insightapps/dashboard/images/',max_length=1000)
+    imagepath = models.ImageField(db_column='dashboard_image_path', null=True, blank=True, upload_to='insightapps/dashboard/images/',max_length=1000)
     imagesrc = models.CharField(max_length=1000,null=True,blank=True,db_column='dashboard_image_source')
     dashboard_tag_name = models.CharField(max_length=1000,null=True,blank=True,db_column='dashboard_tag_name')
+    is_public = models.BooleanField(default=False,db_column='is_public')
     created_at = models.DateTimeField(default=datetime.datetime.now())
     updated_at = models.DateTimeField(auto_now=True)
 

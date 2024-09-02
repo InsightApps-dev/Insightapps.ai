@@ -13,14 +13,15 @@ from .models import ServerDetails,ServerType,QuerySets,ChartFilters,DataSourceFi
 import ast,re,itertools
 import datetime
 import boto3
-import json
+import json,os
 import requests
 from project import settings
 import io
 from django.core.paginator import Paginator
 from django.db.models import Q
 from itertools import chain,zip_longest
-
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 
 
 ##############################################################################################################################
@@ -137,8 +138,8 @@ def data_reload(data):
         if files_data['status']==200:
             engine=files_data['engine']
             cursor=files_data['cursor']
-            fn_qr=remove_aggregations(fn_data.custom_query)
-            result=cursor.execute(text(fn_qr))
+            # fn_qr=remove_aggregations(fn_data.custom_query)
+            result=cursor.execute(text(fn_data.custom_query))
             codes=result.cursor.description
             columns = [col[0] for col in codes]  # Step 2: Get column names
             rows = result.fetchall()
@@ -336,54 +337,148 @@ class show_me(CreateAPIView):
 
 ##########    Sheet data saving,update,delete & Sheet Name update  ##################
 
-def file_save_1(data,server_id,queryset_id,ip,dl_key):
-    t1=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    file_path = f'{t1}{server_id}{queryset_id}.txt'
-    # with open(file_path, 'w') as file:
-    #     json.dump(data, file, indent=4)
-    json_data = json.dumps(data, indent=4)
-    file_buffer = io.BytesIO(json_data.encode('utf-8'))
+try:
     s3 = boto3.client('s3', aws_access_key_id=settings.AWS_S3_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_S3_SECRET_ACCESS_KEY)
-    file_key = f'insightapps/{ip}/{file_path}'
-    if dl_key=="":
-        s3.upload_fileobj(file_buffer, Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=file_key)
-        file_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{file_key}"
-    else:
-        # s3.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=str(dl_key))
-        s3.upload_fileobj(file_buffer, Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=file_key)
-        file_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{file_key}"
-    data_fn={
-        "file_key":file_key,
-        "file_url":file_url
-    }
-    return data_fn
+except Exception as e:
+    print(e)
 
 
-def image_save_1(image,ip,dl_key):
-    if image==None or image=='':
-        data_fn = {
-            "file_key":None,
-            "file_url":None
-        }
-        return data_fn
-    else:
+def file_save_1(data,server_id,queryset_id,ip,dl_key):
+    if settings.file_save_path=='s3':
         t1=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        file_path = f'{t1}{image}'
-        s3 = boto3.client('s3', aws_access_key_id=settings.AWS_S3_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_S3_SECRET_ACCESS_KEY)
+        file_path = f'{t1}{server_id}{queryset_id}.txt'
+        # with open(file_path, 'w') as file:
+        #     json.dump(data, file, indent=4)
+        json_data = json.dumps(data, indent=4)
+        file_buffer = io.BytesIO(json_data.encode('utf-8'))
         file_key = f'insightapps/{ip}/{file_path}'
-        if dl_key=="" or dl_key==None:
-            s3.upload_fileobj(image, Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=file_key)
+        if dl_key=="":
+            s3.upload_fileobj(file_buffer, Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=file_key)
             file_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{file_key}"
         else:
             # s3.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=str(dl_key))
-            s3.upload_fileobj(image, Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=file_key)
+            s3.upload_fileobj(file_buffer, Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=file_key)
             file_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{file_key}"
         data_fn={
             "file_key":file_key,
             "file_url":file_url
         }
         return data_fn
+    else:
+        if dl_key=="" or dl_key==None:
+            pass
+        else:
+            delete_file(str(dl_key))
+        
+        t1=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        file_path = f'insightapps/{ip}/{t1}.txt'
+        json_data = json.dumps(data, indent=4)
+        with default_storage.open(file_path, 'w') as file:
+            file.write(json_data)
+        file_url = f"{settings.file_save_url}media/{file_path}"
+        data_fn={
+            "file_key":file_path,
+            "file_url":file_url
+        }
+        return data_fn
 
+
+def file_files_save(file_path,file_path112):
+    if settings.file_save_path=='s3':
+        t1=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+str(file_path)
+        file_path1 = f'insightapps/{t1}'
+        try:
+            s3.upload_fileobj(file_path112, settings.AWS_STORAGE_BUCKET_NAME, file_path1)
+        except:
+            with open(file_path112.temporary_file_path(), 'rb') as data:  ## read that binary data in a file(before replace file data)
+                s3.upload_fileobj(data, settings.AWS_STORAGE_BUCKET_NAME, file_path1)  ## pass that data in data and replaced file name in file key.
+        file_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{file_path1}"
+        data_fn={
+            "file_key":file_path1,
+            "file_url":file_url
+        }
+        return data_fn
+    else:
+        t1=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+str(file_path)
+        file_path1 = f'insightapps/files/{t1}'      
+        with default_storage.open(file_path1, 'w') as file:
+            file.write(file_path)   
+        file_url = f"{settings.file_save_url}media/{file_path1}"
+        data_fn={
+            "file_key":file_path1,
+            "file_url":file_url
+        }
+        return data_fn
+
+
+def image_save_1(image,ip,dl_key):
+    if settings.file_save_path=='s3':
+        if image==None or image=='':
+            data_fn = {
+                "file_key":None,
+                "file_url":None
+            }
+            return data_fn
+        else:
+            t1=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+            file_path = f'{t1}{image}'
+            file_key = f'insightapps/{ip}/{file_path}'
+            if dl_key=="" or dl_key==None:
+                s3.upload_fileobj(image, Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=file_key)
+                file_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{file_key}"
+            else:
+                # s3.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=str(dl_key))
+                s3.upload_fileobj(image, Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=file_key)
+                file_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{file_key}"
+            data_fn={
+                "file_key":file_key,
+                "file_url":file_url
+            }
+            return data_fn
+    else:
+        if image==None or image=='':
+            data_fn = {
+                "file_key":None,
+                "file_url":None
+            }
+            return data_fn
+        else:
+            if dl_key=="" or dl_key==None:
+                pass
+            else:
+                delete_file(str(dl_key))
+
+            t1=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+str(image)
+            file_path = f'insightapps/{ip}{t1}'      
+            default_storage.save(file_path, ContentFile(image.read()))   
+            file_url = f"{settings.file_save_url}media/{file_path}"
+            data_fn={
+                "file_key":file_path,
+                "file_url":file_url
+            }
+            return data_fn
+    
+
+def delete_file(data):
+    try: 
+        a1='media/'+str(data)
+        os.remove(a1)
+    except:
+        pass
+
+
+@api_view(['GET'])
+@transaction.atomic
+def is_public(request,ds_id):
+    if request.method=='GET':
+        if models.dashboard_data.objects.filter(id=ds_id).exists():
+            models.dashboard_data.objects.filter(id=ds_id).update(is_public=True)
+            return Response({'message':'added to public dashboard'},status=status.HTTP_200_OK)
+        else:
+            return Response({'message':'dashboard Not exists'},status=status.HTTP_404_NOT_FOUND)
+    else:
+        return Response({'message':'Method not allowed'},status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
 
 def sheet_s_u(serializer,u_id,sh_id,parameter):
     data=serializer.validated_data['data']
@@ -554,11 +649,11 @@ class sheet_retrieve(CreateAPIView):
                     data=requests.get(sheetdata.datasrc)
                     sheet_data=data.json() 
 
-                cl_ro_data=data_reload(sheetdata)
-                if cl_ro_data['status']==200:
-                    reload_data=cl_ro_data['data']
-                else:
-                    return Response({'message':cl_ro_data['message']},status=cl_ro_data['status'])
+                # cl_ro_data=data_reload(sheetdata)
+                # if cl_ro_data['status']==200:
+                #     reload_data=cl_ro_data['data']
+                # else:
+                #     return Response({'message':cl_ro_data['message']},status=cl_ro_data['status'])
 
                 d1 = {
                     "sheet_id":sheetdata.id,
@@ -566,7 +661,7 @@ class sheet_retrieve(CreateAPIView):
                     "chart_id":sheetdata.chart_id,
                     "sheet_tag_name":sheetdata.sheet_tag_name,
                     "sheet_data":sheet_data,
-                    "sheet_reload_data":reload_data,
+                    # "sheet_reload_data":reload_data,
                     "sheet_filter_ids":sheetdata.filter_ids,
                     "sheet_filter_quereyset_ids":sheetdata.sheet_filt_id,
                     "filters_data":flat_filters_data
@@ -634,6 +729,7 @@ def sheet_delete(request,server_id,queryset_id,sheet_id,token):
             shdt=models.sheet_data.objects.get(id=sheet_id)
             dsdt=models.dashboard_data.objects.filter(sheet_ids__contains=str(sheet_id)).values()
             sheet_ds_delete(dsdt,sheet_id,server_id,queryset_id)
+            delete_file(shdt.datapath)
             # s3 = boto3.client('s3', aws_access_key_id=settings.AWS_S3_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_S3_SECRET_ACCESS_KEY)
             # s3.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=str(shdt.datapath))
             if shdt.sheet_filt_id=='' or shdt.sheet_filt_id==None:
@@ -820,8 +916,8 @@ class dashboard_retrieve(CreateAPIView):
     serializer_class=serializers.dashboard_retrieve_serializer
 
     @transaction.atomic
-    def post(self,request,token):
-        if token==settings.DEFAULT_TOKEN:
+    def post(self,request,token=None):
+        if token==None:
             tok_status=200
         else:
             role_list=roles.get_previlage_id(previlage=[previlages.view_dashboard,previlages.view_dashboard_filter])
@@ -836,8 +932,10 @@ class dashboard_retrieve(CreateAPIView):
                     dashboarddata=models.dashboard_data.objects.get(id=dashboard_id)
                     durl=dashboarddata.datasrc
                     gr_tb=models.grid_type.objects.get(id=dashboarddata.grid_id)
-                    if token==settings.DEFAULT_TOKEN:
+                    if dashboarddata.is_public==True and token==None:
                         user_id=dashboarddata.user_id
+                    elif dashboarddata.is_public==False and token==None:
+                        return Response({'message':'access token in needed'},status=status.HTTP_406_NOT_ACCEPTABLE)
                     else:
                         user_id=tok1['user_id']   
                 else:
@@ -848,18 +946,18 @@ class dashboard_retrieve(CreateAPIView):
                 else:
                     return Response({'message':'User Not assigned to this ROLE/Not Assigned'},status=status.HTTP_401_UNAUTHORIZED)
                 sheet_name=[]
-                sheets_data=[]
+                # sheets_data=[]
                 if dashboarddata.sheet_ids==[] or dashboarddata.sheet_ids==None or dashboarddata.sheet_ids=='':
-                    sheets_data=[]
+                    # sheets_data=[]
                     sheet_name=[]
                 else:
                     for shid in ast.literal_eval(dashboarddata.sheet_ids):
                         shdt=models.sheet_data.objects.get(id=shid)
-                        sheetsdata=data_reload(shdt)
-                        if sheetsdata['status']==200:
-                            sheets_data.append({'sheet_id':shdt.id,'sheet_name':shdt.sheet_name,'sheets_data':sheetsdata['data']})
-                        else:
-                            return Response({'message':sheetsdata['message']},status=sheetsdata['status'])
+                        # sheetsdata=data_reload(shdt)
+                        # if sheetsdata['status']==200:
+                        #     sheets_data.append({'sheet_id':shdt.id,'sheet_name':shdt.sheet_name,'sheets_data':sheetsdata['data']})
+                        # else:
+                        #     return Response({'message':sheetsdata['message']},status=sheetsdata['status'])
                         sheet_name.append(shdt.sheet_name)
                 if durl==None:
                     dashboard_data=None
@@ -868,6 +966,7 @@ class dashboard_retrieve(CreateAPIView):
                     dashboard_data=data.json() 
                 d1 = {
                     "dashboard_id":dashboarddata.id,
+                    "is_public":dashboarddata.is_public,
                     "dashboard_name":dashboarddata.dashboard_name,
                     "dashboard_tag_name":dashboarddata.dashboard_tag_name,
                     "sheet_ids":litera_eval(dashboarddata.sheet_ids),
@@ -881,7 +980,7 @@ class dashboard_retrieve(CreateAPIView):
                     "file_id":litera_eval(dashboarddata.file_id),
                     "dashboard_image":dashboarddata.imagesrc,
                     "dashboard_data":dashboard_data,
-                    "sheet_reload_data":sheets_data,
+                    # "sheet_reload_data":sheets_data,
                     "role_ids":litera_eval(dashboarddata.role_ids),
                     "user_ids":litera_eval(dashboarddata.user_ids)
                 }
@@ -908,7 +1007,8 @@ def dashboard_delete(request,dashboard_id,token):
                 pass
             else:
                 return Response({'message':'User Not assigned to this ROLE/Not Assigned'},status=status.HTTP_401_UNAUTHORIZED)
-            
+            delete_file(dashboarddata.datapath)
+            delete_file(dashboarddata.imagepath)
             # ds_data=models.dashboard_data.objects.get(id=dashboard_id)
             # s3 = boto3.client('s3', aws_access_key_id=settings.AWS_S3_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_S3_SECRET_ACCESS_KEY)
             # s3.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=str(ds_data.datapath))
@@ -1018,6 +1118,7 @@ def dashboard_dt(charts,charts_user,tok1):
             "created_by":tok1['username'],
             "sheet_ids":litera_eval(ch['sheet_ids']),
             "dashboard_id":ch['id'],
+            "is_public":ch['is_public'],
             "dashboard_name":ch['dashboard_name'],
             "dashboard_tag_name":ch['dashboard_tag_name'],
             "selected_sheet_ids":litera_eval(ch['selected_sheet_ids']),
@@ -1178,17 +1279,17 @@ class charts_fetch(CreateAPIView):
                 for sh in charts:
                     shdt=models.sheet_data.objects.get(id=sh['id'])
                     durl=requests.get(shdt.datasrc)
-                    cl_ro_data=data_reload(shdt)
-                    if cl_ro_data['status']==200:
-                        reload_data=cl_ro_data['data']
-                    else:
-                        return Response({'message':cl_ro_data['message']},status=cl_ro_data['status'])
+                    # cl_ro_data=data_reload(shdt)
+                    # if cl_ro_data['status']==200:
+                    #     reload_data=cl_ro_data['data']
+                    # else:
+                    #     return Response({'message':cl_ro_data['message']},status=cl_ro_data['status'])
                     charts12=models.sheet_data.objects.filter(id=sh['id']).values().order_by('-updated_at')
                     charts_data=charts_dt(charts12,tok1,server_id,file_id)
                     charts_data['sheets'][0]['sheet_data']=durl.json()
-                    charts_data['sheets'][0]['sheet_reload_data']=reload_data
-                    sheets_list.append(charts_data)
-                return Response(sheets_list,status=status.HTTP_200_OK)
+                    # charts_data['sheets'][0]['sheet_reload_data']=reload_data
+                    sheets_list.append(charts_data['sheets'])
+                return Response([item for sublist in sheets_list for item in sublist],status=status.HTTP_200_OK)
             else:
                 return Response({'message':'Serializer value error'},status=status.HTTP_400_BAD_REQUEST)
         else:
@@ -1333,6 +1434,10 @@ class dashboard_property_update(CreateAPIView):
                 user_ids = serializer.validated_data['user_ids']
                 if models.dashboard_data.objects.filter(id=dashboard_id).exists():
                     models.dashboard_data.objects.filter(id=dashboard_id).update(role_ids=role_ids,user_ids=user_ids)
+                    dshb_dt=models.dashboard_data.objects.get(id=dashboard_id)
+                    for sh in litera_eval(dshb_dt.sheet_ids):
+                        shdt=models.sheet_data.objects.get(id=sh)
+                        ## get the existing user_ids and append the new user_id
                     return Response({'message':'updated successfully'},status=status.HTTP_200_OK)
                 else:
                     return Response({'message':'dashboard not exists'},status=status.HTTP_404_NOT_FOUND)
@@ -1526,14 +1631,14 @@ class sheet_lists_data(CreateAPIView):
                     charts=models.sheet_data.objects.filter(id=sh).values().order_by('-updated_at')
                     shdt=models.sheet_data.objects.get(id=sh)
                     durl=requests.get(shdt.datasrc)
-                    cl_ro_data=data_reload(shdt)
-                    if cl_ro_data['status']==200:
-                        reload_data=cl_ro_data['data']
-                    else:
-                        return Response({'message':cl_ro_data['message']},status=cl_ro_data['status'])
+                    # cl_ro_data=data_reload(shdt)
+                    # if cl_ro_data['status']==200:
+                    #     reload_data=cl_ro_data['data']
+                    # else:
+                    #     return Response({'message':cl_ro_data['message']},status=cl_ro_data['status'])
                     charts_data=charts_dt(charts,tok1,shdt.server_id,shdt.file_id)
                     charts_data['sheets'][0]['sheet_data']=durl.json()
-                    charts_data['sheets'][0]['sheet_reload_data']=reload_data
+                    # charts_data['sheets'][0]['sheet_reload_data']=reload_data
                     sheets_list.append(charts_data)
                 return Response(sheets_list,status=status.HTTP_200_OK)
             else:

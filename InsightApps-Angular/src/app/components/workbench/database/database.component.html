@@ -17,114 +17,17 @@
                 <p class="mb-0">{{databaseName}}</p>
             </div>
             <div class="card mb-0 br-0">
-            <!-- <div class="input-group px-1">
-                <input type="text" class="form-control border-end-0" placeholder="Search Tables"  [(ngModel)]="searchTables" (keydown.enter)="getSchemaTablesFromConnectedDb()">
-                <button type="button" aria-label="button" (click)="getSchemaTablesFromConnectedDb()" class="btn input-group-text btn-primary tx-fixed-white border-start-0">
-                    <i class="fe fe-search" aria-hidden="true"></i>
-                </button>
-            </div> -->
             </div>
-            <!-- <div class="card mb-0  br-0 ds-th">
-                <div class="sidebar p-0">
-                    @for(menu of schematableList;track menu){
-                    <div  class="menu-item mb-0">
-                        
-                      <div class="menu-title" class=""  (click)="toggleSubMenu(menu)">
-                        <span class="arrow d-flex p-2"> 
-                            @if(menu.expanded){
-                                <i class="fa fa-chevron-down" style="font-size: 11px; color: #333335; margin-top: 7px !important;
-                                margin-right: 5px;"></i>
-                            }@else{
-                                <i class="fa fa-chevron-right" style="font-size: 11px; color: #333335; margin-top: 7px !important;
-                                margin-right: 5px;"></i>
-                            }
-                            <h6>{{ menu.schema }}</h6>
-                        </span>
-                        
-                      </div>
-                      @if(menu.expanded){
-                      <div class="sub-menu" cdkDropList
-                      #originList="cdkDropList"
-                      [cdkDropListData]="menu.tables"
-                      [cdkDropListConnectedTo]="[destinationList]"
-                      (cdkDropListDropped)="drop($event)">
-                        @for(submenu of menu?.tables;track submenu){
-                        <div  class="sub-menu-item example-box subMenuFlex p-2" cdkDrag>
-                            <i cl ass="fa fa-table" style="padding-right:10px ;"></i>   <span>{{ submenu.table}}</span>
-                        </div>
-                    }
-                      </div>
-                    }
-                    </div>
-                }
-                  </div>
-               
-            </div> -->
-
-
             <div class="card mb-0 br-0 pt-2" style="height: 581px">
                 <div class="card mb-0 p-1 border-bottom-0">
                     <div class="input-group ">
-                        <input type="text" class="form-control border-end-0" placeholder="Search Tables"  [(ngModel)]="searchTables" (keyup)="getSchemaTablesFromConnectedDb()">
+                        <input type="text" class="form-control border-end-0" placeholder="Search Tables"  [(ngModel)]="searchTables" (keydown.enter)="getSchemaTablesFromConnectedDb()">
                         <button type="button" aria-label="button" (click)="getSchemaTablesFromConnectedDb()" class="btn input-group-text btn-primary tx-fixed-white border-start-0">
                             <i class="fe fe-search" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
-                <!-- <div class="card-body p-1">
-                  <div
-                    ngbAccordion
-                    [closeOthers]="true"
-                    class="accordion"
-                    id="accordionExample"
-                    >
-                    @for (menu of schematableList;track menu) {
-                      <div
-                        ngbAccordionItem
-                        [collapsed]="menu !== 'First'"
-                        class="accordion-item"
-                        >
-                        <h6 ngbAccordionHeader class="accordion-header" id="headingOne">
-                          <button
-                            ngbAccordionButton
-                            class="accordion-button p-3 fw-500"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne"
-                            aria-expanded="true"
-                            aria-controls="collapseOne"
-                            >
-                            {{ menu.schema}}
-                          </button>
-                        </h6>
-                        <div
-                          ngbAccordionCollapse
-                          id="collapseOne"
-                          class="accordion-collapse collapse show" 
-                          aria-labelledby="headingOne"
-                          data-bs-parent="#accordionExample"
-                           >
-                          <div class="accordion-body p-2  overflow-scroll  database-dropdown " ngbAccordionBody style="height: 436px;">
-                            <ng-template>
-                                <div class="sub-menu" cdkDropList
-                                #originList="cdkDropList"
-                                [cdkDropListData]="menu.tables"
-                                [cdkDropListConnectedTo]="[destinationList]"
-                                (cdkDropListDropped)="drop($event)">
-                                  @for(submenu of menu?.tables;track submenu){
-                                  <div  class="sub-menu-item example-box subMenuFlex p-2" cdkDrag>
-                                      <i class="fa fa-table" style="padding-right:10px ;"></i>   <span ngbTooltip="{{submenu.table}}">{{ submenu.table | slice:0:20}}</span>
-                                  </div>
-                              }
-                                </div>
-                            </ng-template>
-                          </div>                       
-                        </div>
-                      </div>
-                    }
-                  </div>
-                </div> -->
-
+            
                 <div class="card-body p-1">
                     <div ngbAccordion [closeOthers]="true" class="accordion" id="accordionExample">
                       <div *ngFor="let menu of schematableList; let i = index" ngbAccordionItem [collapsed]="i !== 0" class="accordion-item">
@@ -365,7 +268,7 @@
                                            
                                             @if(TabledataJoining){
                                                 <input type="number" [(ngModel)]="rowLimit" id="input-text" style="border-radius: 4px 0px 0px 4px;" (keydown.enter)="getJoiningTableData()" placeholder="rows" class="form-control w-30"> 
-                                                <a (click)="getJoiningTableData()"><i class="mdi mdi-arrow-right-thick result-icon"></i></a>
+                                                <a  [class.disabled]="!rowLimit || rowLimit <= 0" [style.pointer-events]="!rowLimit || rowLimit <= 0 ? 'none' : 'auto'" (click)="getJoiningTableData()"><i class="mdi mdi-arrow-right-thick result-icon"></i></a>
                                             <app-insights-button [buttonName]="' Go to sheet '" [classesList]="'btn btn-primary ms-2'" [previledgeId]="17" [isBtn]="true" [gotoSheetButton]="gotoSheetButtonDisable"
                                                 (btnClickEvent)="goToSheet()" [isIcon]="false"></app-insights-button>
                                             }

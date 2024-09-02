@@ -30,7 +30,7 @@ import subprocess
 
 # API_KEY = result.stdout.strip() or result.stdout
 def create_default_api_key_file():
-    json_file_path = 'api_key.json'  # Replace with the correct path if needed
+    json_file_path = 'paths/api_key.json'  # Replace with the correct path if needed
 
     # Check if the file already exists
     if not os.path.isfile(json_file_path):
@@ -43,7 +43,7 @@ def create_default_api_key_file():
         pass
         print(f'File {json_file_path} already exists.')
 def get_api_key_from_file():
-    json_file_path = 'api_key.json'  # Replace with the correct path
+    json_file_path = 'paths/api_key.json'  # Replace with the correct path
 
     with open(json_file_path, 'r') as file:
         data = json.load(file)
@@ -52,7 +52,6 @@ def get_api_key_from_file():
 # Create the file with default content if it does not exist
 create_default_api_key_file()
 
-API_KEY = get_api_key_from_file()
 
 # Create your views here.
 def validate_api_key(KEY):
@@ -88,7 +87,7 @@ class ValidateApiKeyView(CreateAPIView):
             validation_response = validate_api_key(api_key)
 
             if validation_response.status_code == 200:
-                with open('api_key.json', 'w') as f:
+                with open('paths/api_key.json', 'w') as f:
                     json.dump({'API_KEY': api_key}, f)
                 return Response({'message': True}, status=status.HTTP_200_OK)
             
@@ -102,7 +101,8 @@ class GetServerTablesList(CreateAPIView):
         if serializer.is_valid(raise_exception=True):
             query_set_id = serializer.validated_data['id']
             user_prompt = serializer.validated_data['prompt']
-            a = validate_api_key(KEY=API_KEY)
+            API_KEY = get_api_key_from_file()
+            a = validate_api_key(API_KEY)
             
             if a.status_code ==200:
                 pass
@@ -377,6 +377,7 @@ def can_build_chart(meta_data, prompt):
     else:
         message = [{'role': 'user', 'content': f"Check whether we can build a chart based on {prompt} and {meta_data}. If we can build, respond with YES; if not, NO"}]
         try:
+            API_KEY = get_api_key_from_file()
             response = requests.post(
                 "https://api.openai.com/v1/chat/completions",
                 headers={
@@ -402,6 +403,7 @@ def get_gpt_chart_suggestions(meta_data, prompt):
         message = [{'role': 'user', 'content': f"Build {prompt} on the meta data provided {meta_data} in this format {format_response}"}]
     
     try:
+        API_KEY = get_api_key_from_file()
         response = requests.post(
             "https://api.openai.com/v1/chat/completions",
             headers={

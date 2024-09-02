@@ -27,20 +27,27 @@ export class ConfigureComponent {
       const obj = {
         key : this.apiKey
       }
-      this.workbechService.openApiKey(obj).subscribe(
-        {
-          next:(data:any) => {
-            console.log(data);      
-            if(data){
-              localStorage.setItem('API_KEY',obj.key);
-              Swal.fire({
-                icon: 'success',
-                title: 'API Key Verification Success',
-                text: 'Verified',
-                width: '400px',
-              })
-            }
-          },
+      this.workbechService.openApiKey(obj).subscribe({
+        next: (data: any) => {
+          if (data) {
+            localStorage.setItem('API_KEY', obj.key);
+            Swal.fire({
+              icon: 'success',
+              title: 'API Key Verification Success',
+              text: 'Verified',
+              width: '400px',
+            }).then(() => {
+              // Redirect to the previous page after success
+              const previousUrl = localStorage.getItem('previousUrl');
+              if (previousUrl) {
+                this.router.navigateByUrl(previousUrl);
+                localStorage.removeItem('previousUrl'); // Clear the stored URL
+              } else {
+                this.router.navigate(['/default-route']); // Redirect to a default route if no previous URL
+              }
+            });
+          }
+        },
           error:(error:any)=>{
             Swal.fire({
               icon: 'warning',

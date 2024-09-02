@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-$!va8pxb&5j9%67x)8t1&zr_xa@w+c@kteqeat!r2(94#s=pf$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','50.18.24.167','13.57.231.251']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','*']
 
 AUTH_USER_MODEL = "dashboard.UserProfile"
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'dashboard',
     'quickbooks',
     'copilot',
+    'sample',
     
     'rest_framework',
     'rest_framework.authtoken',
@@ -59,8 +60,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'pakshay@stratapps.com' # Add Authorized Email
-EMAIL_HOST_PASSWORD = 'AKShay@stratapps' #Add Authorized Password
+EMAIL_HOST_USER = os.environ.get('ADMIN_EMAIL')  # Add Authorized Email
+EMAIL_HOST_PASSWORD = os.environ.get('ADMIN_PASSWORD') #Add Authorized Password
 
 
 # If you want to allow access for all domains, set the following variable to TRUE
@@ -110,23 +111,17 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'insightapps',
-        'USER': 'postgres',
-        'PASSWORD': 'Welcome!234',
-        'HOST': 'e-commerce.cj3oddyv0bsk.us-west-1.rds.amazonaws.com',
-        'PORT': '5432',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'insightapps',
+    },
+    'example': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'insightapps-sample',
     }
 }
+DATABASE_ROUTERS = ['dashboard.router.DatabaseRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -214,10 +209,10 @@ REST_FRAMEWORK = {
     ),
 }
 
-AWS_S3_ACCESS_KEY_ID = 'AKIA4RCTO2E4PTFUDX2B'
-AWS_S3_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'haskmedia'
-AWS_S3_REGION_NAME = 'us-east-1' 
+AWS_S3_ACCESS_KEY_ID = ''
+AWS_S3_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
+AWS_S3_REGION_NAME = '' 
 
 
 SWAGGER_SETTINGS = {
@@ -237,23 +232,22 @@ db_connections=10
 
 ENVIRONMENT = 'sandbox'
 
-SANDBOX_URL = 'https://sandbox-quickbooks.api.intuit.com'
-SANDBOX_QUICKBOOKS_ID = 'ABN3bfKZ83th7PXGXAXNo1yvROLrImX3lLT5ntMKDtDYefyanc'
-SANDBOX_QUICKBOOKS_SECRET = '7cGjESdGMpKXRuPAurZ46lZ4xKcAqi7RxR4FJcwc'
-SANDBOX_REDIRECT_URL = 'https://www.google.com/' #### change with https://domain redirection path
+SANDBOX_URL = ''
+SANDBOX_QUICKBOOKS_ID = ''
+SANDBOX_QUICKBOOKS_SECRET = ''
+SANDBOX_REDIRECT_URL = ''
 SANDBOX_SCOPES = ['com.intuit.quickbooks.accounting','com.intuit.quickbooks.payment','openid','profile','email','phone','address']
-token_url='https://www.google.com/'
+token_url=''
 
 
-# link_url = 'http://50.18.24.167:50/'
-link_url = 'http://localhost:8000/'
+link_url = 'http://localhost:8080/'
 
+file_save_url = 'http://localhost:8000/'
+
+file_save_path = 'local'  # locals
 
 #######  oauth2  #######
-# CLIENT_ID = 'jXSgsucxQL08Mrdy442yXG7EKZIdhJZFZMoin3xh'
-# CLIENT_SECRET = 'Vw3nzBP0h0cGBWjzs2uL7KOLYJZ6lI4e'
-# TOKEN_URL = 'http://50.18.24.167:50/v1/oauth2/token/'
-TOKEN_URL = 'http://localhost:8000/v1/oauth2/token/'
+TOKEN_URL = 'http://127.0.0.1:8000/v1/oauth2/token/'
 
 
 OAUTH2_PROVIDER = {
@@ -262,13 +256,12 @@ OAUTH2_PROVIDER = {
 }
 
 
-SALESFORCE_CONSUMER_KEY = '3MVG9GCMQoQ6rpzRBaREKELslW7uprKCSg.QA7B9zh4w9rU_SeFrjLAYlqM2mN9JfPuVr4q30x_yOT0Ix7x2W'
-SALESFORCE_CONSUMER_SECRET = '5ABD2809EF21B2F104B3BD4CB47793200A134FF6A19D102B3F90A799F43DB67F'
-# SALESFORCE_REDIRECT_URI = 'https://hask.io/lander'
-SALESFORCE_REDIRECT_URI = 'http://localhost:8000/v1/callback/'
-SALESFORCE_AUTH_URL = 'https://stratapps6-dev-ed.develop.my.salesforce.com/services/oauth2/authorize'
-SALESFORCE_TOKEN_URL = 'https://stratapps6-dev-ed.develop.my.salesforce.com/services/oauth2/token'
+SALESFORCE_CONSUMER_KEY = ''
+SALESFORCE_CONSUMER_SECRET = ''
+SALESFORCE_REDIRECT_URI = ''
+SALESFORCE_AUTH_URL = ''
+SALESFORCE_TOKEN_URL = ''
 
 
-
-DEFAULT_TOKEN = "B8nGJ4oIRfujTrmosWBAN54zatfn9J"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

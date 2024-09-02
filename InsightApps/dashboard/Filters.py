@@ -45,7 +45,7 @@ bool_list=['bool','boolean']
 date_list=['date','time','datetime','timestamp','timestamp with time zone','timestamp without time zone','timezone','time zone','timestamptz'] 
 
 def date_format(date_format1):
-    date_func = {'year':'%Y','month':'%m','day':'%d','hour':'%H','minute':'%M','second':'%S','week numbers':'%W','weekdays':'%w','month/year':'%m/%Y','month/day/year':'%m/%d/%Y'}
+    date_func = {'year':'%Y','month':'%m','day':'%d','hour':'%H','minute':'%M','second':'%S','week numbers':'%W','weekdays':'%w','month/year':'%m/%Y','month/day/year':'%m/%d/%Y','count_distinct':'count_distinct'}
     return date_func.get(date_format1.lower(),'%Y-%m-%d')
 
 
@@ -199,7 +199,8 @@ def server_details_check(ServerType1,server_details,file_type,file_data,joining_
         match = re.search(pattern, str(file_data.source))
 
         filename = match.group(1)
-        file,fileext = filename.split('.')
+        file12,fileext = filename.split('.')
+        file = re.sub(r'^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}', '', str(file12))
         file_url = file_data.source
         
         if (file_type.upper()=='EXCEL' and fileext == 'xlsx') or (file_type.upper()=='EXCEL' and fileext == 'xls'):
@@ -302,7 +303,6 @@ def building_query(self,tables,join_conditions,join_types,engine,dbtype):
     table_col= []
     alias_columns = []
     try:
-                
         for schema,table_name,alias in tables:
             metadata = MetaData()
             if dbtype == 'microsoftsqlserver':
@@ -398,41 +398,55 @@ def building_query(self,tables,join_conditions,join_types,engine,dbtype):
             relation_tables = get_data['relation']
             dynamic_cond = get_data['conditions']
             no_relation_tables =[]
+            my_relation_tables=[]
             if comp:
                 for i in comp:
-                    print(i,join_conditions)
                     if i>=len(join_conditions):
-                        print(i)
                         schema_table,table_name = tables[i].split(' ')
                         # schema,table = schema_table.split('.')
                         no_relation_tables.append(table_name)
                     else:
                         # index_in_tables = literal_eval(tables).index(i)
                         for user_cond in join_conditions:
-                            if len(user_cond)>=1:
-                                match = tables[i].split(' ')[1]
-                                cond1,cond2 = user_cond[0].replace("'",'').split('=')
-                                one,two = cond1.split('.')
-                                three,four = cond2.split('.')
-                                cond1 = one+'.'+two.replace('"','')
-                                cond2 = three+'.'+four.replace('"','')
-                                if match==one.strip() or match==three.strip():
-                                    k=''
-                                    one1=''
-                                    three1=''
-                                    for table in tables:
-                                        if one in table:
-                                            one1 += table
-                                        elif three in table:
-                                            three1 += table
-                                        else:
-                                            pass
-                                    k=(one1,three1)
-                                    relation_tables.insert(i-1,k)
+                            try:
+                                if len(user_cond)>=1:
+                                    match = tables[i].split(' ')[1]
+                                    cond1,cond2 = user_cond[0].replace("'",'').split('=')
+                                    one,two = cond1.split('.')
+                                    three,four = cond2.split('.')
+                                    cond1 = one+'.'+two.replace('"','')
+                                    cond2 = three+'.'+four.replace('"','')
+                                    if match==one.strip() or match==three.strip():
+                                        k=''
+                                        one1=''
+                                        three1=''
+                                        for table in tables:
+                                            if one in table:
+                                                one1 += table
+                                            elif three in table:
+                                                three1 += table
+                                            else:
+                                                pass
+                                        k=(one1,three1)
+                                        relation_tables.insert(i-1,k)                                  
+                                    # else:
+                                    #     k=''
+                                    #     one1=''
+                                    #     three1=''
+                                    #     for table in tables:
+                                    #         if one in table:
+                                    #             one1 += table
+                                    #         elif three in table:
+                                    #             three1 += table
+                                    #         else:
+                                    #             pass
+                                    #     k=(one1,three1)
+                                    #     print(k)
+                                    #     relation_tables.insert(i-1,k)
                                 else:
-                                   pass
-                            else:
-                                pass
+                                    pass
+                            except Exception as e:
+                                print(e)
                         
                     # bb = tables[i].split(' ')[1]
                     # print(i)
@@ -457,25 +471,25 @@ def building_query(self,tables,join_conditions,join_types,engine,dbtype):
                 return return_data
             
             else:    
+                my_relation_tables = relation_tables
                 condition = {}
                 # join_conditions.pop()
                 # join_conditions.append(dynamic_cond[0])
-                for i in range(len(relation_tables)):
+                for i in range(len(my_relation_tables)):
                     ll1= []
                     if join_conditions[i]:
                         a = join_conditions[i]
                     else:
-                        a = dynamic_cond[0]
+                        a = dynamic_cond[-1]
                         join_conditions[i].append(a[0])
-                    for j in a:
-                        ll1.append(j)
-                    key = relation_tables[i]
+                    ll1.append(a)
+                    key = my_relation_tables[i]
                     condition[key] = ll1
-                for i in range(1, len(tables)):
+                for i in range(0, len(tables)):
                     key_data = list(condition.keys())
+                    compare_value = key_data[i-1]
                     for j in range(0,len(key_data)):
-                        compare_value = key_data[j]
-                        if (tables[i-1],tables[j+1]) == compare_value :
+                        if (tables[i-1],tables[j+1]) in(condition):
                             if j < len(join_types):
                                 join_type = join_types[j-1]
                             else :
@@ -485,9 +499,10 @@ def building_query(self,tables,join_conditions,join_types,engine,dbtype):
                             if len(condition[compare_value])>=1:
                                 for index,cond in enumerate(condition[compare_value]):
                                     if index ==0:
-                                        query+= f' on {cond}'
+                                        query+= f' on {cond[0]}'
                                     else:
-                                        query+= f" and {cond} "              
+                                        query+= f" and {cond[0]} " 
+                                             
     except Exception as e:
         error_data = {
 
@@ -906,13 +921,19 @@ class joining_query_data(CreateAPIView):
                 st=datetime.datetime.now(utc)
                 if dbtype.lower()=="microsoftsqlserver":
                     query="{}".format(query_data.custom_query)
-                    query = query + f'limit {row_limit}'
+                    if 'limit' in str(query).lower():
+                        query=query
+                    else:
+                        query = query + f' limit {row_limit}'
                     query = query_parsing(query,dbtype,dbtype)
                     result_proxy = cur.execute(query)
                     result_column_values = cur.description
                 else:
                     # result_proxy = cur.execute(text(query_data.custom_query))
-                    query = query_data.custom_query + f' limit {row_limit}'
+                    if 'limit' in str(query_data.custom_query).lower():
+                        query=query_data.custom_query
+                    else:
+                        query = query_data.custom_query + f' limit {row_limit}'
                     query = query_parsing(query,dbtype,dbtype)
                     result_proxy = cur.execute(text(query))
                     result_column_values = result_proxy.cursor.description               
@@ -1111,7 +1132,6 @@ class Sqlite3_temp_table():
         return response
 
 
-
 class Chart_filter(CreateAPIView):
     serializer_class = FilterSerializer
     @transaction.atomic
@@ -1129,6 +1149,7 @@ class Chart_filter(CreateAPIView):
                 col_name = serializer.validated_data['col_name']
                 data_type = serializer.validated_data['data_type']
                 format_date = serializer.validated_data['format_date']
+                search = serializer.validated_data['search']
             else:
                 return Response({'message':'serializer error'},status=status.HTTP_204_NO_CONTENT)
             user_id = tok1['user_id']
@@ -1185,8 +1206,28 @@ class Chart_filter(CreateAPIView):
                 
                        
             data_type = data_type.split('(')[0]
-            if data_type.lower() in integer_list or data_type.lower()  in char_list  :
-                query_string = data_sourse_string.replace('*',f' distinct(\"{col_name}\")') + ' order by 1'
+            if data_type.lower() in integer_list :
+                if search:
+                    query_string = data_sourse_string.replace('*',f' distinct(\"{col_name}\")') + f' where {col_name} = {search} ' +' order by 1'
+                else:
+                    query_string = data_sourse_string.replace('*',f' distinct(\"{col_name}\")') + ' order by 1'
+                query_result = temp_class.query(query_string)                 
+                if query_result['status'] ==200:
+                    col_data = query_result['result_data']
+                else:
+                    return Response({'message':query_result['message']},status = status.HTTP_400_BAD_REQUEST)
+            
+                row_data =[]   
+                for i in col_data:
+                    d1 = i[0]
+                    row_data.append(d1)
+                result_data = row_data
+            elif data_type.lower()  in char_list :
+                if search:
+                    query_string = data_sourse_string.replace('*',f' distinct(\"{col_name}\")') + f' where lower({col_name}) like lower("%{search}%")' +' order by 1'
+                    query_string = data_sourse_string.replace('*',f' distinct(\"{col_name}\")') + f' where {col_name} like "%{search}%"' +' order by 1'
+                else:
+                    query_string = data_sourse_string.replace('*',f' distinct(\"{col_name}\")') + ' order by 1'
                 query_result = temp_class.query(query_string)                 
                 if query_result['status'] ==200:
                     col_data = query_result['result_data']
@@ -1224,7 +1265,10 @@ class Chart_filter(CreateAPIView):
                     return Response({'message':query_result['message']},status = status.HTTP_400_BAD_REQUEST)
                 result_data = list(col_data[0])
             elif data_type.lower() in date_list :
-                query_string = data_sourse_string.replace('*',f" distinct(STRFTIME('{format_date}',\"{col_name}\"))") + ' order by 1'
+                if search:
+                    query_string = data_sourse_string.replace('*',f" distinct(STRFTIME('{format_date}',\"{col_name}\"))") + f" where  STRFTIME('{format_date}',\"{col_name}\") = '{search}'"+' order by 1'
+                else:
+                    query_string = data_sourse_string.replace('*',f" distinct(STRFTIME('{format_date}',\"{col_name}\"))") + ' order by 1'
                 query_result = temp_class.query(query_string)
                 if query_result['status'] ==200:
                     col_data = query_result['result_data']
@@ -1421,7 +1465,20 @@ class Chart_filter(CreateAPIView):
                 }
             else:
                 if type_of_filter.lower() == 'datasource':
-                    aa = DataSourceFilter.objects.create(
+                    if range_values:
+                        aa = DataSourceFilter.objects.create(
+                                server_id = database_id,
+                                file_id = file_id,
+                                user_id=user_id,
+                                queryset_id =queryset_id,
+                                col_name = col_name,    
+                                data_type = data_type,
+                                filter_data = range_values,
+                                row_data = tuple(result_data),
+                                format_type = format_date
+                            )
+                    else:
+                        aa = DataSourceFilter.objects.create(
                             server_id = database_id,
                             file_id = file_id,
                             user_id=user_id,
@@ -1433,18 +1490,33 @@ class Chart_filter(CreateAPIView):
                             format_type = format_date
                         )
                 else:
-                    aa = ChartFilters.objects.create(
-                            server_id = database_id,
-                            file_id = file_id,
-                            user_id=user_id,
-                            datasource_querysetid = datasource_querysetid,
-                            queryset_id  = queryset_id,
-                            col_name = col_name,    
-                            data_type = data_type,
-                            filter_data = tuple(select_values),
-                            row_data = tuple(result_data),
-                            format_type = format_date
-                        )
+                    if range_values:
+
+                        aa = ChartFilters.objects.create(
+                                server_id = database_id,
+                                file_id = file_id,
+                                user_id=user_id,
+                                datasource_querysetid = datasource_querysetid,
+                                queryset_id  = queryset_id,
+                                col_name = col_name,    
+                                data_type = data_type,
+                                filter_data = range_values,
+                                row_data = tuple(result_data),
+                                format_type = format_date
+                            )
+                    else:
+                        aa = ChartFilters.objects.create(
+                                server_id = database_id,
+                                file_id = file_id,
+                                user_id=user_id,
+                                datasource_querysetid = datasource_querysetid,
+                                queryset_id  = queryset_id,
+                                col_name = col_name,    
+                                data_type = data_type,
+                                filter_data = tuple(select_values),
+                                row_data = tuple(result_data),
+                                format_type = format_date
+                            )
 
                 Response_data = {
                         "filter_id" : aa.filter_id              
@@ -1465,6 +1537,7 @@ class Chart_filter(CreateAPIView):
         else:
             return Response({"message":tok1['message']},status=status.HTTP_404_NOT_FOUND)
 
+
 def get_formatted_date_query(db_type,date_column,f1):
     f1 = date_format(f1)
     if f1 =='%m'and db_type=='sqlite':
@@ -1482,6 +1555,19 @@ def get_formatted_date_query(db_type,date_column,f1):
             WHEN '11' THEN 'November'
             WHEN '12' THEN 'December'
             END  """
+    elif f1 =='count_distinct':
+        if db_type == 'sqlite':
+            query = f" count(Distinct STRFTIME('{f1}', \"{date_column}\"))"
+        elif db_type == 'mysql':
+            query = f" count(Distinct DATE_FORMAT(\"{date_column}\", '%Y-%m-%d')) "
+        elif db_type == 'postgres':
+            query = f" count(Distinct TO_CHAR({date_column}, 'YYYY-MM-DD'))  "
+        elif db_type == 'sqlserver':
+            query = f" count(Distinct FORMAT(\"{date_column}\", 'yyyy-MM-dd')) "
+        elif db_type == 'oracle':
+            query = f" count(Distinct TO_CHAR(\"{date_column}\", 'YYYY-MM-DD')) "
+        else:
+            raise ValueError("Unsupported database type")
     else:
         if db_type == 'sqlite':
             query = f" STRFTIME('{f1}', \"{date_column}\")"
@@ -1516,17 +1602,22 @@ def Custom_joining_filter(condition,chart_filter_data,type_of_db):
         col = f'"{col_name}"'
     chart_filter_data.data_type = chart_filter_data.data_type.split('(')[0]
     if  chart_filter_data.data_type.lower() in date_list :
-        string1 =   f" {condition} STRFTIME('{chart_filter_data.format_type}',\"{chart_filter_data.col_name.partition('(')[0]}\") in {d111} " 
-        string2 = ''
-        string3 = ''
+        if isinstance(range_k,list):
+            string1 =   f" {condition} STRFTIME('{chart_filter_data.format_type}',\"{chart_filter_data.col_name.partition('(')[0]}\") between '{range_k[0]}' and '{range_k[1]}' " 
+            string2 = ''
+            string3 = ''
+        else:
+            string1 =   f" {condition} STRFTIME('{chart_filter_data.format_type}',\"{chart_filter_data.col_name.partition('(')[0]}\") in {d111} " 
+            string2 = ''
+            string3 = ''
 
     elif  chart_filter_data.data_type.lower() == 'startswith':
-        string1 =f" {condition} \"{col_name}\" like '{range_k[0]}%'"
+        string1 =f" {condition} lower(\"{col_name}\") like lower('{range_k[0]}%')"
         string2 =  ''
         string3 =  ''
         
     elif chart_filter_data.data_type.lower() == 'endswith':
-        string1 = f" {condition} \"{col_name}\" like '%{range_k[0]}'"
+        string1 = f" {condition} lower(\"{col_name}\") like lower('%{range_k[0]}')"
         string2 = ''
         string3 =  ''
         
@@ -1594,17 +1685,23 @@ def Custom_joining_filter1(condition,chart_filter_data,type_of_db):
 
     chart_filter_data.data_type = chart_filter_data.data_type.split('(')[0]
     if  chart_filter_data.data_type.lower() in date_list :
-        string1 =   f" {condition} STRFTIME('{chart_filter_data.format_type}',\"{chart_filter_data.col_name}\") in {d111} " 
-        string2 = ''
-        string3 = ''
+        if isinstance(range_k,list):
+            string1 =   f" {condition} STRFTIME('{chart_filter_data.format_type}',\"{chart_filter_data.col_name.partition('(')[0]}\") between '{range_k[0]}' and '{range_k[1]}'  " 
+            string2 = ''
+            string3 = ''
+        else:
+            string1 =   f" {condition} STRFTIME('{chart_filter_data.format_type}',\"{chart_filter_data.col_name.partition('(')[0]}\") in {d111} " 
+            string2 = ''
+            string3 = ''
+
 
     elif  chart_filter_data.data_type.lower() == 'startswith':
-        string1 =f" {condition} \"{chart_filter_data.col_name}\" like '{range_k[0]}%'"
+        string1 =f" {condition} lower(\"{chart_filter_data.col_name}\") like lower('{range_k[0]}%')"
         string2 =  ''
         string3 =  ''
         
     elif chart_filter_data.data_type.lower() == 'endswith':
-        string1 = f" {condition} \"{chart_filter_data.col_name}\" like '%{range_k[0]}'"
+        string1 = f" {condition} lower(\"{chart_filter_data.col_name}\") like lower('%{range_k[0]}')"
         string2 = ''
         string3 =  ''
         
@@ -1653,53 +1750,82 @@ def data_retrieve_filter(string1,string2,string3,data_sourse_string,col,row,type
                     if index1 == 0 and current_value =='col':
                         groupby_string += ' group by '
                         if f1.lower()=='count_distinct':
-                            pass
+                            aa.append(f" count(Distinct \"{c1}\")")
+                            response_col.append(f" \"CNTD({c1})\"")
+                            groupby_string += f" \"CNTD({c1})\","
                         else:
                             aa.append(f" \"{c1}\"")
-                        response_col.append(f" \"{c1}\"")
-                        groupby_string += f" \"{c1}\","
+                            response_col.append(f" \"{c1}\"")
+                            groupby_string += f" \"{c1}\","
                     else:
                         if 'group by' in groupby_string:
                             pass
                         else:
                             groupby_string += ' group by '
-                        aa.append(f" \"{c1}\"")
-                        response_col.append(f" \"{c1}\"")
-                        groupby_string += f" \"{c1}\","
+                        if f1.lower()=='count_distinct':
+                            aa.append(f" count(Distinct \"{c1}\")")
+                            response_col.append(f" \"CNTD({c1})\"")
+                            groupby_string += f" \"CNTD({c1})\"),"
+                        else:
+                            aa.append(f" \"{c1}\"")
+                            response_col.append(f" \"{c1}\"")
+                            groupby_string += f" \"{c1}\","
                 elif  d1.lower() in bool_list:
                     if index1 == 0 and current_value =='col':
                         groupby_string += ' group by ' 
-                        aa.append(f" CASE when \"{c1}\" THEN 'True' ELSE 'False' END AS \"{c1}:OK\" ")
-                        # aa.append(f"CASE WHEN \"{c1}\" =True THEN 'True' ELSE 'False' END AS \"{c1}\" ")
-                        response_col.append(f" \"{c1}\"")
-                        groupby_string += f" \"{c1}\","
+                        if f1.lower()=='count_distinct':
+                            aa.append(f" count(distinct CASE when \"{c1}\" THEN 'True' ELSE 'False' END) AS \"CNTD({c1}:OK)\" ")
+                            response_col.append(f" \"CNTD({c1})\"")
+                            groupby_string += f" \"CNTD({c1})\","
+                        else:
+                            aa.append(f" CASE when \"{c1}\" THEN 'True' ELSE 'False' END AS \"{c1}:OK\" ")
+                            response_col.append(f" \"{c1}\"")
+                            groupby_string += f" \"{c1}\","
                     else:
                         if 'group by' in groupby_string:
                             pass
                         else:
                             groupby_string += ' group by '
-                        aa.append(f" CASE when \"{c1}\" THEN 'True' ELSE 'False' END AS \"{c1}:OK\" ")
-                        # aa.append(f"CASE WHEN \"{c1}\" =True THEN 'True' ELSE 'False' END AS \"{c1}\" ")
-                        response_col.append(f" \"{c1}\"")
-                        groupby_string += f" \"{c1}\","
-                elif d1.lower() in date_list and len(col_values)!=0  :
+                        if f1.lower()=='count_distinct':
+                            aa.append(f" count(distinct CASE when \"{c1}\" THEN 'True' ELSE 'False' END) AS \"CNTD({c1}:OK)\" ")
+                            response_col.append(f" \"CNTD({c1})\"")
+                            groupby_string += f" \"CNTD({c1})\","
+                        else:
+                            aa.append(f" CASE when \"{c1}\" THEN 'True' ELSE 'False' END AS \"{c1}:OK\" ")
+                            response_col.append(f" \"{c1}\"")
+                            groupby_string += f" \"{c1}\","
+                elif d1.lower() in date_list and len(col_values)!=0:
                     if index1 == 0 and current_value =='col':
                         groupby_string = ' group by '
-                        aa.append(f"{get_formatted_date_query('sqlite',c1,f1)} as \"{c1}:OK\"" )
-                        response_col.append(f"\"{c1}\"" )
-                        groupby_string += f"\"{c1}:OK\"," 
+                        if f1.lower() == 'count_distinct':
+                            aa.append(f"{get_formatted_date_query('sqlite',c1,f1)} as \"CNTD({c1}:OK)\"" )
+                            response_col.append(f" \"CNTD({c1}:OK)\"" )
+                            groupby_string += f"\"CNTD({c1}:OK)\","
+                        else:
+                            aa.append(f"{get_formatted_date_query('sqlite',c1,f1)} as \"{c1}:OK\"" )
+                            response_col.append(f"\"{c1}\"" )
+                            groupby_string += f"\"{c1}:OK\"," 
                     else:
                         if 'group by' in groupby_string:
                             pass
                         else:
                             groupby_string = ' group by '
-                        aa.append(f"{get_formatted_date_query('sqlite',c1,f1)} as \"{c1}:OK\"" )
-                        response_col.append(f"\"{c1}\"" )
-                        groupby_string += f"\"{c1}:OK\","     
+                        if f1.lower() == 'count_distinct':
+                            aa.append(f"{get_formatted_date_query('sqlite',c1,f1)} as \"CNTD({c1}:OK)\"" )
+                            response_col.append(f" \"CNTD({c1}:OK)\"" )
+                            groupby_string += f" \"CNTD({c1}:OK)\","
+                        else:
+                            aa.append(f"{get_formatted_date_query('sqlite',c1,f1)} as \"{c1}:OK\"" )
+                            response_col.append(f"\"{c1}\"" )
+                            groupby_string += f"\"{c1}:OK\","     
 
                 elif 'aggregate' == d1.lower():
-                    aa.append(f' {f1}(\"{c1}\") as \"{f1}({c1})\"')
-                    response_col.append(f"{f1}({c1})" )
+                    if f1.lower()=='count_distinct':
+                        aa.append(f' Count(Distinct \"{c1}\") as \"CNTD({c1})\"')
+                        response_col.append(f" \"CNTD({c1})\"" )
+                    else:
+                        aa.append(f' {f1}(\"{c1}\") as \"{f1}({c1})\"')
+                        response_col.append(f"\"{f1}({c1})\"" )
                 else:
                     temp11 = {"status":400,'message':'  inputs Errors'}
                     return temp11
@@ -2300,7 +2426,7 @@ class get_table_namesAPI(CreateAPIView):
                 database_id = serializer.validated_data['database_id']
                 query_set_id =serializer.validated_data['query_set_id']
                 file_id = serializer.validated_data['file_id']
-                
+                search = serializer.validated_data['search']
                 user_id = tok1['user_id']
                 con_data =connection_data_retrieve(database_id,file_id,user_id)
                 if con_data['status'] ==200:                
@@ -2346,7 +2472,7 @@ class get_table_namesAPI(CreateAPIView):
                     filter_names = []
                     for i in list_filters:
                         filter_names.append(i.col_name)
-                    filtered_data = [item for item in columns if item['column'] not in filter_names]
+                    filtered_data = [item for item in columns if item['column'] not in filter_names and search.lower() in item['column'].lower()]
                 if file_id is not None :
                     delete_tables_sqlite(cur,engine,serdt['tables'])   
                     cur.close()
@@ -2647,6 +2773,7 @@ class get_datasource(CreateAPIView):
                 type_filter = serializer.validated_data['type_filter']
                 # database_id = serializer.validated_data['database_id']
                 filter_no = serializer.validated_data['filter_id']
+                search = serializer.validated_data['search']
                 user_id = tok1['user_id']
             else:
                 return Response({'message': 'serializer error'}, status=status.HTTP_204_NO_CONTENT)
@@ -2658,8 +2785,12 @@ class get_datasource(CreateAPIView):
                     aaa = DataSourceFilter.objects.get(filter_id=filter_no, user_id=user_id)
                 row_d = literal_eval(aaa.row_data)
                 fil_d = literal_eval(aaa.filter_data)
-                result = [{'label': item, 'selected': item in fil_d} for item in row_d]
-                array = {'%Y':'year','%m':'month','%d':'day','%H':'hour','%M':'minute','%S':'seconds','%W':'week numbers','%m/%Y':'month/year','%m/%d/%Y':'month/day/year'}
+                if search:
+                    result = [{'label': item, 'selected': item in fil_d} for item in row_d if search.lower() in item.lower()]
+                    result = [{'label': item, 'selected': item in fil_d} for item in row_d if search in item]
+                else:
+                    result = [{'label': item, 'selected': item in fil_d} for item in row_d]
+                array = {'%Y':'year','%m':'month','%d':'day','%H':'hour','%M':'minute','%S':'seconds','%W':'week numbers','%m/%Y':'month/year','%m/%d/%Y':'month/day/year','count_distinct':'count_distinct'}
                 return_data = {
                     "data_type":aaa.data_type,
                     'filter_id': filter_no,

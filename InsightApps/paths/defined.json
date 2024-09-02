@@ -1,0 +1,481 @@
+[
+  {
+    "privileges": [
+      { "id": 1, "privilege": "can add database" },
+      { "id": 2, "privilege": "can edit database" },
+      { "id": 3, "privilege": "can delete database" },
+      { "id": 4, "privilege": "can view database" },
+      { "id": 5, "privilege": "can search database" },
+      { "id": 6, "privilege": "can preview data from datasource" },
+      { "id": 7, "privilege": "can add tables to semantic layer" },
+      { "id": 8, "privilege": "can view tables from semantic layer" },
+      { "id": 9, "privilege": "can delete tables from semantic layer" },
+      { "id": 10, "privilege": "can add datasource filters" },
+      { "id": 11, "privilege": "can edit datasource filters" },
+      { "id": 12, "privilege": "can delete datasource filters" },
+      { "id": 13, "privilege": "can view datasource filters" },
+      { "id": 14, "privilege": "can search tables from connected database" },
+      { "id": 15, "privilege": "can add sheet" },
+      { "id": 16, "privilege": "can edit sheet" },
+      { "id": 17, "privilege": "can delete sheet" },
+      { "id": 18, "privilege": "can view sheet" },
+      { "id": 19, "privilege": "can add sheet filters" },
+      { "id": 20, "privilege": "can edit sheet filters" },
+      { "id": 21, "privilege": "can delete sheet filters" },
+      { "id": 22, "privilege": "can view sheet filters" },
+      { "id": 23, "privilege": "can download sheet" },
+      { "id": 24, "privilege": "can add database connections from sheet" },
+      { "id": 25, "privilege": "can edit database connections from sheet" },
+      { "id": 26, "privilege": "can add sheet title" },
+      { "id": 27, "privilege": "can edit sheet title" },
+      { "id": 28, "privilege": "can format sheet title" },
+      {
+        "id": 29,
+        "privilege": "can rename dimensions in column shelf from sheet"
+      },
+      { "id": 30, "privilege": "can rename measures in row shelf from sheet" },
+      { "id": 31, "privilege": "can add dashboard" },
+      { "id": 32, "privilege": "can delete dashboard" },
+      { "id": 33, "privilege": "can view dashboard" },
+      { "id": 34, "privilege": "can edit dashboard" },
+      { "id": 35, "privilege": "can add dashboard filter" },
+      { "id": 36, "privilege": "can edit dashboard filter" },
+      { "id": 37, "privilege": "can delete dashboard filter" },
+      { "id": 38, "privilege": "can view dashboard filter" },
+      { "id": 39, "privilege": "can download dashboard" },
+      { "id": 40, "privilege": "can share dashboard" },
+      { "id": 41, "privilege": "can export dashboard" },
+      { "id": 42, "privilege": "can favourite dashboard using favicon" },
+      { "id": 43, "privilege": "can add dashboard title" },
+      { "id": 44, "privilege": "can edit dashboard title" },
+      { "id": 45, "privilege": "can goto sheet from dashboard" },
+      { "id": 46, "privilege": "can remove sheet from dashboard" },
+      { "id": 47, "privilege": "can resize dashboard layout" },
+      { "id": 48, "privilege": "can add customsql query" },
+      { "id": 49, "privilege": "can edit customsql query" },
+      { "id": 50, "privilege": "can delete customsql query" },
+      { "id": 51, "privilege": "can view customsql query" },
+      { "id": 52, "privilege": "can add roles" },
+      { "id": 53, "privilege": "can delete roles" },
+      { "id": 54, "privilege": "can edit roles" },
+      { "id": 55, "privilege": "can view roles" },
+      { "id": 56, "privilege": "can edit user" },
+      { "id": 57, "privilege": "can add user" },
+      { "id": 58, "privilege": "can delete user" },
+      { "id": 59, "privilege": "can view userlist" },
+      { "id": 60, "privilege": "can add csv files" },
+      { "id": 61, "privilege": "can delete csv files" },
+      { "id": 62, "privilege": "can add excel files" },
+      { "id": 63, "privilege": "can delete excel files" },
+      { "id": 64, "privilege": "can view excel files" },
+      { "id": 65, "privilege": "can view csv files" },
+      { "id": 66, "privilege": "can view privileges" }
+    ]
+  },
+
+  {
+    "roles": [
+      {
+        "role_id": 1,
+        "role": "Admin",
+        "created_by": "",
+        "created_at": "2024-08-28T15:38:10Z",
+        "updated_at": "2024-08-28T15:38:10Z",
+        "role_desc": "",
+        "privilege_ids": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66]
+      }
+    ]
+  },
+
+  {
+    "file_types": [
+      {
+        "id": 1,
+        "file_type": "EXCEL"
+      },
+      {
+        "id": 2,
+        "file_type": "CSV"
+      },
+      {
+        "id": 3,
+        "file_type": "PDF"
+      },
+      {
+        "id": 4,
+        "file_type": "XML"
+      },
+      {
+        "id": 5,
+        "file_type": "TEXT"
+      },
+      {
+        "id": 6,
+        "file_type": "QUICKBOOKS"
+      }
+    ]
+  },
+
+  {
+    "server_types": [
+      {
+        "id": 1,
+        "server_type": "POSTGRESQL"
+      },
+      {
+        "id": 2,
+        "server_type": "ORACLE"
+      },
+      {
+        "id": 3,
+        "server_type": "MYSQL"
+      },
+      {
+        "id": 4,
+        "server_type": "SQLITE"
+      },
+      {
+        "id": 5,
+        "server_type": "IBMDB2"
+      },
+      {
+        "id": 6,
+        "server_type": "MICROSOFTSQLSERVER"
+      },
+      {
+        "id": 7,
+        "server_type": "MICROSOFTACCESS"
+      },
+      {
+        "id": 8,
+        "server_type": "SYBASE"
+      },
+      {
+        "id": 9,
+        "server_type": "MONGODB"
+      },
+      {
+        "id": 10,
+        "server_type": "SNOWFLAKE"
+      }
+    ]
+  },
+
+  {
+    "grid_types": [
+      {
+        "id": 1,
+        "grid_type": "SCROLL"
+      },
+      {
+        "id": 2,
+        "grid_type": "FIXED"
+      }
+    ]
+  },
+
+  {
+    "charts": [
+      {
+        "id": 1,
+        "chart_type": "Table",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "0",
+        "max_dimensions": "0",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 2,
+        "chart_type": "PACKED_BUBBLES",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "1",
+        "max_dimensions": "2",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 3,
+        "chart_type": "HEAT_MAP",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "1",
+        "max_dimensions": "2",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 4,
+        "chart_type": "SYMBOL_MAP",
+        "min_measures": "0",
+        "max_measures": "0",
+        "min_dimensions": "0",
+        "max_dimensions": "2",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "1",
+        "max_geo": "1"
+      },
+      {
+        "id": 5,
+        "chart_type": "MAPS",
+        "min_measures": "0",
+        "max_measures": "0",
+        "min_dimensions": "0",
+        "max_dimensions": "1",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "1",
+        "max_geo": "1"
+      },
+      {
+        "id": 6,
+        "chart_type": "bar",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "0",
+        "max_dimensions": "1",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 7,
+        "chart_type": "STACKED_BAR",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "1",
+        "max_dimensions": "1",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 8,
+        "chart_type": "SIDE_BY_SIDE_BAR",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "1",
+        "max_dimensions": "1",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 9,
+        "chart_type": "HIGHLIGHT_TABLES",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "1",
+        "max_dimensions": "1",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 10,
+        "chart_type": "TREE_MAPS",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "1",
+        "max_dimensions": "2",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 11,
+        "chart_type": "CIRCLE_VIEWS",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "0",
+        "max_dimensions": "1",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 12,
+        "chart_type": "SIDE_BY_SIDE_CIRCLES",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "0",
+        "max_dimensions": "1",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 13,
+        "chart_type": "line",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "0",
+        "max_dimensions": "0",
+        "min_dates": "1",
+        "max_dates": "1",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 14,
+        "chart_type": "LINE_DESCRET",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "0",
+        "max_dimensions": "0",
+        "min_dates": "1",
+        "max_dates": "1",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 15,
+        "chart_type": "DUAL_LINE",
+        "min_measures": "2",
+        "max_measures": "2",
+        "min_dimensions": "0",
+        "max_dimensions": "2",
+        "min_dates": "0",
+        "max_dates": "1",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 16,
+        "chart_type": "DUAL_COMBINATION",
+        "min_measures": "2",
+        "max_measures": "2",
+        "min_dimensions": "0",
+        "max_dimensions": "2",
+        "min_dates": "0",
+        "max_dates": "1",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 17,
+        "chart_type": "AREA_CHARTS",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "0",
+        "max_dimensions": "1",
+        "min_dates": "0",
+        "max_dates": "1",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 18,
+        "chart_type": "AREA_CHARTS_DISCRETE",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "0",
+        "max_dimensions": "1",
+        "min_dates": "0",
+        "max_dates": "1",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 19,
+        "chart_type": "SCATTER_PLOTS",
+        "min_measures": "2",
+        "max_measures": "4",
+        "min_dimensions": "0",
+        "max_dimensions": "0",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 20,
+        "chart_type": "HISTOGRAM",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "0",
+        "max_dimensions": "0",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 21,
+        "chart_type": "BOX_AND_WHISKER_PLOTS",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "0",
+        "max_dimensions": "0",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 22,
+        "chart_type": "GANTT",
+        "min_measures": "0",
+        "max_measures": "2",
+        "min_dimensions": "1",
+        "max_dimensions": "2",
+        "min_dates": "0",
+        "max_dates": "1",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 23,
+        "chart_type": "BULLET_GRAPHS",
+        "min_measures": "2",
+        "max_measures": "2",
+        "min_dimensions": "0",
+        "max_dimensions": "0",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 24,
+        "chart_type": "pie",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "1",
+        "max_dimensions": "2",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      },
+      {
+        "id": 25,
+        "chart_type": "KPI",
+        "min_measures": "1",
+        "max_measures": "1",
+        "min_dimensions": "1",
+        "max_dimensions": "2",
+        "min_dates": "0",
+        "max_dates": "0",
+        "min_geo": "0",
+        "max_geo": "0"
+      }
+    ]
+  }
+]

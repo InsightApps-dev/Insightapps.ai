@@ -205,8 +205,8 @@
           <button *ngIf="!gridView" type="button" (click)="gridView=true" class="btn btn-icon btn-primary-light me-1"><i class="fa fa-th-large"></i></button>
           <button *ngIf="!gridView" type="button" class="btn btn-icon btn-outline-primary me-3" ><i class="fa fa-th-list"></i></button>
           <div class="input-group">
-            <input type="text" class="form-control border-end-0 " placeholder="Search Database Server" [(ngModel)]="searchDbName" aria-describedby="button-addon2" (keyup.enter)="getDbConnectionList()">
-            <button class="btn btn-primary border me-2" type="button" (click)="getDbConnectionList()" id="button-addon2" style="border-radius: 0px 4px 4px 0px;"><i class="fe fe-search "></i></button>
+            <input type="text" class="form-control border-end-0 " placeholder="Search Database Server" [(ngModel)]="searchDbName" aria-describedby="button-addon2" (keyup.enter)="searchDbConnectionList()">
+            <button class="btn btn-primary border me-2" type="button" (click)="searchDbConnectionList()" id="button-addon2" style="border-radius: 0px 4px 4px 0px;"><i class="fe fe-search "></i></button>
             
             <app-insights-button [buttonName]="' New Database'" [classesList]="'btn btn-primary'" [isIcon]="true" [previledgeId]="1" [faIconList]="'fa fa-plus'" [isBtn]="true"
             (btnClickEvent)="databaseconnectionsList=false;viewNewDbs=true;"></app-insights-button>

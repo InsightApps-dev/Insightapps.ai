@@ -684,11 +684,11 @@ class ListofActiveServerConnections(CreateAPIView):
                 if ServerDetails.objects.filter(user_id=tok1['user_id'],is_connected=True).exists() or FileDetails.objects.filter(user_id=tok1['user_id']).exists():
                 
                     if search =='':
-                        details = ServerDetails.objects.filter(user_id=tok1['user_id'],is_connected=True).values()
-                        filedetai = FileDetails.objects.filter(user_id=tok1['user_id'],quickbooks_user_id=None).values()
+                        details = ServerDetails.objects.filter(user_id=tok1['user_id'],is_connected=True).values().order_by('-updated_at')
+                        filedetai = FileDetails.objects.filter(user_id=tok1['user_id'],quickbooks_user_id=None).values().order_by('-updated_at')
                     else:
-                        details = ServerDetails.objects.filter(user_id=tok1['user_id'],is_connected=True,display_name__icontains=search).values()
-                        filedetai = FileDetails.objects.filter(user_id=tok1['user_id'],display_name__icontains=search,quickbooks_user_id=None).values()
+                        details = ServerDetails.objects.filter(user_id=tok1['user_id'],is_connected=True,display_name__icontains=search).values().order_by('-updated_at')
+                        filedetai = FileDetails.objects.filter(user_id=tok1['user_id'],display_name__icontains=search,quickbooks_user_id=None).values().order_by('-updated_at')
                     l =[]
                     for i in details:
                         st = ServerType.objects.get(id=i['server_type'])
@@ -794,7 +794,10 @@ def custom_query_data(row_limit,paramet,server_id,custom_query,u_id,datasorce_qu
         if server_type=="MICROSOFTSQLSERVER":
             clean_query_string = re.sub('[;\[\]]', '', custom_query)
             query1 = text(clean_query_string)
-            query = "{} limit {}".format(query1,row_limit)
+            if 'limit' in str(query1).lower():
+                query=query1
+            else:
+                query = "{} limit {}".format(query1,row_limit)
             result = connection.execute(query)
             columns_info = connection.description
             column_list = [column[0] for column in columns_info]
@@ -809,7 +812,10 @@ def custom_query_data(row_limit,paramet,server_id,custom_query,u_id,datasorce_qu
             rows12 = result12.fetchall()
         else:
             clean_query_string = re.sub(';', '', custom_query)
-            query11 = "{} limit {}".format(clean_query_string,row_limit)
+            if 'limit' in str(clean_query_string).lower():
+                query11=clean_query_string
+            else:
+                query11 = "{} limit {}".format(clean_query_string,row_limit)
             query = text(query11)
             result = connection.execute(query)
             column_names = result.keys()
@@ -851,15 +857,21 @@ def custom_query_data(row_limit,paramet,server_id,custom_query,u_id,datasorce_qu
         row_count.append(a12)
         
     if parameter=="SAVE":
-        qs=QuerySets.objects.create(
-            user_id = u_id,
-            server_id = server_id1,
-            file_id=file_id,
-            is_custom_sql = True,
-            custom_query = clean_query_string,
-            query_name=query_name
-        )
-        qs.save()
+        if queryset_id=='' or queryset_id==None:
+            qs=QuerySets.objects.create(
+                user_id = u_id,
+                server_id = server_id1,
+                file_id=file_id,
+                is_custom_sql = True,
+                custom_query = clean_query_string,
+                query_name=query_name
+            )
+            qs.save()
+        else:
+            QuerySets.objects.filter(queryset_id=queryset_id).update(
+                    custom_query = clean_query_string,query_name=query_name,updated_at=datetime.datetime.now(),
+                    file_id=file_id,user_id=u_id)
+            qs = QuerySets.objects.get(queryset_id=queryset_id)
     elif parameter=="UPDATE":
         if queryset_id=='' or queryset_id==None:
             return Response({'message':'Empty queryset_id field is not accepted'},status=status.HTTP_406_NOT_ACCEPTABLE)
@@ -913,10 +925,11 @@ class CustomSQLQuery(CreateAPIView):
                 custom_query = serializer.validated_data['custom_query']
                 server_id = serializer.validated_data['database_id']
                 query_name = serializer.validated_data['query_name']
+                queryset_id = serializer.validated_data['queryset_id']
                 file_id = serializer.validated_data['file_id']
                 row_limit = serializer.validated_data['row_limit']
                 para="SAVE"
-                quer=''
+                # quer=''
                 dq_id=None
                 file_p="file"
                 server_p="server"
@@ -926,7 +939,7 @@ class CustomSQLQuery(CreateAPIView):
                         srtyp=ServerType.objects.get(id=srtb.server_type)
                     else:
                         return Response({'message':'Server id not exists'},status=status.HTTP_404_NOT_FOUND)
-                    final_data=custom_query_data(row_limit,server_p,server_id,custom_query,tok1['user_id'],dq_id,srtyp.server_type.upper(),query_name,para,queryset_id=quer)
+                    final_data=custom_query_data(row_limit,server_p,server_id,custom_query,tok1['user_id'],dq_id,srtyp.server_type.upper(),query_name,para,queryset_id)
                     return final_data
                 else:
                     if FileDetails.objects.filter(id=file_id).exists():
@@ -934,7 +947,7 @@ class CustomSQLQuery(CreateAPIView):
                         file_data=FileType.objects.get(id=file_db_data.file_type)
                     else:
                         return Response({'message':'file_details_id/file_type not exists'},status=status.HTTP_404_NOT_FOUND)
-                    final_data=custom_query_data(row_limit,file_p,file_db_data.id,custom_query,tok1['user_id'],dq_id,file_data.file_type.upper(),query_name,para,queryset_id=quer)
+                    final_data=custom_query_data(row_limit,file_p,file_db_data.id,custom_query,tok1['user_id'],dq_id,file_data.file_type.upper(),query_name,para,queryset_id)
                     return final_data
             else:
                 return Response({"message":"Serializer Error"}, status=status.HTTP_400_BAD_REQUEST)
@@ -1135,6 +1148,20 @@ def DBDisconnectAPI(request,token,database_id):
         tok1 = roles.role_status(token,role_list)
         if tok1['status']==200:
             if ServerDetails.objects.filter(id=database_id).exists():
+                sdt=ServerDetails.objects.get(id=database_id)
+                qr_list=QuerySets.objects.filter(server_id=sdt.id).values()
+                for qr_id in qr_list:
+                    sh_dt=sheet_data.objects.filter(queryset_id=qr_id['queryset_id']).values()
+                    for qr in sh_dt:
+                        dsdt=dashboard_data.objects.filter(sheet_ids__contains=str(qr['id'])).values()
+                        Connections.sheet_ds_delete(dsdt,qr['id'],sdt.id,qr_id['queryset_id'])
+                    QuerySets.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    DataSource_querysets.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    DataSourceFilter.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    sheet_data.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    SheetFilter_querysets.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    ChartFilters.objects.filter(queryset_id=qr_id['queryset_id']).delete()
+                    DashboardFilters.objects.filter(queryset_id=qr_id['queryset_id']).delete()
                 ServerDetails.objects.get(id=database_id).delete()
                 return Response({'message':'Database Deleted Successful'},status=status.HTTP_200_OK)
             else:

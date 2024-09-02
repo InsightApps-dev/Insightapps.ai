@@ -116,6 +116,8 @@ export class DatabaseComponent {
   rowLimit:any;
   gotoSheetButtonDisable = true;
   fromSavedQuery = false;
+  fromSheetEditDb = false;
+
   constructor( private workbechService:WorkbenchService,private router:Router,private route:ActivatedRoute,private modalService: NgbModal){
     const currentUrl = this.router.url;
     if(currentUrl.includes('/workbench/database-connection/tables/')){
@@ -153,6 +155,7 @@ export class DatabaseComponent {
       this.qurtySetId = +atob(route.snapshot.params['id2']);
       localStorage.setItem('QuerySetId', JSON.stringify(this.qurtySetId));
       this.fromDatabasId = true;
+      this.fromSheetEditDb = true;
       this.datasourceQuerysetId = atob(route.snapshot.params['id3'])
       if(this.datasourceQuerysetId==='null'){
         console.log('filterqrysetid',this.datasourceQuerysetId)
@@ -162,7 +165,6 @@ export class DatabaseComponent {
           parseInt(this.datasourceQuerysetId)
           console.log(this.datasourceQuerysetId)
         }
-      this.getTablesfromPrevious();
       }
     }
     if(currentUrl.includes('/workbench/database-connection/sheets/fileId')){
@@ -171,6 +173,7 @@ export class DatabaseComponent {
        this.qurtySetId = +atob(route.snapshot.params['id2']);
        localStorage.setItem('QuerySetId', JSON.stringify(this.qurtySetId));
        this.fromFileId = true;
+       this.fromSheetEditDb = true;
        this.datasourceQuerysetId = atob(route.snapshot.params['id3'])
        if(this.datasourceQuerysetId==='null'){
          console.log('filterqrysetid',this.datasourceQuerysetId)
@@ -180,21 +183,20 @@ export class DatabaseComponent {
            parseInt(this.datasourceQuerysetId)
            console.log(this.datasourceQuerysetId)
          }
-       this.getTablesfromPrevious();
        }
      }
 
   }
   ngOnInit(){
-    {
-      document.querySelector('html')?.getAttribute('data-toggled') != null
-        ? document.querySelector('html')?.removeAttribute('data-toggled')
-        : document
-            .querySelector('html')
-            ?.setAttribute('data-toggled', 'icon-overlay-close');    
-    }
+    // {
+    //   document.querySelector('html')?.getAttribute('data-toggled') != null
+    //     ? document.querySelector('html')?.removeAttribute('data-toggled')
+    //     : document
+    //         .querySelector('html')
+    //         ?.setAttribute('data-toggled', 'icon-overlay-close');    
+    // }
 
-    if(!this.updateQuery){
+    if(!this.updateQuery && !this.fromSheetEditDb){
       if(this.fromDatabasId){
     // this.getTablesFromConnectedDb();
     this.getSchemaTablesFromConnectedDb();
@@ -204,9 +206,14 @@ export class DatabaseComponent {
       }
     this.getTablesfromPrevious()
   }
-//  if(this.updateQuery){
-//       this.getSavedQueryData();
-//     }
+  if(this.fromSheetEditDb){
+    this.getTablesfromPrevious();
+    if(this.fromFileId){
+      this.getTablesFromFileId();
+    }else if(this.fromDatabasId){
+      this.getSchemaTablesFromConnectedDb();
+    }
+  }
   }
   toggleCard() {
     this.isOpen = !this.isOpen;
@@ -308,7 +315,7 @@ getSchemaTablesFromConnectedDb(){
   if(obj.search == '' || obj.search == null){
     delete obj.search;
   }
-  if(obj.querySetId === '0'){
+  if(obj.querySetId === '0' || obj.querySetId === 0){
     delete obj.querySetId
   }
   const IdToPass = this.fromFileId ? this.fileId : this.databaseId
@@ -488,7 +495,8 @@ executeQuery(){
   const obj ={
     database_id: this.databaseId,
     custom_query: this.sqlQuery,
-    row_limit:this.rowLimit
+    row_limit:this.rowLimit,
+    queryset_id:this.qurtySetId
   }as any
   if(this.fromFileId){
     delete obj.database_id
@@ -510,7 +518,13 @@ executeQuery(){
         console.log('dkjshd',this.cutmquryTable)
       },
       error:(error:any)=>{
-      console.log(error)
+      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'oops!',
+        text: error.error.message,
+        width: '400px',
+      })
       this.cutmquryTableError = error;
     }
     })
@@ -570,7 +584,7 @@ joiningTables(){
     query_set_id:this.qurtySetId,
     database_id:this.databaseId,
     joining_tables: schemaTablePairs,
-    join_type:[],
+    join_type:this.joinTypes,
     joining_conditions:this.relationOfTables,
     dragged_array:this.draggedtables
   }as any;
@@ -815,7 +829,7 @@ getJoiningTableData(){
         this.totalRows = data.total_rows;
         this.showingRows = data.no_of_rows;
         this.gotoSheetButtonDisable = false;
-        // this.saveQueryName = data.queryset_name;
+        this.saveQueryName = data.queryset_name;
         if(this.TabledataJoining?.column_data?.length === 0){
           this.gotoSheetButtonDisable = true;
         }
@@ -1278,7 +1292,13 @@ markDirty(){
                 this.router.navigate(['/workbench/sheets/fileId' + '/' + encodedFileId + '/' + encodedQuerySetId + '/' + encodedDsQuerySetId])
               },
               error: (error: any) => {
-                console.log(error)
+                console.log(error);
+                Swal.fire({
+                  icon: 'error',
+                  title: 'oops!',
+                  text: error.error.message,
+                  width: '400px',
+                })
               }
             });
           } else {
@@ -1294,7 +1314,13 @@ markDirty(){
                 this.router.navigate(['/workbench/sheets/fileId' + '/' + encodedFileId + '/' + encodedQuerySetId + '/' + encodedDsQuerySetId])
               },
               error: (error: any) => {
-                console.log(error)
+                console.log(error);
+                Swal.fire({
+                  icon: 'error',
+                  title: 'oops!',
+                  text: error.error.message,
+                  width: '400px',
+                })
               }
             });
           } else {
@@ -1336,7 +1362,13 @@ markDirty(){
                 this.router.navigate(['/workbench/sheets/dbId' + '/' + encodedDatabaseId + '/' + encodedQuerySetId + '/' + encodedDsQuerySetId])
               },
               error: (error: any) => {
-                console.log(error)
+                console.log(error);
+                Swal.fire({
+                  icon: 'error',
+                  title: 'oops!',
+                  text: error.error.message,
+                  width: '400px',
+                })
               }
             });
           } else {
@@ -1419,7 +1451,13 @@ updateCustmQuery(){
       this.totalRowsCustomQuery=data.total_rows
     },
     error:(error:any)=>{
-      console.log(error)
+      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'oops!',
+        text: error.error.message,
+        width: '400px',
+      })
     }
   })
 }

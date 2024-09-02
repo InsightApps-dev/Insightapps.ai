@@ -52,25 +52,26 @@ def application():
     }
     return data
 
+try:
+    if Application.objects.filter(id=1).exists():
+        ap_oauth=Application.objects.get(id=1)
+        en_str=views.decode_string(ap_oauth.post_logout_redirect_uris)
+        o_client_secret=en_str
+        o_client_id=ap_oauth.client_id
+        o_redirect=ap_oauth.redirect_uris
+    else:
+        ap_oauth=application()
+        o_client_id = ap_oauth['client_id']
+        o_client_secret = ap_oauth['client_secret']
+        o_redirect = ap_oauth['redirect_url']
 
-if Application.objects.filter(id=1).exists():
-    ap_oauth=Application.objects.get(id=1)
-    en_str=views.decode_string(ap_oauth.post_logout_redirect_uris)
-    o_client_secret=en_str
-    o_client_id=ap_oauth.client_id
-    o_redirect=ap_oauth.redirect_uris
-else:
-    ap_oauth=application()
-    o_client_id = ap_oauth['client_id']
-    o_client_secret = ap_oauth['client_secret']
-    o_redirect = ap_oauth['redirect_url']
 
-
-CLIENT_ID = o_client_id
-CLIENT_SECRET = o_client_secret
-TOKEN_URL = settings.TOKEN_URL
-O_REDIRECT_URI = o_redirect
-
+    CLIENT_ID = o_client_id
+    CLIENT_SECRET = o_client_secret
+    TOKEN_URL = settings.TOKEN_URL
+    O_REDIRECT_URI = o_redirect
+except:
+    pass
 
 def get_access_token(username, password):
     token_url = TOKEN_URL

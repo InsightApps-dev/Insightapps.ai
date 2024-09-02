@@ -325,3 +325,7 @@ padding-left: 25px;
     font-size: 3rem; /* Responsive size for smaller screens */
   }
 }
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

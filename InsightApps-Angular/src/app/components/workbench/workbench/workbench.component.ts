@@ -705,6 +705,10 @@ export class WorkbenchComponent implements OnInit{
     this.pageNo=page;
     this.getDbConnectionList();
   }
+  searchDbConnectionList(){
+    this.pageNo=1;
+    this.getDbConnectionList();
+  }
   getDbConnectionList(){
     const Obj ={
       search : this.searchDbName,

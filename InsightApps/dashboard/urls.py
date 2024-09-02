@@ -51,6 +51,8 @@ urlpatterns = [
     path('dashboard_properties/<int:dashboard_id>/<token>',Connections.dashboard_data_previlages,name='dashboard properties'), #['GET']
     path('sheetidupdate/<token>',Connections.sheets_update_dashboard.as_view(),name='dashboard properties'), #['PUT']
 
+    path('is_public/<int:ds_id>',Connections.is_public,name='set dashoard to public'), #['GET']
+
     path('columnextracting/<token>',columns_extract.new_column_extraction.as_view(),name='Fetching columns, datatypes from tables'),
     path('show_me/<token>',Connections.show_me.as_view(),name='show me'), # Enabling the charts
 
@@ -175,13 +177,15 @@ urlpatterns = [
 
     path('dashboard_filter_list/<token>',Dashboard_filters_list.as_view(),name='dashboard filter list'),
 
-    path('dashboard_filter_delete/<token>/<int:filter_id>',DashboardFilterDelete.as_view(),name='dashboard filter delete'),
+    path('dashboard_filter_delete/<token>',DashboardFilterDelete.as_view(),name='dashboard filter delete'),
 
     path('dashboard_filter_detail/<token>',DashboardFilterDetail.as_view(),name='dashboard filter details'),
     
     path('dashboard_filter_query_preview/<token>',DashboardQuerySetList.as_view(),name='dashboard filter query list'),
 
     path('dashboard_nosheet_filter/<token>',Nofiltersheet.as_view(),name='dashboard nosheet filter'),
+
+    path('dashboard_filter_sheet_update/<token>',Dashboard_filtersheet_update.as_view(),name='dashboard filter sheet update'),
 
     path('dashboard_test/<token>',SearchSheetAndQuerySetList.as_view(),name='dashboard search')
 

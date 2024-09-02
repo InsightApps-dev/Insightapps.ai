@@ -113,7 +113,7 @@ class charts_fetch_qr(serializers.Serializer):
     queryset_id=serializers.CharField(default='')
     server_id=serializers.CharField(allow_blank=True,allow_null=True,default='')
     file_id = serializers.CharField(allow_blank=True,allow_null=True,default='')
-    search=serializers.CharField(default='')
+    search=serializers.CharField(default='',allow_blank=True,allow_null=True)
     page_no=serializers.CharField(default=1)
     page_count=serializers.CharField(default=perpage)
 
@@ -199,6 +199,7 @@ class table_input(serializers.Serializer):
     queryset_id=serializers.IntegerField(default='')
 
 class new_table_input(serializers.Serializer):
+    search = serializers.CharField(default='',allow_blank=True,allow_null=True)
     db_id=serializers.IntegerField(allow_null=True,default =None)
     queryset_id=serializers.IntegerField()
     file_id = serializers.CharField(allow_blank=True,allow_null=True,default='')
@@ -251,7 +252,7 @@ class CustomSQLSerializer(serializers.Serializer):
 
 class queryset_id_sheets(serializers.Serializer):
     queryset_id=serializers.CharField(allow_null=True,default=None)
-    search = serializers.CharField(default='')
+    search = serializers.CharField(default='',allow_blank=True,allow_null=True)
     page_no = serializers.CharField(default=1)
     page_count = serializers.CharField(default=perpage)
 
@@ -276,6 +277,7 @@ class FilterSerializer(serializers.Serializer):
     col_name = serializers.CharField() 
     data_type = serializers.CharField()
     format_date = serializers.CharField(allow_blank=True,default= 'month/day/year')
+    search = serializers.CharField(allow_blank=True,default='')
 
 
 # class dimensionserializer(serializers.Serializer):
@@ -365,7 +367,7 @@ class Datasource_filter_Serializer(serializers.Serializer):
     
 
 class search_serializer(serializers.Serializer):
-    search = serializers.CharField(default='')
+    search = serializers.CharField(default='',allow_blank=True,allow_null=True)
     page_no = serializers.CharField(default=1)
     page_count = serializers.CharField(default=perpage)
 
@@ -393,7 +395,7 @@ class dash_prop_update(serializers.Serializer):
 
 class SearchFilterSerializer(serializers.Serializer):
     querySetId=serializers.IntegerField(allow_null=True,default=None)
-    search = serializers.CharField(default='')
+    search = serializers.CharField(default='',allow_blank=True,allow_null=True)
     page_no = serializers.CharField(default=1)
     page_count = serializers.CharField(default=perpage)
 
@@ -411,10 +413,15 @@ class get_table_names(serializers.Serializer):
     database_id = serializers.IntegerField(allow_null=True,default=None)
     file_id = serializers.IntegerField(allow_null=True,default=None)
     query_set_id =serializers.IntegerField()
+    search = serializers.CharField(allow_blank=True,default='')
+
 class GetDataSourceFilter(serializers.Serializer):
     type_filter = serializers.CharField()
     # database_id = serializers.IntegerField()
+    search = serializers.CharField(allow_blank=True,default='')
     filter_id = serializers.IntegerField()
+    search = serializers.CharField(allow_blank=True,default='')
+
 
 class tables_delete(serializers.Serializer):
     tables_list = serializers.ListField()
@@ -485,6 +492,14 @@ class dashboard_nosheet_data(serializers.Serializer):
     dashboard_id = serializers.IntegerField()
     sheet_ids = serializers.ListField()
 
+class dashboard_filtersheet(serializers.Serializer):
+    dashboard_id = serializers.IntegerField()
+    sheet_ids = serializers.IntegerField()
+
+class dashboard_filter_delete(serializers.Serializer):
+    filter_id = serializers.ListField()
+
+
 
 class test_data(serializers.Serializer):
-    search = serializers.CharField()
+    search = serializers.CharField(allow_blank=True,allow_null=True)

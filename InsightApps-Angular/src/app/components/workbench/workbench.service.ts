@@ -385,10 +385,16 @@ getServerTablesList(obj:any){
 openApiKey(obj:any){
   return this.http.post<any>(`${environment.apiUrl}/ai/validate-api-key/`,obj);
 }
-deleteDashbaordFilter(id:any){
+deleteDashbaordFilter(obj:any){
   const currentUser = localStorage.getItem( 'currentUser' );
   this.accessToken = JSON.parse( currentUser! )['Token'];
-  return this.http.delete<any>(`${environment.apiUrl}/dashboard_filter_delete/`+this.accessToken+'/'+id); 
+  return this.http.post<any>(`${environment.apiUrl}/dashboard_filter_delete/`+this.accessToken,obj); 
+}
+
+deleteSheetFilter(obj:any){
+  const currentUser = localStorage.getItem( 'currentUser' );
+  this.accessToken = JSON.parse( currentUser! )['Token'];
+  return this.http.post<any>(`${environment.apiUrl}/dashboard_filter_sheet_update/`+this.accessToken,obj); 
 }
 editFilterDataGet(obj:any){
   const currentUser = localStorage.getItem( 'currentUser' );
@@ -479,6 +485,21 @@ deleteUser(id:any){
     const currentUser = localStorage.getItem('currentUser');
     this.accessToken = JSON.parse(currentUser!)['Token'];
     return this.http.get<any>(`${environment.apiUrl}/dashboard_properties/`+id+'/'+ this.accessToken);
+  }
+  //public dashboard
+  publishDashbord(id:any){
+    return this.http.get<any>(`${environment.apiUrl}/is_public/`+id);
+  }
+  getDashboardFilterredListPublic(obj:any){
+    return this.http.post<any>(`${environment.apiUrl}/public/dashboard_filter_list/`,obj); 
+  }
+  getSavedDashboardDataPublic(obj:any){
+    return this.http.post<any>(`${environment.apiUrl}/public/dashboardretrieve/`,obj);
+  }getFilteredDataPublic(obj:any){
+    return this.http.post<any>(`${environment.apiUrl}/public/dashboard_filtered_data/`,obj); 
+  }
+  getColDataFromFilterIdPublic(obj:any){
+    return this.http.post<any>(`${environment.apiUrl}/public/dashboard_columndata_preview/`,obj); 
   }
   //image convert
       blobToFile(theBlob:any){
